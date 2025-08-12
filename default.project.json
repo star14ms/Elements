@@ -23,9 +23,9 @@
         "$path": "ServerPackages"
       },
       "AchievementsServerScriptService": {
+        "$className": "Folder",
         "AchievementsServer": {
-          "$path": "src/server/AchievementsServerScriptService/init.AchievementsServer.luau",
-          "$className": "Script"
+          "$path": "src/server/AchievementsServerScriptService/AchievementsServer.server.luau"
         }
       }
     },
@@ -39,12 +39,11 @@
     },
 
     "StarterGui": {
-      "StarterGui": {
-        "AchievementsStarterGui": {
-          "AchievementsGuiHandler": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsGuiHandler"},
-          "AchievementsMainGui": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsMainGui.rbxmx" },
-          "AchievementsNotification": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsNotification.rbxmx" }
-        }
+      "AchievementsStarterGui": {
+        "$className": "Folder",
+        "AchievementsGuiHandler": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsGuiHandler"},
+        "AchievementsMainGui": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsMainGui.rbxm" },
+        "AchievementsNotification": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsNotification.rbxm" }
       }
     }
   }

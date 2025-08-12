@@ -36,25 +36,30 @@ local PeriodicTable = workspace.MainPlate:WaitForChild("PeriodicTable")
 local PeriodicTablePaths = require(workspace.MainPlate.PeriodicTable.PeriodicTablePaths)
 
 
---Update main frame
-local function getElementsFolder(): Folder?
-    return clientAchievements:FindFirstChild("Elements") :: Folder?
-end
-
 local function isOwned(achievementKey: string): boolean
-    -- If key is a path, traverse; else assume Elements/<key>
-    if string.find(achievementKey, "/") then
-        local node: Instance = clientAchievements
-        for seg in string.gmatch(achievementKey, "[^/]+") do
-            local nextNode = node:FindFirstChild(seg)
-            if not nextNode then return false end
-            node = nextNode
-        end
-        return node ~= nil
-    else
-        local elements = getElementsFolder()
-        return elements ~= nil and elements:FindFirstChild(achievementKey) ~= nil
+    -- Expect full path keys: "Elements/..." or "Constellations/..."
+    if not string.find(achievementKey, "/") then
+        return false
     end
+    local base, rest = string.match(achievementKey, "([^/]+)/(.+)")
+    if not base or not rest then
+        return false
+    end
+	-- if achievementKey == "Elements/H" then
+	-- 	print(clientAchievements:FindFirstChild(base))
+	-- 	print(base, rest)
+	-- end
+    local baseFolder = clientAchievements:FindFirstChild(base)
+    if not baseFolder or not baseFolder:IsA("Folder") then
+        return false
+    end
+    local node: Instance = baseFolder
+    for seg in string.gmatch(rest, "[^/]+") do
+        local nextNode = node:FindFirstChild(seg)
+        if not nextNode then return false end
+        node = nextNode
+    end
+    return true
 end
 
 local function updateMain()
@@ -70,7 +75,7 @@ local function updateMain()
 	local newFrames = {}
 
     for achievement, achievementInfo in pairs(allAchievements) do
-		local name = achievement
+        local name = achievement
 		local image = type(achievementInfo.ImageId) == "number" and "rbxassetid://" .. achievementInfo.ImageId or achievementInfo.ImageId
 		local desc = achievementInfo.Description
         local owned = isOwned(achievement)
@@ -80,7 +85,8 @@ local function updateMain()
 		newFrame.AchievementImage.Image = image
 		newFrame.Description.Text = desc
 		newFrame.Acquired.Visible = owned
-		local model = PeriodicTablePaths.ElementPath[name]
+        local leaf = string.match(name, "/([^/]+)$") or name
+        local model = PeriodicTablePaths.ElementPath[leaf]
 
 		if not owned then
 			newFrame.ImageColor3 = Color3.fromRGB(newFrame.ImageColor3.R - 50, newFrame.ImageColor3.G - 50, newFrame.ImageColor3.B - 50)
@@ -99,11 +105,11 @@ local function updateMain()
 			end
 			model.Color = Color3.fromRGB(0, 0, 0)
 
-			if table.find(PeriodicTablePaths.Lanthanides, name) and not AllLanthanideAchievedCheck then
+            if table.find(PeriodicTablePaths.Lanthanides, leaf) and not AllLanthanideAchievedCheck then
 				PeriodicTable.Lanthanide.Blank:SetAttribute("colorOrigin", PeriodicTable.Lanthanide.Blank.Color)
 				PeriodicTable.Lanthanide.Blank.Color = Color3.fromRGB(0, 0, 0)
 				AllLanthanideAchievedCheck = true
-			elseif table.find(PeriodicTablePaths.Actinides, name) and not AllActinideAchievedCheck then
+            elseif table.find(PeriodicTablePaths.Actinides, leaf) and not AllActinideAchievedCheck then
 				PeriodicTable.Actinide.Blank:SetAttribute("colorOrigin", PeriodicTable.Actinide.Blank.Color)
 				PeriodicTable.Actinide.Blank.Color = Color3.fromRGB(0, 0, 0)
 				AllActinideAchievedCheck = true
@@ -151,13 +157,6 @@ remote.OnClientEvent:Connect(function(instruction, arg)
 		
         local achievementKey = arg
         local achievementInfo = allAchievements[achievementKey]
-        if not achievementInfo and type(achievementKey) == "string" then
-            local leaf = string.match(achievementKey, "/([^/]+)$")
-            if leaf then
-                achievementInfo = allAchievements[leaf]
-                achievementKey = leaf
-            end
-        end
 		if achievementInfo then
             table.insert(achievementsQueue, achievementKey)
 			repeat
@@ -191,4 +190,7 @@ end)
 
 
 updateMain()
-clientAchievements.ChildAdded:Connect(updateMain)
+local achievementFolders = clientAchievements:GetChildren()
+for _, achievementFolder in achievementFolders do
+    achievementFolder.ChildAdded:Connect(updateMain)
+end

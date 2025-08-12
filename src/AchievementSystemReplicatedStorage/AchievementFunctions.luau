@@ -28,13 +28,18 @@ end
 local function ensureCategories(plr: Player): (Folder, Folder)
     local root = ensureAchievementRoot(plr)
     local elements = ensureChildFolder(root, "Elements")
-    local constellation = ensureChildFolder(root, "Constellation")
-    return elements, constellation
+    local constellations = ensureChildFolder(root, "Constellations")
+    return elements, constellations
 end
 
 local function createPathFolders(root: Folder, pathParts: {string}): Instance
     local node: Instance = root
-    for i = 1, #pathParts - 1 do
+    -- If the first segment matches the provided root, skip it to avoid duplicating (e.g., Elements/Elements/...)
+    local startIndex = 1
+    if #pathParts >= 1 and pathParts[1] == root.Name then
+        startIndex = 2
+    end
+    for i = startIndex, #pathParts - 1 do
         node = ensureChildFolder(node :: Instance, pathParts[i])
     end
     return node
@@ -89,14 +94,15 @@ function functions.LoadPlayerAchievements(plr:Player)
 
         if success then
             local root = ensureAchievementRoot(plr)
-            local elements, constellation = ensureCategories(plr)
+            local elements, constellations = ensureCategories(plr)
             for _, entry in pairs(plrData) do
                 if typeof(entry) == "string" and string.find(entry, "/") then
-                    -- structured path, e.g. Elements/H or Constellation/Andromeda/Alpheratz
+                    -- structured path, e.g. Elements/H or Constellations/Andromeda/Alpheratz
                     local parts = splitPath(entry)
                     if #parts >= 2 then
-                        local base = parts[1] == "Elements" and elements or (parts[1] == "Constellation" and constellation or root)
-                        local parentNode = createPathFolders(base, parts)
+                    local baseName = parts[1]
+                    local base = baseName == "Elements" and elements or (baseName == "Constellations" and constellations or root)
+                    local parentNode = createPathFolders(base, parts)
                         local leafName = parts[#parts]
                         if not parentNode:FindFirstChild(leafName) then
                             local v = Instance.new("StringValue")
@@ -121,14 +127,14 @@ function functions.SavePlayerAchievements(plr:Player)
     if plr.Parent == game.Players and plr:FindFirstChild("ACHIEVEMENTS FOLDER") then
         local root = plr:FindFirstChild("ACHIEVEMENTS FOLDER") :: Folder
         local elements = ensureChildFolder(root, "Elements")
-        local constellation = ensureChildFolder(root, "Constellation")
+        local constellations = ensureChildFolder(root, "Constellations")
         local plrAchievements = {}
         -- store only entries within the two category folders
         for _, path in ipairs(collectLeafPaths(elements)) do
             table.insert(plrAchievements, "Elements/" .. path)
         end
-        for _, path in ipairs(collectLeafPaths(constellation)) do
-            table.insert(plrAchievements, "Constellation/" .. path)
+        for _, path in ipairs(collectLeafPaths(constellations)) do
+            table.insert(plrAchievements, "Constellations/" .. path)
         end
 		
 		local success, err
@@ -151,13 +157,13 @@ function functions.AwardAchievement(plr:Player, achName:string)
 	if not game:GetService("RunService"):IsServer() then return end
 
     local root = ensureAchievementRoot(plr)
-    local elements, constellation = ensureCategories(plr)
+    local elements, constellations = ensureCategories(plr)
 
     -- If the name is a structured path, create nested
     if string.find(achName, "/") then
         local parts = splitPath(achName)
         local baseName = parts[1]
-        local base = baseName == "Elements" and elements or (baseName == "Constellation" and constellation or root)
+        local base = baseName == "Elements" and elements or (baseName == "Constellations" and constellations or root)
         local parentNode = createPathFolders(base, parts)
         local leafName = parts[#parts]
         if not parentNode:FindFirstChild(leafName) then
@@ -205,8 +211,10 @@ function functions.InitializeEmptyAchievements(plr:Player)
 			folder.Parent = plr
 		end
 		-- Remove all existing achievements
-		for _, child in pairs(folder:GetChildren()) do
-			child:Destroy()
+		for _, AchievementType in pairs(folder:GetChildren()) do
+            for _, child in pairs(AchievementType:GetChildren()) do
+                child:Destroy()
+            end
 		end
 		
 		remote:FireClient(plr, "INITIALIZE ACHIEVEMENT")

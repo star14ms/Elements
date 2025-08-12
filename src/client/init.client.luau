@@ -47,7 +47,7 @@ print("Hello world, from client!")
 
 
 -- local StarSphere = require(ReplicatedStorage.Shared.StarSphere)
--- local AllConstellations = require(ReplicatedStorage.Shared.constellation.constellation)
+-- local AllConstellations = require(ReplicatedStorage.Shared.constellations.constellation)
 
 -- -- Create all constellations under a single root folder
 -- local rootStars = StarSphere.createAllConstellations(AllConstellations, workspace)

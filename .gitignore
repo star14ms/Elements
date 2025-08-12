@@ -13,4 +13,4 @@ wally.lock
 # Custom
 data/
 __pycache__
-src/shared/constellation/
+src/shared/constellations/

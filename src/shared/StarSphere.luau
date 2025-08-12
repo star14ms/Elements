@@ -166,7 +166,7 @@ local spectralColors: {[string]: Color3} = {
     F = Color3.fromRGB(213, 212, 185),
     G = Color3.fromRGB(159, 143, 84),
     K = Color3.fromRGB(165, 109, 77),
-    M = Color3.fromRGB(168, 74, 58),
+    M = Color3.fromRGB(168, 80, 58),
 }
 
 local function parseSpectralFirstLetter(spClass: string?): string?

@@ -63,13 +63,9 @@ game.Players.PlayerAdded:Connect(function(player)
 	player.CharacterAdded:Connect(function(character)
 		
 		character.ChildAdded:Connect(function(tool)
-            -- Award by matching exact key or Elements/<key>
             for achievement, _ in pairs(allAchievements) do
                 if tool.Name == achievement or tool.Name == string.match(achievement, "/([^/]+)$") then
                     local awardKey = achievement
-                    if not string.find(awardKey, "/") then
-                        awardKey = "Elements/" .. awardKey
-                    end
                     achievementFuncs.AwardAchievement(player, awardKey)
                 end
             end
