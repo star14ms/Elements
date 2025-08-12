@@ -9,3 +9,8 @@ Packages/
 ServerPackages/
 sourcemap.json
 wally.lock
+
+# Custom
+data/
+__pycache__
+src/shared/constellation/
