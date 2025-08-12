@@ -46,34 +46,34 @@ print("Hello world, from client!")
 -- end
 
 
-local StarSphere = require(ReplicatedStorage.Shared.StarSphere)
-local AllConstellations = require(ReplicatedStorage.Shared.constellation.constellation)
+-- local StarSphere = require(ReplicatedStorage.Shared.StarSphere)
+-- local AllConstellations = require(ReplicatedStorage.Shared.constellation.constellation)
 
--- Create all constellations under a single root folder
-local rootStars = StarSphere.createAllConstellations(AllConstellations, workspace)
+-- -- Create all constellations under a single root folder
+-- local rootStars = StarSphere.createAllConstellations(AllConstellations, workspace)
 
--- UI: toggle constellation lines on/off
-local _StarterGui = game:GetService("StarterGui")
-local Players = game:GetService("Players")
-local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
+-- -- UI: toggle constellation lines on/off
+-- local _StarterGui = game:GetService("StarterGui")
+-- local Players = game:GetService("Players")
+-- local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "ConstellationUI"
-screenGui.ResetOnSpawn = false
-screenGui.Parent = playerGui
+-- local screenGui = Instance.new("ScreenGui")
+-- screenGui.Name = "ConstellationUI"
+-- screenGui.ResetOnSpawn = false
+-- screenGui.Parent = playerGui
 
-local button = Instance.new("TextButton")
-button.Name = "ToggleLinesButton"
-button.Size = UDim2.fromOffset(160, 36)
-button.Position = UDim2.fromOffset(20, 20)
-button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-button.TextColor3 = Color3.new(1, 1, 1)
-button.Text = "Toggle Lines: ON"
-button.Parent = screenGui
+-- local button = Instance.new("TextButton")
+-- button.Name = "ToggleLinesButton"
+-- button.Size = UDim2.fromOffset(160, 36)
+-- button.Position = UDim2.fromOffset(20, 20)
+-- button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+-- button.TextColor3 = Color3.new(1, 1, 1)
+-- button.Text = "Toggle Lines: ON"
+-- button.Parent = screenGui
 
-local linesVisible = true
-button.MouseButton1Click:Connect(function()
-    linesVisible = not linesVisible
-    StarSphere.setConstellationLinesVisible(rootStars, linesVisible)
-    button.Text = linesVisible and "Toggle Lines: ON" or "Toggle Lines: OFF"
-end)
+-- local linesVisible = true
+-- button.MouseButton1Click:Connect(function()
+--     linesVisible = not linesVisible
+--     StarSphere.setConstellationLinesVisible(rootStars, linesVisible)
+--     button.Text = linesVisible and "Toggle Lines: ON" or "Toggle Lines: OFF"
+-- end)

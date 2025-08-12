@@ -9,15 +9,24 @@
       },
       "Packages": {
         "$path": "Packages"
+      },
+      "AchievementSystemReplicatedStorage": {
+        "$path": "src/AchievementSystemReplicatedStorage"
       }
     },
 
     "ServerScriptService": {
       "Server": {
-        "$path": "src/server"
+        "$path": "src/server/server"
       },
       "ServerPackages": {
         "$path": "ServerPackages"
+      },
+      "AchievementsServerScriptService": {
+        "AchievementsServer": {
+          "$path": "src/server/AchievementsServerScriptService/init.AchievementsServer.luau",
+          "$className": "Script"
+        }
       }
     },
 
@@ -25,6 +34,16 @@
       "StarterPlayerScripts": {
         "Client": {
           "$path": "src/client"
+        }
+      }
+    },
+
+    "StarterGui": {
+      "StarterGui": {
+        "AchievementsStarterGui": {
+          "AchievementsGuiHandler": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsGuiHandler"},
+          "AchievementsMainGui": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsMainGui.rbxmx" },
+          "AchievementsNotification": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsNotification.rbxmx" }
         }
       }
     }
