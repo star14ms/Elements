@@ -297,7 +297,7 @@ end
 -- Select a random star whose Mass is within ±tolerance of targetMass (in solar masses)
 -- If selected and not already owned by player, award the corresponding achievement
 -- Returns the achievement key ("Constellations/<Constellation>/<Star>") or nil
-function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance: number?): { constellation: string, star: string, massStr: string, radiusStr: string }?
+function functions.SelectRandomStarByMass(targetMass: number, tolerance: number?): { constellation: string, star: string, massStr: string, radiusStr: string }?
     if not game:GetService("RunService"):IsServer() then return nil end
     tolerance = tolerance or 0.2
 
@@ -398,11 +398,15 @@ function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance:
         chosen = candidates[idx]
     end
 
+    return chosen
+end
+
+function functions.AwardStarAchievementAllPlayers(key)
     -- Award achievement to all players who don't own it yet
     for _, player in ipairs(game.Players:GetPlayers()) do
         local _, constellationsFolder = ensureCategories(player)
         local pathParts = {}
-        for seg in string.gmatch(chosen.key, "[^/]+") do
+        for seg in string.gmatch(key, "[^/]+") do
             table.insert(pathParts, seg)
         end
         local owned = false
@@ -414,7 +418,7 @@ function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance:
             end
         end
         if not owned then
-            functions.AwardAchievement(player, chosen.key)
+            functions.AwardAchievement(player, key)
         end
     end
 

@@ -2,6 +2,8 @@ local rs = game.ReplicatedStorage:WaitForChild("AchievementSystemReplicatedStora
 local remote = rs:WaitForChild("AchievementsRemoteEvent")
 local allAchievements = require(rs:WaitForChild("AchievementsList")) :: {[string]: any}
 local achievementFuncs = require(rs:WaitForChild("AchievementFunctions"))
+local StarVisibility = require(game.ReplicatedStorage.Shared.StarVisibility)
+local UpdateVisibleStars = game.ReplicatedStorage:WaitForChild("UpdateVisibleStars")
 
 --Save data
 game.Players.PlayerRemoving:Connect(achievementFuncs.SavePlayerAchievements)
@@ -77,6 +79,10 @@ end)
 remote.OnServerEvent:Connect(function(player, action)
 	if action == "InitializeEmptyAchievements" then
 		achievementFuncs.InitializeEmptyAchievements(player)
+
+		-- Update star visibility for all clients after creation
+		StarVisibility.ServerShowOnlyUnionAchieved()
+		UpdateVisibleStars:FireClient(player)
 	end
 end)
 

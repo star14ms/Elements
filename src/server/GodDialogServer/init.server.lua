@@ -13,6 +13,7 @@ local GodDialogAction = ReplicatedStorage.DialogModule:WaitForChild("GodDialogAc
 local GodDialogReply = ReplicatedStorage.DialogModule:WaitForChild("GodDialogReply")
 local AnnouncementEvent = ReplicatedStorage:WaitForChild("AnnouncementEvent")
 local sunTemplate = ReplicatedStorage:FindFirstChild("Model") and ReplicatedStorage.Model:FindFirstChild("Star")
+local UpdateVisibleStars = ReplicatedStorage:WaitForChild("UpdateVisibleStars")
 local rand = Random.new()
 
 -- Try to require the constellations mapping module from a few known locations
@@ -49,16 +50,7 @@ local function CreateStar(player, args)
         local props = StarProperties.assignProperties(args.atomicMassSpent)
 		local sizeRatio = props.sizeRatio
 		
-		local x = rand:NextNumber(-200, 200)
-		local y = Star.Size.Y / 2
-		local z = rand:NextNumber(-200, 200)
-
-		while math.abs(x) < Star.Size.X / 2 and math.abs(z) < Star.Size.Z / x do
-			x = rand:NextNumber(-200, 200)
-			z = rand:NextNumber(-200, 200)
-		end
-		
-		local starInfo = AchievementFunctions.SelectRandomStarByMassAndAward(props.mass)
+		local starInfo = AchievementFunctions.SelectRandomStarByMass(props.mass)
 		local mass = props.mass
 		if starInfo.massStr then
 			local massMatch = string.match(starInfo.massStr, "([%d%.]+)")
@@ -78,39 +70,49 @@ local function CreateStar(player, args)
 		if string.find(starName, ",") then
 			starName = starName.star:match("([^,]+)")
 		end
-		print("mass", mass, "->", props.mass)
-		print("sizeRatio", sizeRatio, "->", props.sizeRatio)
+        print(string.format("name: %s (%s) size: %.1f R☉", starName, starInfo.constellation, props.sizeRatio))
 
 		Star.Name = starName
         Star.Color = props.color
         Star.Size = Star.Size * sizeRatio
+
+		local x = rand:NextNumber(-200, 200)
+		local y = Star.Size.Y / 2
+		local z = rand:NextNumber(-200, 200)
+		while math.abs(x) < Star.Size.X / 2 and math.abs(z) < Star.Size.Z / x do
+			x = rand:NextNumber(-200, 200)
+			z = rand:NextNumber(-200, 200)
+		end
 		Star.Position = Vector3.new(x, y, z)
 
 		Star:SetAttribute("class", props.class)
         Star:SetAttribute("mass", mass)
         Star:SetAttribute("sizeRatio", sizeRatio)
-        Star:SetAttribute("lifetime", props.lifetime)
+        Star:SetAttribute("lifetime", StarProperties.assignLifetimeByMass(mass))
         Star:SetAttribute("maxPulses", props.maxPulses)
         Star:SetAttribute("minAtoms", props.minAtoms)
 		Star:SetAttribute("maxAtoms", props.maxAtoms)
 		Star:SetAttribute("constellation", starInfo.constellation)
 		
 		Star.Parent = Workspace.SpawnedItems.Stars
+        AchievementFunctions.AwardStarAchievementAllPlayers(starInfo.key)
 
 		local textColor = props.textColor:ToHex()
         if starInfo ~= nil then
-			local baseText = player.Name .. " Created '" .. starName .. "' from " .. starInfo.constellation .. " ! (Class: " .. props.class .. ")"
-            local announcementMessage = string.format("<font color=\"#%s\">%s</font>", textColor, baseText)
-            AnnouncementEvent:FireAllClients(announcementMessage, 8)
+            local message = player.Name .. " Created "
+            message = message .. string.format("<font color=\"#%s\">%s</font>", textColor, starName) .. " from "
+            message = message .. string.format("<font color=\"#%s\">%s</font>", textColor, starInfo.constellation) .. " ! "
+            message = message .. string.format("<font color=\"#%s\">(%.2f M☉)</font>", textColor, math.round(mass*100)/100)
+            AnnouncementEvent:FireAllClients(message, 8)
         end
 
-        local baseText = "A new star has been created! Class:"
-        local replyMessage = string.format("<font color=\"#%s\">%s %s</font>", textColor, baseText, props.class)
+        local baseText = "A new star has been created!"
+        local replyMessage = string.format("<font color=\"#%s\">%s</font>", textColor, baseText)
         GodDialogReply:FireClient(player, replyMessage)
 
         -- Update star visibility for all clients after creation
 		StarVisibility.ServerShowOnlyUnionAchieved()
-		StarVisibility.ShowOnlyUnionAchieved(player)
+		UpdateVisibleStars:FireClient(player)
     else
         GodDialogReply:FireClient(player, "Could not find the Sun template.")
     end
@@ -289,7 +291,7 @@ local function CreateFixedStar(player, args)
     Star:SetAttribute("class", spectralClass)
     Star:SetAttribute("mass", mass)
     Star:SetAttribute("sizeRatio", sizeRatio)
-    Star:SetAttribute("lifetime", classData.lifetime[1])
+    Star:SetAttribute("lifetime", StarProperties.assignLifetimeByMass(mass))
     Star:SetAttribute("maxPulses", classData.maxPulses)
     Star:SetAttribute("minAtoms", classData.minAtoms)
 	Star:SetAttribute("maxAtoms", classData.maxAtoms)
@@ -303,21 +305,24 @@ local function CreateFixedStar(player, args)
     Star.Position = Vector3.new(x, y, z)
 	Star.Parent = Workspace.SpawnedItems.Stars
 	
-	AchievementFunctions.AwardAchievement(player, "Constellations/" .. args.starKey)
-    
+    AchievementFunctions.AwardStarAchievementAllPlayers("Constellations/" .. args.starKey)
+    print(string.format("name: %s (%s) size: %.1f R☉", starName, constellationName, sizeRatio))
+
     -- Announcement
     local textColor = classData.textColor:ToHex()
-    local baseText = player.Name .. " Created '" .. starName .. "' from " .. constellationName .. " ! (Class: " .. spectralClass .. ")"
-    local announcementMessage = string.format("<font color=\"#%s\">%s</font>", textColor, baseText)
-    AnnouncementEvent:FireAllClients(announcementMessage, 8)
+    local message = player.Name .. " Created "
+    message = message .. string.format("<font color=\"#%s\">%s</font>", textColor, starName) .. " from "
+    message = message .. string.format("<font color=\"#%s\">%s</font>", textColor, constellationName) .. " ! "
+    message = message .. string.format("<font color=\"#%s\">(%.2f M☉)</font>", textColor, math.round(mass*100)/100)
+    AnnouncementEvent:FireAllClients(message, 8)
     
-    local replyText = "A new star has been created! Class: "
-    local replyMessage = string.format("<font color=\"#%s\">%s %s</font>", textColor, replyText, spectralClass)
+    local replyText = "A new star has been created!"
+    local replyMessage = string.format("<font color=\"#%s\">%s</font>", textColor, replyText)
     GodDialogReply:FireClient(player, replyMessage)
     
     -- Update star visibility for all clients after creation
     StarVisibility.ServerShowOnlyUnionAchieved()
-	StarVisibility.ShowOnlyUnionAchieved(player)
+	UpdateVisibleStars:FireClient(player)
 end
 
 GodDialogAction.OnServerEvent:Connect(function(player, action, args)
