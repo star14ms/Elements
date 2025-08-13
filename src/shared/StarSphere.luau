@@ -421,7 +421,7 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
         end
     end
 
-    local width = lineWidth or 0.5
+    local width = lineWidth or 1.00
     local isZodiac = ZODIAC[starFolder.Name] == true
     local lineColor = isZodiac and Color3.fromRGB(255, 220, 0) or Color3.new(1, 1, 1)
     for v = 2, n do
@@ -457,7 +457,7 @@ function StarSphere.createConstellation(constellationName: string, csv: string, 
     constellationFolder.Name = constellationName
     constellationFolder.Parent = root
     StarSphere.createStarPartsIn(csv, constellationFolder, radiusSquared)
-    StarSphere.connectWithWhiteLines(constellationFolder, opts or { lineWidth = 0.5 })
+    StarSphere.connectWithWhiteLines(constellationFolder, opts or { lineWidth = 1.00 })
     return constellationFolder
 end
 
@@ -474,9 +474,9 @@ function StarSphere.createAllConstellations(constellationsMap: {[string]: any}, 
             folder.Name = name
             folder.Parent = root
             StarSphere.createStarPartsIn(okCsv, folder, radiusSquared)
-            StarSphere.connectWithWhiteLines(folder, opts or { lineWidth = 0.5 })
+            StarSphere.connectWithWhiteLines(folder, opts or { lineWidth = 1.00 })
         end
-    end
+	end
     return root
 end
 

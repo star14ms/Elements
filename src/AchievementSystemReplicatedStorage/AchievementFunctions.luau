@@ -3,6 +3,8 @@ local functions = {}
 local dss = game:GetService("DataStoreService")
 local ds = dss:GetDataStore("Achievements Data Store")
 
+local _ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local remote = script.Parent:WaitForChild("AchievementsRemoteEvent")
 
 local function ensureAchievementRoot(plr: Player): Folder
@@ -219,6 +221,168 @@ function functions.InitializeEmptyAchievements(plr:Player)
 		
 		remote:FireClient(plr, "INITIALIZE ACHIEVEMENT")
 	end
+end
+-- Utility: CSV parsing used for constellation data scanning
+local function parseCsvLine(line: string): {string}
+    local fields = {}
+    local field = ""
+    local inQuotes = false
+    local i = 1
+    while i <= #line do
+        local ch = string.sub(line, i, i)
+        if ch == '"' then
+            local nextCh = string.sub(line, i + 1, i + 1)
+            if inQuotes and nextCh == '"' then
+                field ..= '"'
+                i += 1
+            else
+                inQuotes = not inQuotes
+            end
+        elseif ch == ',' and not inQuotes then
+            table.insert(fields, field)
+            field = ""
+        else
+            field ..= ch
+        end
+        i += 1
+    end
+    table.insert(fields, field)
+    return fields
+end
+
+local function indexOf(list: {string}, key: string): number?
+    for i, v in ipairs(list) do
+        if v == key then
+            return i
+        end
+    end
+    return nil
+end
+
+local function parseNumber(str: string?): number?
+    if not str or str == "" then return nil end
+    local m = string.match(str, "[%-%d%.]+")
+    if m then return tonumber(m) end
+    return nil
+end
+
+-- Try to require the constellations mapping module from a few known locations
+local function requireConstellationsModule(): any?
+    local shared = _ReplicatedStorage:FindFirstChild("Shared")
+    if not shared then return nil end
+
+    local candidates: {Instance?} = {}
+    local folderA = shared:FindFirstChild("constellations")
+    if folderA then
+        table.insert(candidates, folderA:FindFirstChild("constellationsModuleScript"))
+    end
+    local folderB = shared:FindFirstChild("constellation")
+    if folderB then
+        table.insert(candidates, folderB:FindFirstChild("constellation"))
+    end
+
+    for _, mod in ipairs(candidates) do
+        if mod and mod:IsA("ModuleScript") then
+            local ok, res = pcall(function()
+                return require(mod)
+            end)
+            if ok and typeof(res) == "table" then
+                return res
+            end
+        end
+    end
+    return nil
+end
+
+-- Select a random star whose Mass is within ±tolerance of targetMass (in solar masses)
+-- If selected and not already owned by player, award the corresponding achievement
+-- Returns the achievement key ("Constellations/<Constellation>/<Star>") or nil
+function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance: number?): { constellation: string, star: string }?
+    if not game:GetService("RunService"):IsServer() then return nil end
+    tolerance = tolerance or 0.2
+
+    -- Load constellations mapping module
+    local constellations = requireConstellationsModule()
+    if not constellations then return nil end
+
+	local candidates: {{key: string, constellation: string, star: string, mass: number}} = {}
+
+    -- local n_stars = 0
+    -- local minimum_mass = 99
+
+    for constName, mod in pairs(constellations) do
+        if typeof(mod) == "table" and typeof(mod.csv) == "string" then
+            local csv = mod.csv
+            local lines = {}
+            for line in string.gmatch(csv, "([^\n]+)") do
+                table.insert(lines, line)
+            end
+            if #lines > 0 then
+                local header = parseCsvLine(lines[1])
+                local nameIdx = indexOf(header, "Name")
+                local massIdx = indexOf(header, "Mass")
+                if nameIdx and massIdx then
+                    for i = 2, #lines do
+                        local row = parseCsvLine(lines[i])
+                        local starName = row[nameIdx]
+                        local massStr = row[massIdx]
+						local massVal = parseNumber(massStr) or tolerance
+                        -- n_stars = n_stars + 1
+                        -- minimum_mass = math.min(minimum_mass, massVal)
+                        if starName and starName ~= "" and massVal then
+                            if math.abs(massVal - targetMass) <= tolerance then
+                                local key = string.format("Constellations/%s/%s", constName, starName)
+								table.insert(candidates, { key = key, constellation = constName, star = starName, mass = massVal })
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    -- print(n_stars)
+    -- print(minimum_mass)
+	-- for _, dict in pairs(candidates) do
+    --     local desc = ""
+	-- 	for key, value in pairs(dict) do
+    --         -- You can customize the output format here
+    --         desc = desc .. key .. ": " .. tostring(value) .. "\n"
+    --     end
+    --     print(desc .. "\n")
+	-- end
+
+    if #candidates == 0 then
+        return nil
+    end
+
+    local rng = Random.new()
+    local idx = rng:NextInteger(1, #candidates)
+	local chosen = candidates[idx]
+
+	for _, player in ipairs(game.Players:GetPlayers()) do
+
+	    local _, constellationsFolder = ensureCategories(player)
+	    local pathParts = {}
+		for seg in string.gmatch(chosen.key, "[^/]+") do
+	        table.insert(pathParts, seg)
+	    end
+	    -- pathParts = {"Constellations", constellation, star}
+	    local owned = false
+	    if #pathParts >= 3 then
+	        local constFolderNode = constellationsFolder:FindFirstChild(pathParts[2])
+	        if constFolderNode and constFolderNode:IsA("Folder") then
+	            local starNode = constFolderNode:FindFirstChild(pathParts[3])
+	            owned = starNode ~= nil
+	        end
+	    end
+
+	    if not owned then
+			functions.AwardAchievement(player, chosen.key)
+		end
+	end
+
+	return { constellation = chosen.constellation, star = chosen.star}
 end
 
 return functions

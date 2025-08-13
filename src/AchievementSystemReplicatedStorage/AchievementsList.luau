@@ -846,5 +846,17 @@ achievements["Elements/Og"] = {
 	OrderRank = 118;
 }
 
+-- Merge generated constellation achievements
+local ConstellationAchievementsModule = script.Parent:FindFirstChild("ConstellationAchievements") :: ModuleScript?
+if ConstellationAchievementsModule then
+    local ok, ConstellationAchievements = pcall(require, ConstellationAchievementsModule)
+    if ok and ConstellationAchievements and ConstellationAchievements.build then
+        local generated = ConstellationAchievements.build()
+        for k, v in pairs(generated) do
+            achievements[k] = v
+        end
+    end
+end
+
 return achievements;
 
