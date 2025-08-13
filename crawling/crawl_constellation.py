@@ -164,14 +164,38 @@ def extract_tables_with_star_data(page_url):
         b_idx = header_map.get("B")
         hd_idx = header_map.get("HD")
         var_idx = header_map.get("Var")  # Add Var column index
+        f_idx = header_map.get("F")      # Add F column index (Flare/Flaring stars)
+        
+        # Ensure we have at least the essential columns
+        if name_idx is None:
+            print(f"Warning: No 'Name' column found in table")
+            continue
 
-        # Apply filter: keep rows where second col has value OR first col contains Greek letter OR has Var value
+        # Apply filter: keep rows where second col has value OR first col contains Greek letter OR has Var/F value
         df = pd.read_html(str(table))[0]
-        df = df[
-            (df.iloc[:, 1].notna() & (df.iloc[:, 1].astype(str).str.strip() != "")) |
-            (df.iloc[:, 0].astype(str).apply(contains_greek)) |
-            (var_idx and df.iloc[:, var_idx].notna() & (df.iloc[:, var_idx].astype(str).str.strip() != ""))
-        ].reset_index(drop=True)
+        
+        # Build filter conditions safely
+        filter_conditions = [
+            (df.iloc[:, 1].notna() & (df.iloc[:, 1].astype(str).str.strip() != "")),
+            (df.iloc[:, 0].astype(str).apply(contains_greek))
+        ]
+        
+        # Add Var column filter if it exists
+        if var_idx is not None:
+            var_filter = (df.iloc[:, var_idx].notna() & (df.iloc[:, var_idx].astype(str).str.strip() != ""))
+            filter_conditions.append(var_filter)
+        
+        # Add F column filter if it exists
+        if f_idx is not None:
+            f_filter = (df.iloc[:, f_idx].notna() & (df.iloc[:, f_idx].astype(str).str.strip() != ""))
+            filter_conditions.append(f_filter)
+        
+        # Combine all conditions with OR
+        if filter_conditions:
+            combined_filter = filter_conditions[0]
+            for condition in filter_conditions[1:]:
+                combined_filter = combined_filter | condition
+            df = df[combined_filter].reset_index(drop=True)
 
         tbody = table.find("tbody")
         for table_sub in tbody.find_all("table"):
@@ -181,9 +205,10 @@ def extract_tables_with_star_data(page_url):
         for row in tbody.find_all("tr")[1:]:
             cells = row.find_all(["td", "th"])
             if len(cells) >= 2:
-                bayer_designation = cells[b_idx].get_text(strip=True)
-                name = cells[name_idx].get_text(strip=True)
-                var_value = var_idx and cells[var_idx].get_text(strip=True) if var_idx and len(cells) > var_idx else ""
+                bayer_designation = cells[b_idx].get_text(strip=True) if b_idx is not None and len(cells) > b_idx else ""
+                name = cells[name_idx].get_text(strip=True) if name_idx is not None and len(cells) > name_idx else ""
+                var_value = cells[var_idx].get_text(strip=True) if var_idx is not None and len(cells) > var_idx else ""
+                f_value = cells[f_idx].get_text(strip=True) if f_idx is not None and len(cells) > f_idx else ""
                 
                 # Check if this row should be included
                 should_include = False
@@ -202,10 +227,14 @@ def extract_tables_with_star_data(page_url):
                 # Include if has Var value
                 if not should_include and var_value and var_value != "":
                     should_include = True
+                
+                # Include if has F value
+                if not should_include and f_value and f_value != "":
+                    should_include = True
 
                 if should_include:  # process if any criteria met
                     names.append(name)
-                    HD_catalogues.append(cells[hd_idx].get_text(strip=True))
+                    HD_catalogues.append(cells[hd_idx].get_text(strip=True) if hd_idx is not None and len(cells) > hd_idx else "")
                     a = cells[name_idx].find("a", href=True)
                     if a and a['href'].startswith("/wiki/"):
                         star_links.append(BASE_URL + a['href'])
@@ -215,7 +244,7 @@ def extract_tables_with_star_data(page_url):
                 for target in TARGET_PROPERTIES:
                     df[target] = None
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             # Map indices and links to fetch_star_props
             results = list(executor.map(fetch_star_props, enumerate(zip(star_links, names, HD_catalogues))))
 
@@ -241,7 +270,7 @@ def crawl_and_save(index_url, output_folder="data/constellations"):
 
         tables = extract_tables_with_star_data(url)
         for i, df in enumerate(tables, start=1):
-            file_path = os.path.join(folder_path, f"table.csv")
+            file_path = os.path.join(folder_path, f"data.csv")
             df.to_csv(file_path, index=False)
             print(f"  Saved: {file_path}")
 

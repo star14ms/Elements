@@ -275,11 +275,11 @@ local function populateStarsFromCsvIntoFolder(csv: string, targetFolder: Folder,
         local position = StarSphere.raDecToPosition(raStr, decStr, radiusSquared)
         local part = Instance.new("Part")
         -- Size from radius if present (R☉), with clamping for visibility
-        local sizeStuds = 1.0
+        local sizeStuds = 0.2
         if radiusIdx then
             local rVal = parseRadiusValue(row[radiusIdx])
             if rVal then
-                sizeStuds = math.clamp(1.0 + rVal * 0.05, 0.2, 6)
+                sizeStuds = math.clamp(0.2 + math.pow(rVal, 1/3), 0.2, 6)
             end
         end
         part.Size = Vector3.new(sizeStuds, sizeStuds, sizeStuds)
