@@ -56,7 +56,10 @@ end
 -- Coordinate frame:
 --  x = R * cos(dec) * cos(ra)
 --  y = R * sin(dec)
---  z = R * cos(dec) * sin(ra)
+-- Convert Right Ascension and Declination to 3D world coordinates
+-- X = R * cos(dec) * cos(ra)  (East-West)
+-- Y = R * sin(dec)            (North-South) 
+-- Z = R * cos(dec) * sin(ra)  (Depth)
 function StarSphere.raDecToPosition(raStr: string, decStr: string, radiusSquared: number?): Vector3
     local raDeg = parseRAtoDegrees(raStr)
     local decDeg = parseDectoDegrees(decStr)
@@ -69,9 +72,10 @@ function StarSphere.raDecToPosition(raStr: string, decStr: string, radiusSquared
     local cosRa = math.cos(raRad)
     local sinRa = math.sin(raRad)
 
-    local x = radius * cosDec * cosRa
+    -- Fix horizontal flip: swap X and Z coordinates
+    local x = radius * cosDec * sinRa  -- This was cosRa, now sinRa
     local y = radius * sinDec
-    local z = radius * cosDec * sinRa
+    local z = radius * cosDec * cosRa  -- This was sinRa, now cosRa
 
     return Vector3.new(x, y, z)
 end
@@ -236,12 +240,16 @@ local function populateStarsFromCsvIntoFolder(csv: string, targetFolder: Folder,
     -- Header
     local headerFields = parseCsvLine(lines[1])
     local nameIdx = indexOf(headerFields, "Name")
+    local HDIdx = indexOf(headerFields, "HD")
+    local HIPIdx = indexOf(headerFields, "HIP")
     local raIdx = indexOf(headerFields, "RA")
     local decIdx = indexOf(headerFields, "Dec")
+    local distanceIdx = indexOf(headerFields, "Dist. (ly)")
     local spClassIdx = indexOf(headerFields, "Sp. class")
     local spectralTypeIdx = indexOf(headerFields, "Spectral type")
     local radiusIdx = indexOf(headerFields, "Radius")
     local visMagIdx = indexOf(headerFields, "vis. mag.")
+    local absMagIdx = indexOf(headerFields, "abs. mag.")
     -- optional user-added column to mark whether a star participates in lines
     local inLinesIdx = indexOf(headerFields, "In lines")
         or indexOf(headerFields, "In constellation")
@@ -267,11 +275,11 @@ local function populateStarsFromCsvIntoFolder(csv: string, targetFolder: Folder,
         local position = StarSphere.raDecToPosition(raStr, decStr, radiusSquared)
         local part = Instance.new("Part")
         -- Size from radius if present (R☉), with clamping for visibility
-        local sizeStuds = 5
+        local sizeStuds = 1.0
         if radiusIdx then
             local rVal = parseRadiusValue(row[radiusIdx])
             if rVal then
-                sizeStuds = math.clamp(0.2 + rVal * 0.05, 0.2, 6)
+                sizeStuds = math.clamp(1.0 + rVal * 0.05, 0.2, 6)
             end
         end
         part.Size = Vector3.new(sizeStuds, sizeStuds, sizeStuds)
@@ -293,6 +301,10 @@ local function populateStarsFromCsvIntoFolder(csv: string, targetFolder: Folder,
             visMag = math.huge
         end
         part:SetAttribute("VisMag", visMag)
+        part:SetAttribute("AbsMag", row[absMagIdx])
+        part:SetAttribute("HD", row[HDIdx])
+        part:SetAttribute("HIP", row[HIPIdx])
+        part:SetAttribute("Distance", row[distanceIdx])
         if inLinesIdx then
             part:SetAttribute("InLines", parseBoolean(row[inLinesIdx]))
         end
@@ -323,6 +335,7 @@ end
 -- opts: { lineWidth: number?, maxStars: number?, useOnlyInLines: boolean? }
 local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
     local lineWidth = (opts and opts.lineWidth) or nil
+    local transparency = (opts and opts.transparancy) or 0.5
     local maxStars = (opts and opts.maxStars) or 10
     local useOnlyInLines = (opts and opts.useOnlyInLines)
 
@@ -331,9 +344,10 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
     for _, child in ipairs(starFolder:GetChildren()) do
         if child:IsA("BasePart") then
             table.insert(partsAll, child)
-            if child:GetAttribute("InLines") == true then
-                anyMarked = true
-            end
+            anyMarked = true
+            -- if child:GetAttribute("InLines") == true then
+            --     anyMarked = true
+            -- end
         end
     end
 
@@ -341,9 +355,10 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
     local selected: {BasePart} = {}
     if anyMarked and useOnlyInLines ~= false then
         for _, p in ipairs(partsAll) do
-            if p:GetAttribute("InLines") == true then
-                table.insert(selected, p)
-            end
+            table.insert(selected, p)
+            -- if p:GetAttribute("InLines") == true then
+            --     table.insert(selected, p)
+            -- end
         end
     else
         table.sort(partsAll, function(a: BasePart, b: BasePart)
@@ -386,59 +401,213 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
         attachments[p] = att
     end
 
-    -- MST on selected
-    local inTree: {[number]: boolean} = {}
-    local dist: {number} = {}
-    local parentIdx: {number?} = {}
-    for i = 1, n do
-        inTree[i] = false
-        dist[i] = math.huge
-        parentIdx[i] = nil
-    end
-    dist[1] = 0
-    local function pos(i: number): Vector3
-        return selected[i].Position
-    end
-    for _ = 1, n do
-        local u = -1
-        local minVal = math.huge
-        for i = 1, n do
-            if not inTree[i] and dist[i] < minVal then
-                minVal = dist[i]
-                u = i
-            end
+    -- Try to get line connection data from constellations module
+    local constellationName = starFolder.Name
+    local lineConnections = nil
+    
+    -- Try to require the constellations module
+    local success, constellationsModule = pcall(require, game:GetService("ReplicatedStorage").Shared.constellations.constellationsModuleScript)
+    if success then
+        local constellationData = constellationsModule[constellationName]
+        if constellationData and constellationData.lines then
+            lineConnections = constellationData.lines
         end
-        if u == -1 then break end
-        inTree[u] = true
-        for v = 1, n do
-            if not inTree[v] then
-                local d = (pos(u) - pos(v)).Magnitude
-                if d < dist[v] then
-                    dist[v] = d
-                    parentIdx[v] = u
+        
+        -- If no custom lines, try to use Stellarium data
+        if not lineConnections then
+            local stellariumConverter = pcall(require, game:GetService("ReplicatedStorage").Shared.constellations.StellariumLinesConverter)
+            if stellariumConverter then
+                local converter = require(game:GetService("ReplicatedStorage").Shared.constellations.StellariumLinesConverter)
+                -- Map constellation names to Stellarium abbreviations
+                local constellationAbbrevMap = {
+                    ["Aquila"] = "Aql",
+                    ["Andromeda"] = "And",
+                    ["Sculptor"] = "Scl",
+                    ["Ara"] = "Ara",
+                    ["Libra"] = "Lib",
+                    ["Cetus"] = "Cet",
+                    ["Aries"] = "Ari",
+                    ["Scutum"] = "Sct",
+                    ["Pyxis"] = "Pyx",
+                    ["Boötes"] = "Boo",
+                    ["Caelum"] = "Cae",
+                    ["Chamaeleon"] = "Cha",
+                    ["Cancer"] = "Cnc",
+                    ["Capricornus"] = "Cap",
+                    ["Carina"] = "Car",
+                    ["Cassiopeia"] = "Cas",
+                    ["Centaurus"] = "Cen",
+                    ["Cepheus"] = "Cep",
+                    ["Coma Berenices"] = "Com",
+                    ["Canes Venatici"] = "Cvn",
+                    ["Auriga"] = "Aur",
+                    ["Columba"] = "Col",
+                    ["Circinus"] = "Cir",
+                    ["Crater"] = "Crt",
+                    ["Corona Australis"] = "CrA",
+                    ["Corona Borealis"] = "CrB",
+                    ["Corvus"] = "Crv",
+                    ["Crux"] = "Cru",
+                    ["Cygnus"] = "Cyg",
+                    ["Delphinus"] = "Del",
+                    ["Dorado"] = "Dor",
+                    ["Draco"] = "Dra",
+                    ["Norma"] = "Nor",
+                    ["Eridanus"] = "Eri",
+                    ["Sagitta"] = "Sge",
+                    ["Fornax"] = "For",
+                    ["Gemini"] = "Gem",
+                    ["Camelopardalis"] = "Cam",
+                    ["Canis Major"] = "CMa",
+                    ["Ursa Major"] = "UMa",
+                    ["Grus"] = "Gru",
+                    ["Hercules"] = "Her",
+                    ["Horologium"] = "Hor",
+                    ["Hydra"] = "Hya",
+                    ["Hydrus"] = "Hyi",
+                    ["Indus"] = "Ind",
+                    ["Lacerta"] = "Lac",
+                    ["Monoceros"] = "Mon",
+                    ["Lepus"] = "Lep",
+                    ["Leo"] = "Leo",
+                    ["Lupus"] = "Lup",
+                    ["Lynx"] = "Lyn",
+                    ["Lyra"] = "Lyr",
+                    ["Antlia"] = "Ant",
+                    ["Microscopium"] = "Mic",
+                    ["Musca"] = "Mus",
+                    ["Octans"] = "Oct",
+                    ["Apus"] = "Aps",
+                    ["Ophiuchus"] = "Oph",
+                    ["Orion"] = "Ori",
+                    ["Pavo"] = "Pav",
+                    ["Pegasus"] = "Peg",
+                    ["Pictor"] = "Pic",
+                    ["Perseus"] = "Per",
+                    ["Equuleus"] = "Equ",
+                    ["Canis Minor"] = "CMi",
+                    ["Leo Minor"] = "LMi",
+                    ["Vulpecula"] = "Vul",
+                    ["Ursa Minor"] = "UMi",
+                    ["Phoenix"] = "Phe",
+                    ["Pisces"] = "Psc",
+                    ["Piscis Austrinus"] = "PsA",
+                    ["Volans"] = "Vol",
+                    ["Puppis"] = "Pup",
+                    ["Reticulum"] = "Ret",
+                    ["Sagittarius"] = "Sgr",
+                    ["Scorpius"] = "Sco",
+                    ["Serpens"] = "Ser",
+                    ["Sextans"] = "Sex",
+                    ["Mensa"] = "Men",
+                    ["Taurus"] = "Tau",
+                    ["Telescopium"] = "Tel",
+                    ["Tucana"] = "Tuc",
+                    ["Triangulum"] = "Tri",
+                    ["Triangulum Australe"] = "Tra",
+                    ["Aquarius"] = "Aqr",
+                    ["Virgo"] = "Vir",
+                    ["Vela"] = "Vel"
+                }
+                
+                local abbrev = constellationAbbrevMap[constellationName]
+                if abbrev and converter.hasStellariumLines(abbrev) then
+                    lineConnections = converter.convertHipLinesToStarNames(abbrev, constellationData)
+                    -- print("Using Stellarium lines for", constellationName)
                 end
             end
         end
     end
 
-    local width = lineWidth or 1.00
-    local isZodiac = ZODIAC[starFolder.Name] == true
-    local lineColor = isZodiac and Color3.fromRGB(255, 220, 0) or Color3.new(1, 1, 1)
-    for v = 2, n do
-        local u = parentIdx[v]
-        if u then
-            local beam = Instance.new("Beam")
-            beam.Attachment0 = attachments[selected[u]]
-            beam.Attachment1 = attachments[selected[v]]
-            beam.Width0 = width
-            beam.Width1 = width
-            beam.Color = ColorSequence.new(lineColor)
-            beam.Transparency = NumberSequence.new(0)
-            beam.LightEmission = 1
-            beam.FaceCamera = true
-            beam.Parent = linesFolder
+    if lineConnections then
+        -- Use predefined line connections
+        local width = lineWidth or 2.00
+        local isZodiac = ZODIAC[starFolder.Name] == true
+        local lineColor = isZodiac and Color3.fromRGB(255, 220, 0) or Color3.new(1, 1, 1)
+        
+        -- Create a map of star names to parts for easy lookup
+        local starNameToPart: {[string]: BasePart} = {}
+        for _, part in ipairs(selected) do
+            starNameToPart[part.Name] = part
+        end
+        
+        -- Create lines based on connection data
+        for _, connection in ipairs(lineConnections) do
+            local star1Name = connection[1]
+            local star2Name = connection[2]
+            
+            local star1 = starNameToPart[star1Name]
+            local star2 = starNameToPart[star2Name]
+            
+            if star1 and star2 then
+                local beam = Instance.new("Beam")
+                beam.Attachment0 = attachments[star1]
+                beam.Attachment1 = attachments[star2]
+                beam.Width0 = width
+                beam.Width1 = width
+                beam.Color = ColorSequence.new(lineColor)
+                beam.Transparency = NumberSequence.new(transparency)
+                beam.LightEmission = 1
+                beam.FaceCamera = true
+                beam.Parent = linesFolder
+            end
+        end
+    else
+        -- Fall back to MST algorithm
+        local inTree: {[number]: boolean} = {}
+        local dist: {number} = {}
+        local parentIdx: {number?} = {}
+        for i = 1, n do
+            inTree[i] = false
+            dist[i] = math.huge
+            parentIdx[i] = nil
+        end
+        dist[1] = 0
+        local function pos(i: number): Vector3
+            return selected[i].Position
+        end
+        for _ = 1, n do
+            local u = -1
+            local minVal = math.huge
+            for i = 1, n do
+                if not inTree[i] and dist[i] < minVal then
+                    minVal = dist[i]
+                    u = i
+                end
+            end
+            if u == -1 then break end
+            inTree[u] = true
+            for v = 1, n do
+                if not inTree[v] then
+                    local d = (pos(u) - pos(v)).Magnitude
+                    if d < dist[v] then
+                        dist[v] = d
+                        parentIdx[v] = u
+                    end
+                end
+            end
+        end
+
+        local width = lineWidth or 2.00
+        local isZodiac = ZODIAC[starFolder.Name] == true
+        local lineColor = isZodiac and Color3.fromRGB(255, 220, 0) or Color3.new(1, 1, 1)
+        for v = 2, n do
+            local u = parentIdx[v]
+            if u then
+                local beam = Instance.new("Beam")
+                beam.Attachment0 = attachments[selected[u]]
+                beam.Attachment1 = attachments[selected[v]]
+                beam.Width0 = width
+                beam.Width1 = width
+                beam.Color = ColorSequence.new(lineColor)
+                beam.Transparency = NumberSequence.new(0)
+                beam.LightEmission = 1
+                beam.FaceCamera = true
+                beam.Parent = linesFolder
+            end
         end
     end
+    
     return linesFolder
 end
 
@@ -457,8 +626,58 @@ function StarSphere.createConstellation(constellationName: string, csv: string, 
     constellationFolder.Name = constellationName
     constellationFolder.Parent = root
     StarSphere.createStarPartsIn(csv, constellationFolder, radiusSquared)
-    StarSphere.connectWithWhiteLines(constellationFolder, opts or { lineWidth = 1.00 })
+    StarSphere.connectWithWhiteLines(constellationFolder, opts or { lineWidth = 2.00 })
     return constellationFolder
+end
+
+-- Function to create constellation name label
+local function createConstellationLabel(constellationFolder: Folder, constellationName: string)
+    -- Calculate center of constellation
+    local totalPos = Vector3.new(0, 0, 0)
+    local count = 0
+    
+    for _, child in pairs(constellationFolder:GetChildren()) do
+        if child:IsA("BasePart") then
+            totalPos = totalPos + child.Position
+            count = count + 1
+        end
+    end
+    
+    if count > 0 then
+        local centerPos = totalPos / count
+        
+        -- Create BillboardGui for the label
+        local billboardGui = Instance.new("BillboardGui")
+        billboardGui.Name = constellationName .. "Label"
+        billboardGui.Size = UDim2.fromOffset(200, 30)
+        billboardGui.StudsOffset = Vector3.new(0, 2, 0) -- Offset above the center
+        billboardGui.AlwaysOnTop = true
+        billboardGui.Adornee = Instance.new("Part") -- Create a dummy part at center
+        billboardGui.Adornee.Position = centerPos
+        billboardGui.Adornee.Anchored = true
+        billboardGui.Adornee.CanCollide = false
+        billboardGui.Adornee.Transparency = 1
+        billboardGui.Adornee.Size = Vector3.new(0.1, 0.1, 0.1)
+        billboardGui.Adornee.Parent = constellationFolder
+        billboardGui.Enabled = false
+        
+        -- Create the TextLabel
+        local label = Instance.new("TextLabel")
+        label.Name = "Label"
+        label.Size = UDim2.fromScale(1, 1)
+        label.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        label.BackgroundTransparency = 0.7
+        label.TextColor3 = Color3.new(1, 1, 1)
+        label.Text = constellationName
+        label.TextScaled = true
+        label.Font = Enum.Font.GothamBold
+        label.BorderSizePixel = 0
+        label.ZIndex = 10
+        label.Parent = billboardGui
+        label.BackgroundTransparency = 1
+        
+        billboardGui.Parent = constellationFolder
+    end
 end
 
 -- Bulk-create all constellations from a name->module map (module.csv expected)
@@ -474,7 +693,10 @@ function StarSphere.createAllConstellations(constellationsMap: {[string]: any}, 
             folder.Name = name
             folder.Parent = root
             StarSphere.createStarPartsIn(okCsv, folder, radiusSquared)
-            StarSphere.connectWithWhiteLines(folder, opts or { lineWidth = 1.00 })
+            StarSphere.connectWithWhiteLines(folder, opts or { lineWidth = 2.00 })
+            
+            -- Create constellation name label
+            createConstellationLabel(folder, name)
         end
 	end
     return root
@@ -495,6 +717,25 @@ function StarSphere.setConstellationLinesVisible(rootFolder: Instance, visible: 
         end
     end
 end
+
+-- Toggle visibility of all constellation name labels under a root folder
+function StarSphere.setConstellationNamesVisible(rootFolder: Instance, visible: boolean)
+    for _, constFolder in ipairs(rootFolder:GetChildren()) do
+        if constFolder:IsA("Folder") then
+            local labelGui = constFolder:FindFirstChild(constFolder.Name .. "Label")
+            if labelGui and labelGui:IsA("BillboardGui") then
+                labelGui.Enabled = visible
+            end
+        end
+    end
+end
+
+-- Export helper functions for use in other modules
+StarSphere.parseCsvLine = parseCsvLine
+StarSphere.indexOf = indexOf
+StarSphere.parseRadiusValue = parseRadiusValue
+StarSphere.parseSpectralFirstLetter = parseSpectralFirstLetter
+StarSphere.colorFromSpectral = colorFromSpectral
 
 return StarSphere
 

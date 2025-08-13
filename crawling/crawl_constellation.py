@@ -36,7 +36,7 @@ def get_constellation_links(index_url):
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
     links = []
-    for ul in soup.select("#mw-content-text > div.mw-content-ltr.mw-parser-output > div:nth-child(8) > table"):
+    for ul in soup.select_one("#mw-content-text > div.mw-content-ltr.mw-parser-output table"):
         for li in ul.find_all("li"):
             a = li.find("a", href=True)
             if a and a['href'].startswith("/wiki/List_of_stars_in"):
@@ -163,12 +163,14 @@ def extract_tables_with_star_data(page_url):
         name_idx = header_map.get("Name")
         b_idx = header_map.get("B")
         hd_idx = header_map.get("HD")
+        var_idx = header_map.get("Var")  # Add Var column index
 
-        # Apply filter: keep rows where second col has value OR first col contains Greek letter
+        # Apply filter: keep rows where second col has value OR first col contains Greek letter OR has Var value
         df = pd.read_html(str(table))[0]
         df = df[
             (df.iloc[:, 1].notna() & (df.iloc[:, 1].astype(str).str.strip() != "")) |
-            (df.iloc[:, 0].astype(str).apply(contains_greek))
+            (df.iloc[:, 0].astype(str).apply(contains_greek)) |
+            (var_idx and df.iloc[:, var_idx].notna() & (df.iloc[:, var_idx].astype(str).str.strip() != ""))
         ].reset_index(drop=True)
 
         tbody = table.find("tbody")
@@ -181,13 +183,27 @@ def extract_tables_with_star_data(page_url):
             if len(cells) >= 2:
                 bayer_designation = cells[b_idx].get_text(strip=True)
                 name = cells[name_idx].get_text(strip=True)
-                if not bayer_designation:
+                var_value = var_idx and cells[var_idx].get_text(strip=True) if var_idx and len(cells) > var_idx else ""
+                
+                # Check if this row should be included
+                should_include = False
+                
+                # Include if has Bayer designation
+                if bayer_designation:
+                    should_include = True
+                
+                # Include if name contains Greek letter
+                if not should_include:
                     for greek_letter in GREEK_LETTERS:
                         if greek_letter in name:
-                            bayer_designation = True
+                            should_include = True
                             break
+                
+                # Include if has Var value
+                if not should_include and var_value and var_value != "":
+                    should_include = True
 
-                if bayer_designation:  # only process if second column has value
+                if should_include:  # process if any criteria met
                     names.append(name)
                     HD_catalogues.append(cells[hd_idx].get_text(strip=True))
                     a = cells[name_idx].find("a", href=True)
@@ -213,9 +229,9 @@ def extract_tables_with_star_data(page_url):
 
     return dataframes
 
-def crawl_and_save(index_url, output_folder="constellations"):
+def crawl_and_save(index_url, output_folder="data/constellations"):
     os.makedirs(output_folder, exist_ok=True)
-    constellations = get_constellation_links(index_url)[58:]
+    constellations = get_constellation_links(index_url)
 
     for name, url in tqdm(constellations, total=len(constellations)):
         print(f"\nProcessing {name} -> {url}")

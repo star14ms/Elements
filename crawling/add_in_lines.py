@@ -125,7 +125,7 @@ def process_constellation_folder(folder_path: str, list_index_map: dict[str, str
 
 def main():
     parser = argparse.ArgumentParser(description="Add 'In lines' column to constellation CSVs based on first N brightest stars.")
-    parser.add_argument('--root', default=os.path.join('src', 'shared', 'constellation'), help='Root folder containing constellation subfolders with table.csv')
+    parser.add_argument('--root', default=os.path.join('src', 'shared', 'constellations'), help='Root folder containing constellation subfolders with table.csv')
     parser.add_argument('--default-n', type=int, default=20, help='Fallback N if main page does not provide Main stars count')
     args = parser.parse_args()
 
