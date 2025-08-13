@@ -297,7 +297,7 @@ end
 -- Select a random star whose Mass is within ±tolerance of targetMass (in solar masses)
 -- If selected and not already owned by player, award the corresponding achievement
 -- Returns the achievement key ("Constellations/<Constellation>/<Star>") or nil
-function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance: number?): { constellation: string, star: string }?
+function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance: number?): { constellation: string, star: string, massStr: string, radiusStr: string }?
     if not game:GetService("RunService"):IsServer() then return nil end
     tolerance = tolerance or 0.2
 
@@ -305,8 +305,8 @@ function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance:
     local constellations = requireConstellationsModule()
     if not constellations then return nil end
 
-	local candidates: {{key: string, constellation: string, star: string, mass: number}} = {}
-
+	local candidates: {{key: string, constellation: string, star: string, massStr: string, radiusStr: string }} = {}
+    
     -- local n_stars = 0
     -- local minimum_mass = 99
 
@@ -321,18 +321,19 @@ function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance:
                 local header = parseCsvLine(lines[1])
                 local nameIdx = indexOf(header, "Name")
                 local massIdx = indexOf(header, "Mass")
+                local radiusIdx = indexOf(header, "Radius")
                 if nameIdx and massIdx then
                     for i = 2, #lines do
                         local row = parseCsvLine(lines[i])
                         local starName = row[nameIdx]
                         local massStr = row[massIdx]
-						local massVal = parseNumber(massStr) or tolerance
+                        local massVal = parseNumber(massStr) or tolerance
                         -- n_stars = n_stars + 1
                         -- minimum_mass = math.min(minimum_mass, massVal)
                         if starName and starName ~= "" and massVal then
                             if math.abs(massVal - targetMass) <= tolerance then
                                 local key = string.format("Constellations/%s/%s", constName, starName)
-								table.insert(candidates, { key = key, constellation = constName, star = starName, mass = massVal })
+                                table.insert(candidates, { key = key, constellation = constName, star = starName, massStr = massStr, radiusStr = row[radiusIdx] })
                             end
                         end
                     end
@@ -356,33 +357,68 @@ function functions.SelectRandomStarByMassAndAward(targetMass: number, tolerance:
         return nil
     end
 
+    -- Partition candidates into not owned and owned
+    local notOwned = {}
+    local owned = {}
+
+    for _, candidate in pairs(candidates) do
+        local isOwned = false
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            local _, constellationsFolder = ensureCategories(player)
+            local pathParts = {}
+            for seg in string.gmatch(candidate.key, "[^/]+") do
+                table.insert(pathParts, seg)
+            end
+            if #pathParts >= 3 then
+                local constFolderNode = constellationsFolder:FindFirstChild(pathParts[2])
+                if constFolderNode and constFolderNode:IsA("Folder") then
+                    local starNode = constFolderNode:FindFirstChild(pathParts[3])
+                    if starNode then
+                        isOwned = true
+                        break
+                    end
+                end
+            end
+        end
+        if not isOwned then
+            table.insert(notOwned, candidate)
+        else
+            table.insert(owned, candidate)
+        end
+    end
+
     local rng = Random.new()
-    local idx = rng:NextInteger(1, #candidates)
-	local chosen = candidates[idx]
+    local chosen = nil
 
-	for _, player in ipairs(game.Players:GetPlayers()) do
+    if #notOwned > 0 then
+        local idx = rng:NextInteger(1, #notOwned)
+        chosen = notOwned[idx]
+    else
+        local idx = rng:NextInteger(1, #candidates)
+        chosen = candidates[idx]
+    end
 
-	    local _, constellationsFolder = ensureCategories(player)
-	    local pathParts = {}
-		for seg in string.gmatch(chosen.key, "[^/]+") do
-	        table.insert(pathParts, seg)
-	    end
-	    -- pathParts = {"Constellations", constellation, star}
-	    local owned = false
-	    if #pathParts >= 3 then
-	        local constFolderNode = constellationsFolder:FindFirstChild(pathParts[2])
-	        if constFolderNode and constFolderNode:IsA("Folder") then
-	            local starNode = constFolderNode:FindFirstChild(pathParts[3])
-	            owned = starNode ~= nil
-	        end
-	    end
+    -- Award achievement to all players who don't own it yet
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        local _, constellationsFolder = ensureCategories(player)
+        local pathParts = {}
+        for seg in string.gmatch(chosen.key, "[^/]+") do
+            table.insert(pathParts, seg)
+        end
+        local owned = false
+        if #pathParts >= 3 then
+            local constFolderNode = constellationsFolder:FindFirstChild(pathParts[2])
+            if constFolderNode and constFolderNode:IsA("Folder") then
+                local starNode = constFolderNode:FindFirstChild(pathParts[3])
+                owned = starNode ~= nil
+            end
+        end
+        if not owned then
+            functions.AwardAchievement(player, chosen.key)
+        end
+    end
 
-	    if not owned then
-			functions.AwardAchievement(player, chosen.key)
-		end
-	end
-
-	return { constellation = chosen.constellation, star = chosen.star}
+    return chosen
 end
 
 return functions

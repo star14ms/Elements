@@ -47,36 +47,59 @@ local function CreateStar(player, args)
     if sunTemplate then
         local Star = sunTemplate:Clone()        
         local props = StarProperties.assignProperties(args.atomicMassSpent)
-        local sizeRatio = props.sizeRatio
+		local sizeRatio = props.sizeRatio
+		
+		local x = rand:NextNumber(-200, 200)
+		local y = Star.Size.Y / 2
+		local z = rand:NextNumber(-200, 200)
 
+		while math.abs(x) < Star.Size.X / 2 and math.abs(z) < Star.Size.Z / x do
+			x = rand:NextNumber(-200, 200)
+			z = rand:NextNumber(-200, 200)
+		end
+		
+		local starInfo = AchievementFunctions.SelectRandomStarByMassAndAward(props.mass)
+		local mass = props.mass
+		if starInfo.massStr then
+			local massMatch = string.match(starInfo.massStr, "([%d%.]+)")
+			if massMatch then
+				mass = tonumber(massMatch) or 0.5
+			end
+		end
+
+		if starInfo.radiusStr then
+			local radiusValue = StarSphere.parseRadiusValue(starInfo.radiusStr)
+			if radiusValue then
+				sizeRatio = radiusValue * 2 / 3
+			end
+		end
+		
+		local starName = starInfo.star
+		if string.find(starName, ",") then
+			starName = starName.star:match("([^,]+)")
+		end
+		print("mass", mass, "->", props.mass)
+		print("sizeRatio", sizeRatio, "->", props.sizeRatio)
+
+		Star.Name = starName
         Star.Color = props.color
         Star.Size = Star.Size * sizeRatio
-        
-        local x = rand:NextNumber(-200, 200)
-        local y = Star.Size.Y / 2
-        local z = rand:NextNumber(-200, 200)
+		Star.Position = Vector3.new(x, y, z)
 
-        while math.abs(x) < Star.Size.X / 2 and math.abs(z) < Star.Size.Z / x do
-            x = rand:NextNumber(-200, 200)
-            z = rand:NextNumber(-200, 200)
-        end
-
-        Star:SetAttribute("class", props.class)
-        Star:SetAttribute("mass", props.mass)
+		Star:SetAttribute("class", props.class)
+        Star:SetAttribute("mass", mass)
         Star:SetAttribute("sizeRatio", sizeRatio)
         Star:SetAttribute("lifetime", props.lifetime)
         Star:SetAttribute("maxPulses", props.maxPulses)
         Star:SetAttribute("minAtoms", props.minAtoms)
-        Star:SetAttribute("maxAtoms", props.maxAtoms)
+		Star:SetAttribute("maxAtoms", props.maxAtoms)
+		Star:SetAttribute("constellation", starInfo.constellation)
+		
+		Star.Parent = Workspace.SpawnedItems.Stars
 
-        local textColor = props.textColor:ToHex()
-        Star.Position = Vector3.new(x, y, z)
-        Star.Parent = Workspace.SpawnedItems.Stars
-
-		local starInfo = AchievementFunctions.SelectRandomStarByMassAndAward(props.mass)
-
+		local textColor = props.textColor:ToHex()
         if starInfo ~= nil then
-            local baseText = player.Name .. " Created '" .. starInfo.star .. "' from " .. starInfo.constellation .. " ! (Class: " .. props.class .. ")"
+			local baseText = player.Name .. " Created '" .. starName .. "' from " .. starInfo.constellation .. " ! (Class: " .. props.class .. ")"
             local announcementMessage = string.format("<font color=\"#%s\">%s</font>", textColor, baseText)
             AnnouncementEvent:FireAllClients(announcementMessage, 8)
         end
@@ -111,7 +134,8 @@ local function CreateWelcomeStar(player)
             maxScaleStep = 1.5,
         }
 
-        Star.Color = props.color
+		Star.Name = "Welcome Star"
+		Star.Color = props.color
         Star.Size = Vector3.new(12.604*sizeRatio, 12.604*sizeRatio, 12.604*sizeRatio)
 
         Star:SetAttribute("class", props.class)
@@ -269,14 +293,20 @@ local function CreateFixedStar(player, args)
     Star:SetAttribute("maxPulses", classData.maxPulses)
     Star:SetAttribute("minAtoms", classData.minAtoms)
 	Star:SetAttribute("maxAtoms", classData.maxAtoms)
-    
-    local textColor = classData.textColor:ToHex()
+	
+	if string.find(starName, ",") then
+		starName = starName:match("([^,]+)")
+	end
+	Star.Name = starName
+	Star:SetAttribute("constellation", constellationName)
+
     Star.Position = Vector3.new(x, y, z)
 	Star.Parent = Workspace.SpawnedItems.Stars
 	
 	AchievementFunctions.AwardAchievement(player, "Constellations/" .. args.starKey)
     
     -- Announcement
+    local textColor = classData.textColor:ToHex()
     local baseText = player.Name .. " Created '" .. starName .. "' from " .. constellationName .. " ! (Class: " .. spectralClass .. ")"
     local announcementMessage = string.format("<font color=\"#%s\">%s</font>", textColor, baseText)
     AnnouncementEvent:FireAllClients(announcementMessage, 8)
