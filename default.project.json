@@ -23,21 +23,19 @@
         "$path": "ServerPackages"
       }
     },
-
-    "StarterPlayer": {
-      "StarterPlayerScripts": {
-        "Client": {
-          "$path": "src/client"
-        }
-      }
-    },
-
+    
     "StarterGui": {
       "AchievementsStarterGui": {
         "$className": "Folder",
         "AchievementsGuiHandler": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsGuiHandler"},
         "AchievementsMainGui": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsMainGui.rbxm" },
         "AchievementsNotification": { "$path": "src/StarterGui/AchievementsStarterGui/AchievementsNotification.rbxm" }
+      }
+    },
+
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "$path": "src/client/StarterPlayerScripts"
       }
     }
   }
