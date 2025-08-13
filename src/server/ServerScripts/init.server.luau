@@ -1,9 +1,9 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 
-local StarSphere = require(ReplicatedStorage.Shared.StarSphere)
+-- local StarSphere = require(ReplicatedStorage.Shared.StarSphere)
+-- local AllConstellations = require(ReplicatedStorage.Shared.constellations.constellationsModuleScript)
 local StarVisibility = require(ReplicatedStorage.Shared.StarVisibility)
-local AllConstellations = require(ReplicatedStorage.Shared.constellations.constellationsModuleScript)
 
 -- This script forces the game to only allow horizontal (landscape) orientation,
 -- but allows 180-degree rotation (LandscapeLeft and LandscapeRight), not Portrait.
@@ -12,9 +12,9 @@ StarterGui.ScreenOrientation = Enum.ScreenOrientation.LandscapeSensor
 
 
 -- Create all constellations globally on the server so all clients see the same stars
-local StarHemisphere = workspace.MainPlate:WaitForChild("StarHemisphere")
-local _rootStars = StarSphere.createAllConstellations(AllConstellations, StarHemisphere)
-print("Constellations Created")
+-- local StarHemisphere = workspace.MainPlate:WaitForChild("StarHemisphere")
+-- local _rootStars = StarSphere.createAllConstellations(AllConstellations, StarHemisphere)
+-- print("Constellations Created")
 
 -- RemoteEvent to control global star visibility from clients
 local visibilityRemote = ReplicatedStorage:FindFirstChild("StarVisibilityRemoteEvent")

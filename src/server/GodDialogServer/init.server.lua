@@ -274,15 +274,15 @@ local function CreateFixedStar(player, args)
     Star.Position = Vector3.new(x, y, z)
 	Star.Parent = Workspace.SpawnedItems.Stars
 	
-	AchievementFunctions.AwardAchievement(player, args.starKey)
+	AchievementFunctions.AwardAchievement(player, "Constellations/" .. args.starKey)
     
     -- Announcement
     local baseText = player.Name .. " Created '" .. starName .. "' from " .. constellationName .. " ! (Class: " .. spectralClass .. ")"
     local announcementMessage = string.format("<font color=\"#%s\">%s</font>", textColor, baseText)
     AnnouncementEvent:FireAllClients(announcementMessage, 8)
     
-    local replyText = "A fixed star has been created! Class: " .. spectralClass
-    local replyMessage = string.format("<font color=\"#%s\">%s</font>", textColor, replyText)
+    local replyText = "A new star has been created! Class: "
+    local replyMessage = string.format("<font color=\"#%s\">%s %s</font>", textColor, replyText, spectralClass)
     GodDialogReply:FireClient(player, replyMessage)
     
     -- Update star visibility for all clients after creation

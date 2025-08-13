@@ -334,6 +334,7 @@ end
 -- Create constellation lines with selection rules
 -- opts: { lineWidth: number?, maxStars: number?, useOnlyInLines: boolean? }
 local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
+    local enabled = (opts and opts.enabled) or false
     local lineWidth = (opts and opts.lineWidth) or nil
     local transparency = (opts and opts.transparancy) or 0.5
     local maxStars = (opts and opts.maxStars) or 10
@@ -550,6 +551,7 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
                 beam.LightEmission = 1
                 beam.FaceCamera = true
                 beam.Parent = linesFolder
+                beam.Enabled = enabled
             end
         end
     else
@@ -604,6 +606,7 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
                 beam.LightEmission = 1
                 beam.FaceCamera = true
                 beam.Parent = linesFolder
+                beam.Enalbed = enabled
             end
         end
     end
@@ -611,12 +614,8 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
     return linesFolder
 end
 
-function StarSphere.connectWithWhiteLines(starFolder: Folder, arg: any?): Folder
-    if typeof(arg) == "table" then
-        return createLinesWithSelection(starFolder, arg)
-    else
-        return createLinesWithSelection(starFolder, { lineWidth = arg })
-    end
+function StarSphere.connectWithLines(starFolder: Folder, arg: any?): Folder
+    return createLinesWithSelection(starFolder, arg)
 end
 
 -- Create a single constellation under a root folder
@@ -626,7 +625,7 @@ function StarSphere.createConstellation(constellationName: string, csv: string, 
     constellationFolder.Name = constellationName
     constellationFolder.Parent = root
     StarSphere.createStarPartsIn(csv, constellationFolder, radiusSquared)
-    StarSphere.connectWithWhiteLines(constellationFolder, opts or { lineWidth = 2.00 })
+    StarSphere.connectWithLines(constellationFolder, opts or { lineWidth = 2.00, enabled = false })
     return constellationFolder
 end
 
@@ -693,7 +692,7 @@ function StarSphere.createAllConstellations(constellationsMap: {[string]: any}, 
             folder.Name = name
             folder.Parent = root
             StarSphere.createStarPartsIn(okCsv, folder, radiusSquared)
-            StarSphere.connectWithWhiteLines(folder, opts or { lineWidth = 2.00 })
+            StarSphere.connectWithLines(folder, opts or { lineWidth = 2.00, enabled = false })
             
             -- Create constellation name label
             createConstellationLabel(folder, name)
