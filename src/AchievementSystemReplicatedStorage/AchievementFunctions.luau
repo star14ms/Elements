@@ -421,8 +421,6 @@ function functions.AwardStarAchievementAllPlayers(key)
             functions.AwardAchievement(player, key)
         end
     end
-
-    return chosen
 end
 
 return functions

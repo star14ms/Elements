@@ -70,7 +70,7 @@ local function CreateStar(player, args)
 		if string.find(starName, ",") then
 			starName = starName.star:match("([^,]+)")
 		end
-        print(string.format("name: %s (%s) size: %.1f R☉", starName, starInfo.constellation, props.sizeRatio))
+		print(string.format("name: %s (%s) size: %.1f R☉", starName, starInfo.constellation, sizeRatio))
 
 		Star.Name = starName
         Star.Color = props.color
@@ -112,7 +112,7 @@ local function CreateStar(player, args)
 
         -- Update star visibility for all clients after creation
 		StarVisibility.ServerShowOnlyUnionAchieved()
-		UpdateVisibleStars:FireClient(player)
+		StarVisibility.RefreshClient(player)
     else
         GodDialogReply:FireClient(player, "Could not find the Sun template.")
     end
@@ -321,8 +321,8 @@ local function CreateFixedStar(player, args)
     GodDialogReply:FireClient(player, replyMessage)
     
     -- Update star visibility for all clients after creation
-    StarVisibility.ServerShowOnlyUnionAchieved()
-	UpdateVisibleStars:FireClient(player)
+	StarVisibility.ServerShowOnlyUnionAchieved()
+	StarVisibility.RefreshClient(player)
 end
 
 GodDialogAction.OnServerEvent:Connect(function(player, action, args)

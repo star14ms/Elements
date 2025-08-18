@@ -275,11 +275,11 @@ local function populateStarsFromCsvIntoFolder(csv: string, targetFolder: Folder,
         local position = StarSphere.raDecToPosition(raStr, decStr, radiusSquared)
         local part = Instance.new("Part")
         -- Size from radius if present (R☉), with clamping for visibility
-        local sizeStuds = 0.2
-        if radiusIdx then
-            local rVal = parseRadiusValue(row[radiusIdx])
-            if rVal then
-                sizeStuds = math.clamp(0.2 + math.pow(rVal, 1/3), 0.2, 6)
+        local sizeStuds = 1.5
+        if visMagIdx then
+            local VMVal = parseRadiusValue(row[visMagIdx])
+            if VMVal then
+                sizeStuds = math.clamp(1.5 + 20 * 1 / (1 + math.exp(VMVal)), 1.5, 6)
             end
         end
         part.Size = Vector3.new(sizeStuds, sizeStuds, sizeStuds)
@@ -648,7 +648,7 @@ local function createConstellationLabel(constellationFolder: Folder, constellati
         -- Create BillboardGui for the label
         local billboardGui = Instance.new("BillboardGui")
         billboardGui.Name = constellationName .. "Label"
-        billboardGui.Size = UDim2.fromOffset(200, 30)
+        billboardGui.Size = UDim2.fromOffset(120, 20)
         billboardGui.StudsOffset = Vector3.new(0, 2, 0) -- Offset above the center
         billboardGui.AlwaysOnTop = true
         billboardGui.Adornee = Instance.new("Part") -- Create a dummy part at center
@@ -669,11 +669,11 @@ local function createConstellationLabel(constellationFolder: Folder, constellati
         label.TextColor3 = Color3.new(1, 1, 1)
         label.Text = constellationName
         label.TextScaled = true
-        label.Font = Enum.Font.GothamBold
+        label.Font = Enum.Font.Legacy
         label.BorderSizePixel = 0
         label.ZIndex = 10
         label.Parent = billboardGui
-        label.BackgroundTransparency = 1
+		label.BackgroundTransparency = 1
         
         billboardGui.Parent = constellationFolder
     end
@@ -682,6 +682,7 @@ end
 -- Bulk-create all constellations from a name->module map (module.csv expected)
 function StarSphere.createAllConstellations(constellationsMap: {[string]: any}, parent: Instance?, radiusSquared: number?, opts: any?): Folder
     local root = StarSphere.ensureRootFolder("Stars", parent)
+    if #root:GetChildren() ~= 0 then return root end
     for name, mod in pairs(constellationsMap) do
         local okCsv = nil
         if typeof(mod) == "table" and typeof(mod.csv) == "string" then

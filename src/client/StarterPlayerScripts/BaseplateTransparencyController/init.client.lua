@@ -8,6 +8,7 @@ local baseplate = mainPlate:WaitForChild("Baseplate")
 if not baseplate then return end
 
 local camera = Workspace.CurrentCamera
+local originalTransparency = baseplate.Transparency
 
 -- Returns downward pitch in degrees (0 = horizontal, 90 = straight down)
 local function getDownwardPitch()
@@ -19,11 +20,11 @@ local function getDownwardPitch()
 end
 
 RunService.RenderStepped:Connect(function()
-    local pitch = getDownwardPitch()
-    if pitch > 30 then
+	local pitch = getDownwardPitch()
+    if pitch > 20 then
         baseplate.Transparency = 1
     else
-        baseplate.Transparency = 0.9
+		baseplate.Transparency = originalTransparency
     end
 end)
 

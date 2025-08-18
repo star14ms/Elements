@@ -12,7 +12,7 @@ local FIXED_STAR_LIST = {
 	"Ursa Minor/Polaris", -- (5.13 M) F
 	"Ursa Major/Alioth", -- (2.91 M) A
 	"Ursa Major/Dubhe", -- (3.70 M) K (Big)
-	--"Ursa Major/Alkaid", -- (6.10 M) B
+	"Ursa Major/Alkaid", -- (6.10 M) B
 	"Ursa Major/Mizar A", -- (2.22 M)
 	"Ursa Major/Merak", -- (2.56 M)
 	"Ursa Major/Phecda", -- (2.41 M) A
@@ -21,7 +21,7 @@ local FIXED_STAR_LIST = {
 	"Cassiopeia/β Cas", -- (1.91 M) F
 	--"Cassiopeia/γ Cas", -- (15 M) B
 	"Cassiopeia/δ Cas", -- (2.49 M) A 
-	"Cassiopeia/ε Cas", -- (9.20 M) B
+	-- "Cassiopeia/ε Cas", -- (9.20 M) B
 }
 
 -- Table to track free star creations per player (by UserId)
