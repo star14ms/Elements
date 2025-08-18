@@ -19,6 +19,7 @@ local rs = game.ReplicatedStorage:WaitForChild("AchievementSystemReplicatedStora
 local remote = rs:WaitForChild("AchievementsRemoteEvent") :: RemoteEvent
 local allAchievements = require(rs:WaitForChild("AchievementsList")) :: {[string]: any}
 local ConstellationProgress = require(script:WaitForChild("ConstellationProgress"))
+local TweenService = game:GetService("TweenService")
 
 -- Tabs and state
 local updateMain -- forward declaration
@@ -35,31 +36,31 @@ local savedScroll: {[string]: Vector2} = {
 -- PeriodicTable references (for family lists)
 local PeriodicTable = workspace.MainPlate:WaitForChild("PeriodicTable")
 local PeriodicTablePaths = require(workspace.MainPlate.PeriodicTable.PeriodicTablePaths)
-local periodicTableColors = require(game.ReplicatedStorage.Constant).periodicTableColors -- Don't edit it (it's correct)
-local spectralGuiColors = require(game.ReplicatedStorage.Constant).spectralGuiColors
+-- local periodicTableColors = require(game.ReplicatedStorage.Constant).periodicTableColors -- Don't edit it (it's correct)
+-- local spectralGuiColors = require(game.ReplicatedStorage.Constant).spectralGuiColors
 local StarSphere = require(game.ReplicatedStorage.Shared:WaitForChild("StarSphere"))
 
--- local periodicTableColors = {
---     ["Actinide"] = Color3.fromRGB(175, 221, 255),
---     ["AlkaliMetal"] = Color3.fromRGB(255, 0, 0),
---     ["AlkalinEarth"] = Color3.fromRGB(255, 175, 0),
---     ["Lanthanide"] = Color3.fromRGB(0, 255, 255),
---     ["Metalloid"] = Color3.fromRGB(0, 255, 0),
---     ["NobleGas"] = Color3.fromRGB(170, 0, 170),
---     ["Nonmetal"] = Color3.fromRGB(4, 175, 236),
---     ["PostTransitionMetal"] = Color3.fromRGB(75, 151, 75),
---     ["TransitionMetal"] = Color3.fromRGB(248, 248, 248),
---     ["Unknown"] = Color3.fromRGB(120, 120, 120),
--- }
--- local spectralGuiColors = {
---     O = Color3.fromRGB(111, 125, 255),
---     B = Color3.fromRGB(171, 203, 255),
---     A = Color3.fromRGB(226, 255, 228),
---     F = Color3.fromRGB(213, 212, 185),
---     G = Color3.fromRGB(159, 143, 84),
---     K = Color3.fromRGB(165, 109, 77),
---     M = Color3.fromRGB(168, 80, 58),
--- }
+local periodicTableColors = {
+    ["Actinide"] = Color3.fromRGB(175, 221, 255),
+    ["AlkaliMetal"] = Color3.fromRGB(255, 0, 0),
+    ["AlkalinEarth"] = Color3.fromRGB(255, 175, 0),
+    ["Lanthanide"] = Color3.fromRGB(0, 255, 255),
+    ["Metalloid"] = Color3.fromRGB(0, 255, 0),
+    ["NobleGas"] = Color3.fromRGB(170, 0, 170),
+    ["Nonmetal"] = Color3.fromRGB(4, 175, 236),
+    ["PostTransitionMetal"] = Color3.fromRGB(75, 151, 75),
+    ["TransitionMetal"] = Color3.fromRGB(248, 248, 248),
+    ["Unknown"] = Color3.fromRGB(120, 120, 120),
+}
+local spectralGuiColors = {
+    O = Color3.fromRGB(111, 125, 255),
+    B = Color3.fromRGB(171, 203, 255),
+    A = Color3.fromRGB(226, 255, 228),
+    F = Color3.fromRGB(213, 212, 185),
+    G = Color3.fromRGB(159, 143, 84),
+    K = Color3.fromRGB(165, 109, 77),
+    M = Color3.fromRGB(168, 80, 58),
+}
 
 local function getElementFamily(symbol: string): string
 	-- Best-effort: detect lanthanide/actinide from PeriodicTablePaths lists; otherwise unknown
@@ -166,9 +167,9 @@ local function clearUnseenBadges()
     local scroller = mainFrame:FindFirstChild("AchievementsScroller")
     if not scroller or not scroller:IsA("ScrollingFrame") then return end
     for _, inst in ipairs(scroller:GetDescendants()) do
-        local isBadge = inst:IsA("Frame") and inst.Name == "UnseenBadge"
-        local isRing = inst:IsA("UIStroke") and inst.Name == "UnseenRing"
-        if isBadge or isRing then
+        local isBadge = inst:IsA("Frame") and (inst.Name == "UnseenBadge" or inst.Name == "UnseenDiamond")
+        local isStroke = inst:IsA("UIStroke") and (inst.Name == "UnseenRing" or inst.Name == "UnseenDiamondStroke")
+        if isBadge or isStroke then
             inst:Destroy()
         end
     end
@@ -260,13 +261,20 @@ local function isOwned(achievementKey: string): boolean
     return true
 end
 
-local function renderConstellationDetail(scroller: Instance, constName: string)
+local function renderConstellationDetail(scroller: ScrollingFrame, constName: string)
 	-- Clear
-	for _, child in ipairs(scroller:GetChildren()) do
-		if child:IsA("GuiObject") then
-			child:Destroy()
+	for _, layout in ipairs(scroller:GetChildren()) do
+		if layout:IsA("UIGridLayout") or layout:IsA("UIListLayout") then
+			layout:Destroy()
 		end
 	end
+	scroller.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	local list = Instance.new("UIListLayout")
+	list.Name = "PeriodicListLayout"
+	list.Padding = UDim.new(0, 8)
+	list.SortOrder = Enum.SortOrder.LayoutOrder
+	list.Parent = scroller
+
 	-- Header and back button
 	local header = Instance.new("TextLabel")
 	header.BackgroundTransparency = 1
@@ -274,7 +282,7 @@ local function renderConstellationDetail(scroller: Instance, constName: string)
 	header.Position = UDim2.fromOffset(8, 8)
 	header.TextXAlignment = Enum.TextXAlignment.Left
 	header.Font = Enum.Font.GothamBold
-	header.TextSize = 18
+	header.TextSize = 32
 	header.Text = constName .. " — Star Map"
 	header.Parent = scroller
 
@@ -386,15 +394,52 @@ local function renderConstellationDetail(scroller: Instance, constName: string)
 			local corner = Instance.new("UICorner")
 			corner.CornerRadius = UDim.new(0.5, 0)
 			corner.Parent = dot
-			-- Highlight unseen star with a red ring
+			-- Highlight unseen star with a twinkling diamond stroke
 			local starKey = "Constellations/" .. constName .. "/" .. s.name
 			if unseen[starKey] then
-				local ring = Instance.new("UIStroke")
-				ring.Name = "UnseenRing"
-				ring.Thickness = math.max(4, math.floor(size / 2))
-				ring.Color = Color3.fromRGB(255, 255, 255)
-				ring.Transparency = 0.33
-				ring.Parent = dot
+				-- Diamond frame that acts as the animated stroke container
+				local diamond = Instance.new("Frame")
+				diamond.Name = "UnseenDiamond"
+				diamond.BackgroundTransparency = 1
+				diamond.Size = UDim2.fromOffset(math.floor(size * 1.8), math.floor(size * 1.8))
+				diamond.AnchorPoint = Vector2.new(0.5, 0.5)
+				diamond.Position = UDim2.fromScale(0.5, 0.5)
+				diamond.ZIndex = 3
+				diamond.Rotation = 45
+				diamond.Parent = dot
+				local stroke = Instance.new("UIStroke")
+				stroke.Name = "UnseenDiamondStroke"
+				stroke.Color = Color3.fromRGB(255, 255, 255)
+				stroke.Thickness = math.max(2, math.floor(size / 3))
+				stroke.Transparency = 0.35
+				stroke.Parent = diamond
+				-- Gentle twinkle animation: pulse thickness/transparency and sway rotation
+				task.spawn(function()
+					local baseThickness = stroke.Thickness
+					while diamond.Parent do
+						local grow = TweenService:Create(stroke, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+							Thickness = baseThickness + 2,
+							Transparency = 0.1,
+						})
+						local tilt1 = TweenService:Create(diamond, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+							Rotation = 50,
+						})
+						grow:Play()
+						tilt1:Play()
+						grow.Completed:Wait()
+						if not diamond.Parent then break end
+						local shrink = TweenService:Create(stroke, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+							Thickness = baseThickness,
+							Transparency = 0.45,
+						})
+						local tilt2 = TweenService:Create(diamond, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+							Rotation = 40,
+						})
+						shrink:Play()
+						tilt2:Play()
+						shrink.Completed:Wait()
+					end
+				end)
 				-- Track as shown this session so closing the frame clears it
 				sessionUnseenShown[starKey] = true
 			end
@@ -819,13 +864,10 @@ updateMain = function()
 		list.SortOrder = Enum.SortOrder.LayoutOrder
 		list.Parent = scroller
 		renderPeriodic(scroller)
-		return
-	end
 
 	-- Constellations tab: Either show list of constellations or stars of a selected constellation
-	if currentTab == "Constellations" then
+	elseif currentTab == "Constellations" then
 		if selectedConstellationName == nil then
-			-- list all constellations alphabetically with progress and make them clickable
 			-- two-column grid layout
 			for _, layout in ipairs(scroller:GetChildren()) do
 				if layout:IsA("UIGridLayout") or layout:IsA("UIListLayout") then
@@ -839,6 +881,8 @@ updateMain = function()
 			grid.CellSize = UDim2.new(0.5, -12, 0, 120)
 			grid.SortOrder = Enum.SortOrder.LayoutOrder
 			grid.Parent = scroller
+
+			-- list all constellations alphabetically with progress and make them clickable
 			ConstellationProgress.render(scroller, script:WaitForChild("AchievementTemplate"), clientAchievements)
 			-- Build a lookup for owned counts to dim empty constellations
 			local progressList = ConstellationProgress.computeProgress(clientAchievements)
@@ -923,11 +967,9 @@ updateMain = function()
 					scroller.CanvasPosition = savedScroll.Constellations
 				end
 			end)
-			return
 		else
 			-- detail star map view for selected constellation
 			renderConstellationDetail(scroller, selectedConstellationName)
-			return
 		end
 	end
 
@@ -945,6 +987,7 @@ updateMain = function()
 		newFrame.AchievementImage.Image = image
 		newFrame.Description.Text = desc
 		newFrame.Acquired.Visible = owned
+		newFrame.LayoutOrder = achievementInfo.OrderRank
         local leaf = string.match(name, "/([^/]+)$") or name
         local model = PeriodicTablePaths.ElementPath[leaf]
 
