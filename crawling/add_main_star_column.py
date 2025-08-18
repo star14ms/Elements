@@ -91,7 +91,7 @@ def choose_top_n_by_apparent_mag(df: pd.DataFrame, n: int) -> list[int]:
 
 def process_constellation_folder(folder_path: str, list_index_map: dict[str, str], default_n: int) -> None:
     name = os.path.basename(folder_path)
-    csv_path = os.path.join(folder_path, 'table.csv')
+    csv_path = os.path.join(folder_path, 'data.csv')
     if not os.path.exists(csv_path):
         return
 
@@ -116,15 +116,15 @@ def process_constellation_folder(folder_path: str, list_index_map: dict[str, str
 
     # Create/overwrite column
     in_lines = [(i in top_idx) for i in range(len(df))]
-    df['In lines'] = in_lines
+    df['Main Star'] = in_lines
 
     # Save back
     df.to_csv(csv_path, index=False)
-    print(f"Updated {name}: In lines set for top {len(top_idx)} of N={n} {'(Default Value Used)' if use_default_N else ''}")
+    print(f"Updated {name}: Main Star set for top {len(top_idx)} of N={n} {'(Default Value Used)' if use_default_N else ''}")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Add 'In lines' column to constellation CSVs based on first N brightest stars.")
+    parser = argparse.ArgumentParser(description="Add 'Main Star' column to constellation CSVs based on first N brightest stars.")
     parser.add_argument('--root', default=os.path.join('src', 'shared', 'constellations'), help='Root folder containing constellation subfolders with table.csv')
     parser.add_argument('--default-n', type=int, default=20, help='Fallback N if main page does not provide Main stars count')
     args = parser.parse_args()
@@ -135,7 +135,7 @@ def main():
         if entry.is_dir():
             process_constellation_folder(entry.path, index_map, args.default_n)
 
-# python crawling/add_in_lines.py --root src/shared/constellation --default-n 20
+# python crawling/add_main_star_column.py --root src/shared/constellation --default-n 20
 if __name__ == '__main__':
     main()
 

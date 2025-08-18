@@ -82,7 +82,7 @@ remote.OnServerEvent:Connect(function(player, action)
 
 		-- Update star visibility for all clients after creation
 		StarVisibility.ServerShowOnlyUnionAchieved()
-		UpdateVisibleStars:FireClient(player)
+		StarVisibility.RefreshClient(player)
 	end
 end)
 

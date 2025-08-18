@@ -39,15 +39,15 @@ local function indexOf(list: {string}, key: string): number?
     return nil
 end
 
-local DEFAULT_IMAGE_ID = 6915066359
+local DEFAULT_IMAGE_ID = 113126302941978
 
 function M.build(): {[string]: any}
     local achievements: {[string]: any} = {}
     local shared = ReplicatedStorage:WaitForChild("Shared")
-    local constellationsFolder = shared:FindFirstChild("constellation")
+    local constellationsFolder = shared:FindFirstChild("constellations")
     local constellationsModule: ModuleScript? = nil
     if constellationsFolder then
-        constellationsModule = constellationsFolder:FindFirstChild("constellation") :: ModuleScript?
+        constellationsModule = constellationsFolder:FindFirstChild("constellationsModuleScript") :: ModuleScript?
     end
     if not constellationsModule then
         return achievements

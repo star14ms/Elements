@@ -1,3 +1,5 @@
+local spectralColors = require(game.ReplicatedStorage.Constant).spectralColors
+
 local StarSphere = {}
 
 local DEFAULT_RADIUS_SQUARED = 602370
@@ -29,7 +31,7 @@ local function extractNumericTriplet(str: string): (number?, number?, number?)
 end
 
 -- Parse Right Ascension string like "00h 08m 23.17s" into degrees
-local function parseRAtoDegrees(raStr: string): number
+function StarSphere.parseRAtoDegrees(raStr: string): number
     local h, m, s = extractNumericTriplet(raStr)
     h = h or 0
     m = m or 0
@@ -39,7 +41,7 @@ local function parseRAtoDegrees(raStr: string): number
 end
 
 -- Parse Declination string like "+29° 05′ 27.0″" into signed degrees
-local function parseDectoDegrees(decStr: string): number
+function StarSphere.parseDectoDegrees(decStr: string): number
     local negative = (string.find(decStr, "%-") ~= nil) or (string.find(decStr, "−") ~= nil)
     local d, m, s = extractNumericTriplet(decStr)
     d = d or 0
@@ -61,8 +63,8 @@ end
 -- Y = R * sin(dec)            (North-South) 
 -- Z = R * cos(dec) * sin(ra)  (Depth)
 function StarSphere.raDecToPosition(raStr: string, decStr: string, radiusSquared: number?): Vector3
-    local raDeg = parseRAtoDegrees(raStr)
-    local decDeg = parseDectoDegrees(decStr)
+    local raDeg = StarSphere.parseRAtoDegrees(raStr)
+    local decDeg = StarSphere.parseDectoDegrees(decStr)
     local raRad = toRadians(raDeg)
     local decRad = toRadians(decDeg)
     local radius = squareRoot(radiusSquared or DEFAULT_RADIUS_SQUARED)
@@ -153,25 +155,6 @@ local ZODIAC: {[string]: boolean} = {
     ["Pisces"] = true,
 }
 
--- -- Map spectral class first letter to a representative Color3
--- local spectralColors: {[string]: Color3} = {
---     O = Color3.fromRGB(155, 176, 255), -- blue
---     B = Color3.fromRGB(170, 191, 255), -- blue-white
---     A = Color3.fromRGB(202, 215, 255), -- white
---     F = Color3.fromRGB(248, 247, 255), -- yellow-white
---     G = Color3.fromRGB(255, 244, 234), -- yellow
---     K = Color3.fromRGB(255, 210, 161), -- orange
---     M = Color3.fromRGB(255, 204, 111), -- red-orange
--- }
-local spectralColors: {[string]: Color3} = {
-    O = Color3.fromRGB(111, 125, 255),
-    B = Color3.fromRGB(171, 203, 255),
-    A = Color3.fromRGB(226, 255, 228),
-    F = Color3.fromRGB(213, 212, 185),
-    G = Color3.fromRGB(159, 143, 84),
-    K = Color3.fromRGB(165, 109, 77),
-    M = Color3.fromRGB(168, 80, 58),
-}
 
 local function parseSpectralFirstLetter(spClass: string?): string?
     if not spClass or spClass == "" then
@@ -193,10 +176,10 @@ local function parseSpectralFirstLetter(spClass: string?): string?
     return nil
 end
 
-local function colorFromSpectral(spClass: string?, spectralType: string?): Color3
+local function colorFromSpectral(spClass: string?, spectralType: string?, spectralColorsCustom: {[string]: Color3}?): Color3
     local letter = parseSpectralFirstLetter(spClass) or parseSpectralFirstLetter(spectralType)
     if letter and spectralColors[letter] then
-        return spectralColors[letter]
+        return spectralColorsCustom and spectralColorsCustom[letter] or spectralColors[letter]
     end
     return Color3.new(1, 1, 1)
 end
@@ -251,10 +234,7 @@ local function populateStarsFromCsvIntoFolder(csv: string, targetFolder: Folder,
     local visMagIdx = indexOf(headerFields, "vis. mag.")
     local absMagIdx = indexOf(headerFields, "abs. mag.")
     -- optional user-added column to mark whether a star participates in lines
-    local inLinesIdx = indexOf(headerFields, "In lines")
-        or indexOf(headerFields, "In constellation")
-        or indexOf(headerFields, "Connect")
-        or indexOf(headerFields, "Line")
+    local mainStarIdx = indexOf(headerFields, "Main Star")
 
     if not raIdx or not decIdx then
         return
@@ -287,7 +267,7 @@ local function populateStarsFromCsvIntoFolder(csv: string, targetFolder: Folder,
         part.Anchored = true
         part.CanCollide = false
         part.Material = Enum.Material.Neon
-        part.Color = colorFromSpectral(spClassIdx and row[spClassIdx] or nil, spectralTypeIdx and row[spectralTypeIdx] or nil)
+        part.Color = StarSphere.colorFromSpectral(spClassIdx and row[spClassIdx] or nil, spectralTypeIdx and row[spectralTypeIdx] or nil)
         part.CFrame = CFrame.new(position)
         if nameIdx and row[nameIdx] and row[nameIdx] ~= "" then
             part.Name = tostring(row[nameIdx])
@@ -305,8 +285,8 @@ local function populateStarsFromCsvIntoFolder(csv: string, targetFolder: Folder,
         part:SetAttribute("HD", row[HDIdx])
         part:SetAttribute("HIP", row[HIPIdx])
         part:SetAttribute("Distance", row[distanceIdx])
-        if inLinesIdx then
-            part:SetAttribute("InLines", parseBoolean(row[inLinesIdx]))
+        if mainStarIdx then
+            part:SetAttribute("MainStar", parseBoolean(row[mainStarIdx]))
         end
         part.Parent = targetFolder
     end
@@ -332,13 +312,13 @@ end
 -- Create a white line network connecting the given star parts using a simple MST
 -- Returns a folder containing created Beams
 -- Create constellation lines with selection rules
--- opts: { lineWidth: number?, maxStars: number?, useOnlyInLines: boolean? }
+-- opts: { lineWidth: number?, maxStars: number?, useOnlyMainStars: boolean? }
 local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
     local enabled = (opts and opts.enabled) or false
     local lineWidth = (opts and opts.lineWidth) or nil
     local transparency = (opts and opts.transparancy) or 0.5
     local maxStars = (opts and opts.maxStars) or 10
-    local useOnlyInLines = (opts and opts.useOnlyInLines)
+    local useOnlyMainStars = (opts and opts.useOnlyMainStars)
 
     local partsAll: {BasePart} = {}
     local anyMarked = false
@@ -346,7 +326,7 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
         if child:IsA("BasePart") then
             table.insert(partsAll, child)
             anyMarked = true
-            -- if child:GetAttribute("InLines") == true then
+            -- if child:GetAttribute("MainStar") == true then
             --     anyMarked = true
             -- end
         end
@@ -354,10 +334,10 @@ local function createLinesWithSelection(starFolder: Folder, opts: any?): Folder
 
     -- Decide selection set
     local selected: {BasePart} = {}
-    if anyMarked and useOnlyInLines ~= false then
+    if anyMarked and useOnlyMainStars ~= false then
         for _, p in ipairs(partsAll) do
             table.insert(selected, p)
-            -- if p:GetAttribute("InLines") == true then
+            -- if p:GetAttribute("MainStar") == true then
             --     table.insert(selected, p)
             -- end
         end

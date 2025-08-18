@@ -22,13 +22,9 @@ local function requireConstellationsModule(): any?
     if not shared then return nil end
 
     local candidates: {Instance?} = {}
-    local folderA = shared:FindFirstChild("constellations")
-    if folderA then
-        table.insert(candidates, folderA:FindFirstChild("constellationsModuleScript"))
-    end
-    local folderB = shared:FindFirstChild("constellation")
-    if folderB then
-        table.insert(candidates, folderB:FindFirstChild("constellation"))
+    local folder = shared:FindFirstChild("constellations")
+    if folder then
+        table.insert(candidates, folder:FindFirstChild("constellationsModuleScript"))
     end
 
     for _, mod in ipairs(candidates) do
