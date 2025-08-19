@@ -1,0 +1,67 @@
+local M = {}
+M.csv = [[
+Name,B,F,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+Vega,α,3.0,,172167.0,91262.0,18h 36m 56.19s,+38° 46′ 58.8″,0.03,0.58,25,A0Vvar,"Wega, Fidis, Harp Star, Al Nesr al Waki, Vulture Cadens; 5th brightest star, has a dust disk; δ Sct variable, Vmax = -0.02m, Vmin = 0.07m, P = 0.19 d",A0Va,8910.0 (equatorial)K,2.15 M☉,2.418 (polar)R☉,47.2 L☉,4.1 cgs,16.3 h,700.0 Myr,True
+γ Lyr,γ,14.0,,176437.0,93194.0,18h 58m 56.62s,+32° 41′ 22.4″,3.25,−3.20,634,B9III,"Sulafat, Sulaphat; suspected variable, Vmax = 3.23m, Vmin = 3.26m",B9 III,11000.0 K,5.76 M☉,15.4 R☉,2430.0 L☉,3.5 cgs,65.0 km/s,74.8 Myr,True
+β Lyr A,β,10.0,,174638.0,92420.0,18h 50m 04.79s,+33° 21′ 45.6″,3.52,−3.64,881,A8:V comp SB,"Sheliak, Shelyak, Shiliak; prototype β Lyr variable, Vmax = 3.30m, Vmin = 4.35m, P = 12.94061713 d",B6-8II+ B,13300.0 K,2.97 M☉,15.2 R☉,6500.0 L☉,2.5 cgs,,23.0 Myr,True
+R Lyr,,13.0,R,175865.0,92862.0,18h 55m 20.09s,+43° 56′ 45.2″,4.08,−1.07,349,M5IIIvar,"semiregular variable, Vmax = 3.81m, Vmin = 4.44m, P = 46 d",M5 III,3313.0 K,1.8 M☉,195.0 R☉,4130.0 L☉,0.47 cgs,,,True
+δ2 Lyr,δ2,12.0,,175588.0,92791.0,18h 54m 30.29s,+36° 53′ 55.0″,4.22,−2.98,898,M4IIvar,"semiregular variable, Vmax = 4.22m, Vmin = 4.33m",M4 II,3394.0 K,4.5 M☉,293.0 R☉,10248.0 L☉,0.0 cgs,,75.0 Myr,True
+κ Lyr,κ,1.0,,168775.0,89826.0,18h 19m 51.72s,+36° 03′ 52.0″,4.33,0.02,238,K2IIIvar,"suspected variable, Vmax = 4.31m, Vmin = 4.35m",K2-IIIabCN0.5,4638.0 K,,18.0 R☉,127.4 L☉,2.51 cgs,5.0 km/s,,False
+ζ1 Lyr,ζ1,6.0,,173648.0,91971.0,18h 44m 46.34s,+37° 36′ 18.2″,4.34,0.97,154,Am,"variable star, ΔV = 0.003m, P = 1.53243 d",kA5hF0mF2,7914.0 K,2.36 M☉,2.5 R☉,31.0 L☉,3.7 cgs,47.0 km/s,500.0 Myr,False
+θ Lyr,θ,21.0,,180809.0,94713.0,19h 16m 22.10s,+38° 08′ 01.4″,4.35,−2.51,769,K0II,"suspected variable, Vmax = 4.32m, Vmin = 4.37m",K0II,4523.0 K,,60.31 R☉,1374.0 L☉,1.93 cgs,3.6 km/s,,False
+η Lyr,η,20.0,,180163.0,94481.0,19h 13m 45.49s,+39° 08′ 45.5″,4.43,−3.09,1042,B2.5IV,"Aladfar; variable star, ΔV = 0.005m, P = 19.73944 d",B2.5IV,19525.0 K,10.1 M☉,4.3 R☉,6605.0 L☉,3.38 cgs,10.0 km/s,22.5 Myr,False
+ε2 Lyr A,ε2,5.0,,173607.0,91926.0,18h 44m 22.78s,+39° 36′ 45.3″,4.6,1.13,160,A8Vn,"component of the ε Lyr system; binary star; suspected variable, ΔV = 0.02m",A3V + F0V,7943.0 K,2.03 M☉,,24.0 L☉,,165.0 km/s,,False
+ε1 Lyr A,ε1,4.0,,173582.0,91919.0,18h 44m 20.34s,+39° 40′ 11.9″,4.67,1.19,162,F1V,component of the ε Lyr system; binary star,A3V + F0V,7943.0 K,2.03 M☉,,24.0 L☉,,165.0 km/s,,False
+λ Lyr,λ,15.0,,176670.0,93279.0,19h 00m 00.82s,+32° 08′ 43.8″,4.94,−3.43,1538,K3III,suspected variable,K2.5III:Ba0.5,4361.0 K,6.3 M☉,104.74 R☉,3561.0 L☉,2.21 cgs,3.2 km/s,58.4 Myr,False
+16 Lyr,,16.0,,177196.0,93408.0,19h 01m 26.36s,+46° 56′ 06.1″,5.0,2.04,128,A7V,"suspected variable, Vmax = 5.00m, Vmin = 5.09m",A6 IVor A7 V,8242.0 (polar)K,1.722 M☉,1.622 (polar)R☉,10.45 L☉,4.28 cgs,85.1 km/s,401.0 Myr,False
+μ Lyr,μ,2.0,,169702.0,90191.0,18h 24m 13.80s,+39° 30′ 26.1″,5.11,−0.55,441,A3IVn,"Alathfar, Al Athfar",A3IVn,9016.0 K,3.04 M☉,5.8 (oblate)R☉,200.0 L☉,,165.0 km/s,,False
+17 Lyr,,17.0,,178449.0,93917.0,19h 07m 25.50s,+32° 30′ 06.0″,5.2,2.16,132,F0V,,F0V,6887.0 K,1.6 M☉,2.5 R☉,16.4 L☉,3.57 cgs,138.0 km/s,1.4 Gyr,False
+ν Lyr,"ν, ν2",9.0,,174602.0,92405.0,18h 49m 52.92s,+32° 33′ 03.9″,5.22,0.90,238,A3V,,A3 V,8912.0 K,1.91 M☉,1.5 R☉,32.0 L☉,3.89 cgs,128.0 km/s,214.0 Myr,False
+ι Lyr,ι,18.0,,178475.0,93903.0,19h 07m 18.13s,+36° 06′ 00.6″,5.25,−1.78,832,B6IV,Be star,B6IV,12059.0 K,5.2 M☉,6.7 R☉,854.0 L☉,3.54 cgs,224.0 km/s,168.0 Myr,False
+ε2 Lyr B,ε2,5.0,,173608.0,,18h 44m 22.90s,+39° 36′ 46.0″,5.37,,,,component of the ε Lyr system,A3V + F0V,7943.0 K,2.03 M☉,,24.0 L☉,,165.0 km/s,,False
+δ1 Lyr,δ1,11.0,,175426.0,92728.0,18h 53m 43.56s,+36° 58′ 18.2″,5.58,−2.02,1079,B2.5V,"suspected variable, Vmax = 5.56m, Vmin = 5.62m",B2.5V,20350.0 K,6.6 M☉,,838.0 L☉,3.848 polar)cgs,86.0 km/s,9.0 Myr,False
+ζ2 Lyr,ζ2,7.0,,173649.0,91973.0,18h 44m 48.19s,+37° 35′ 40.4″,5.73,2.41,150,F0IVvar,"suspected variable, Vmax = 5.68m, Vmin = 5.74m",F0 IVnor F1Vnn,7257.0 K,1.74 M☉,2.03 R☉,9.5 L☉,3.94 cgs,212.0 km/s,1.223 Gyr,False
+V542 Lyr,,,V542,176318.0,93104.0,18h 58m 01.90s,+38° 15′ 58.3″,5.89,−0.11,516,B7IV,Algol variable,,,,,,,,,False
+ν1 Lyr,ν1,8.0,,174585.0,92398.0,18h 49m 45.91s,+32° 48′ 46.2″,5.93,−1.52,1009,B3IV,"suspected variable, Vmax = 5.89m, Vmin = 5.96m",B3 IV,14534.0 K,6.9 M☉,5.9 R☉,1460.0 L☉,3.86 cgs,145.0 km/s,39.8 Myr,False
+19 Lyr,,19.0,V471,179527.0,94311.0,19h 11m 46.01s,+31° 17′ 00.5″,5.93,−1.46,979,B9p Si,"α2 CVn variable, Vmax = 5.91m, Vmin = 5.98m, P = 1.160898 d",B8 IIIp Si Sr,11194.0 K,3.76 M☉,6.4 R☉,397.48 L☉,,35.0 km/s,,False
+XY Lyr,,,XY,172380.0,91373.0,18h 38m 06.47s,+39° 40′ 05.9″,6.02,−1.81,1199,M4.5II,"semiregular variable, Vmax = 5.6m, Vmin = 6.6m, P = 120 d",,,,,,,,,False
+ε1 Lyr B,ε1,4.0,,173583.0,,18h 44m 20.30s,+39° 40′ 16.0″,6.02,,,,component of the ε Lyr system,A3V + F0V,7943.0 K,2.03 M☉,,24.0 L☉,,165.0 km/s,,False
+V473 Lyr,,,V473,180583.0,94685.0,19h 15m 59.49s,+27° 55′ 34.7″,6.18,−2.38,1680,F6Ib-II,"classical Cepheid, Vmax = 5.99m, Vmin = 6.35m, P = 1.49078 d",F7 II,6190.0 K,4.6 M☉,24.0 R☉,740.0 L☉,2.14 cgs,,,False
+V543 Lyr,,,V543,176502.0,93177.0,18h 58m 46.59s,+40° 40′ 45.1″,6.2,−1.12,948,B3V,β Cep variable,,,,,,,,,False
+V533 Lyr,,,V533,172187.0,91250.0,18h 36m 45.53s,+43° 13′ 18.6″,6.21,0.71,411,F0V,β Lyr variable,,,,,,,,,False
+HR 7403,,,V558,183362.0,95673.0,19h 27m 36.40s,+37° 56′ 28.3″,6.3,−2.71,2063,B3Ve,Be star,,,,,,,,,False
+HD 176582,,,V545,176582.0,93210.0,18h 59m 12.29s,+39° 13′ 02.4″,6.43,−0.58,821,B5IV,53 Per variable,,,,,,,,,False
+V550 Lyr,,,V550,178329.0,93808.0,19h 06m 17.00s,+41° 24′ 50.0″,6.49,,2038,B3V,53 Per variable,,,,,,,,,False
+RR Lyr,,,RR,182989.0,95497.0,19h 25m 27.91s,+42° 47′ 03.7″,7.13,0.34,744,F5,"prototype RR Lyr variable, Vmax = 7.06m, Vmin = 8.12m, P = 0.56686776 d",A7III - F8III,6125.0 K,0.65 M☉,5.6 R☉,49.0 L☉,2.4 cgs,,,False
+β Lyr B,β,10.0,,174664.0,,18h 50m 06.60s,+33° 21′ 05.0″,7.2,,,,component of the β Lyr system,B6-8II+ B,13300.0 K,2.97 M☉,15.2 R☉,6500.0 L☉,2.5 cgs,,23.0 Myr,False
+W Lyr,,,W,167740.0,89419.0,18h 14m 55.88s,+36° 40′ 13.2″,7.3,,,M3.5-7e,"Mira variable, Vmax = 7.3m, Vmin = 13m, P = 197.88 d",,,,,,,,,False
+V478 Lyr,,,V478,178450.0,93926.0,19h 07m 32.39s,+30° 15′ 16.2″,7.63,,91.16,G8VSB,"RS CVn variable, ΔV = 0.032m, P = 2.185 d",,,,,,,,,False
+HK Lyr,,,HK,173291.0,91774.0,18h 42m 50.00s,+36° 57′ 30.9″,7.65,,,C,"semiregular variable, Vmax = 7.5m, Vmin = 8.4m, P = 186 d",,,,,,,,,False
+T Lyr,,,T,,90883.0,18h 32m 20.10s,+36° 59′ 55.6″,7.84,,2350,C,"slow irregular variable, Vmax = 7.5m, Vmin = 9.2m",,,,,,,,,False
+V Lyr,,,V,178876.0,,19h 09m 04.55s,+29° 39′ 29.3″,8.2,,,M7e,"Mira variable, Vmax = 8.2m, Vmin = 15.7m, P = 373.53 d",,,,,,,,,False
+FL Lyr,,,FL,179890.0,94335.0,19h 12m 04.86s,+46° 19′ 26.9″,9.36,,424,G0V,"Algol variable, Vmax = 9.27m, Vmin = 9.89m, P = 2.178152 d, has a planet (b)",G0V(F8 + G8),6363.0 K,1.218 M☉,1.283 R☉,2.17 L☉,4.31 cgs,29.2 km/s,2.29 Gyr,False
+S Lyr,,,S,,,19h 13m 11.80s,+26° 00′ 27.8″,9.8,,,SC,"Mira variable, Vmax = 9.3m, Vmin = 16.0m, P = 438.4 d",,,,,,,,,False
+EP Lyr,,,EP,,,19h 18m 19.55s,+27° 51′ 03.2″,9.96,,,G2II,"RV Tau variable, Vmax = 9.96m, Vmin = 10.90m, P = 83.34 d",,,,,,,,,False
+KX Lyr,,,KX,,,18h 33m 15.23s,+40° 10′ 22.7″,10.38,,,F0,"RR Lyr variable, Vmax = 10.38m, Vmin = 11.47m, P = 0.44090446 d",,,,,,,,,False
+UZ Lyr,,,UZ,,,19h 21m 08.91s,+37° 56′ 11.5″,10.4,,,A2,"Algol variable, Vmax = 9.9m, Vmin = 11m, P = 1.89127025 d",,,,,,,,,False
+HP Lyr,,,HP,,,19h 21m 39.07s,+39° 56′ 08.1″,10.43,,,A6,"semiregular variable, Vmax = 10.18m, Vmin = 10.80m, P = 68.88 d",A2-F2 Iab,5900.0 K,0.6 M☉,60.0 R☉,3900.0 L☉,1.0 cgs,,,False
+TT Lyr,,,TT,,,19h 27m 36.30s,+41° 42′ 05.4″,10.88,,,B2V,"Algol variable, Vmax = 9.34m, Vmin = 11.43m, P = 5.243727 d",,,,,,,,,False
+TZ Lyr,,,TZ,,89498.0,18h 15m 49.67s,+41° 06′ 37.9″,11.16,,736,F5V,"β Lyr variable, Vmax = 1.087m, Vmin = 11.85m, P = 0.5288269 d",,,,,,,,,False
+EZ Lyr,,,EZ,,92221.0,18h 47m 40.32s,+35° 59′ 34.2″,11.34,,265.7,A9.7,"RR Lyr variable, Vmax = 10.8m, Vmin = 11.8m, P = 0.52526769 d",,,,,,,,,False
+CN Lyr,,,CN,,91634.0,18h 41m 15.95s,+28° 43′ 21.1″,11.38,,,F5,"RR Lyr variable, Vmax = 11.07m, Vmin = 11.76m, P = 0.41138232 d",,,,,,,,,False
+RV Lyr,,,RV,,,19h 16m 17.97s,+32° 25′ 15.0″,11.47,,,A5,Algol variable,,,,,,,,,False
+RZ Lyr,,,RZ,,,18h 43m 37.88s,+32° 47′ 54.0″,11.57,,,A2,"RR Lyr variable, Vmax = 10.6m, Vmin = 12.03m, P = 0.5112423 d",,,,,,,,,False
+V404 Lyr,,,V404,,,19h 19m 05.95s,+38° 22′ 00.5″,11.77,,,,Algol variable,,,,,,,,,False
+CC Lyr,,,CC,,91015.0,18h 33m 57.41s,+31° 38′ 24.2″,12.46,,,F0p...,"W Vir variable, Vmax = 11.65m, Vmin = 12.45m, P = 24.16 d",,,,,,,,,False
+β Lyr C,β,10.0,,174639.0,,18h 50m 01.20s,+33° 21′ 26.0″,13.4,,,,component of the β Lyr system,B6-8II+ B,13300.0 K,2.97 M☉,15.2 R☉,6500.0 L☉,2.5 cgs,,23.0 Myr,False
+V477 Lyr,,,V477,,,18h 31m 18.29s,+26° 56′ 12.9″,15.07,,,O9k,Algol variable; central star of planetary nebula Abell 46,,,,,,,,,False
+HR Lyr,,,HR,175268.0,,18h 53m 25.05s,+29° 13′ 37.7″,16.6,,,,"nova, Vmax = 6.5m, Vmin = 16.6m",,,,,,,,,False
+CY Lyr,,,CY,,,18h 52m 41.38s,+26° 45′ 31.5″,18.0,,,,"SS Cyg variable, Vmax = 12.9m, Vmin = 18.0m, P = 0.1951 d",,,,,,,,,False
+DM Lyr,,,DM,,,18h 58m 44.43s,+30° 15′ 33.0″,18.0,,,,"SU UMa variable, Vmax = 13m, Vmin = 18m, P = 0.065409 d",? /White dwarf,,0.095 M☉,0.145 R☉,,,,,False
+V344 Lyr,,,V344,,,18h 44m 39.18s,+43° 22′ 28.1″,19.0,,,,"SU UMa variable, Vmax = 13.8m, Vmin = 19m, P = 0.087904 d",,,,,,,,,False
+V361 Lyr,,,V361,,,19h 02m 28.12s,+46° 58′ 57.8″,,,,F9V,Algol variable,,,,,,,,,False
+AY Lyr,,,AY,,,18h 44m 26.73s,+37° 59′ 51.8″,,,,G...,SU UMa variable,,,,,,,,,False
+MV Lyr,,,MV,,,19h 07m 16.29s,+44° 01′ 07.8″,,,,Op+...,nova,,,,,,,,,False
+]]
+
+return M

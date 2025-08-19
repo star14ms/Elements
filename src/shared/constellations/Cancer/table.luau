@@ -1,0 +1,145 @@
+local M = {}
+M.csv = [[
+Name,B,F,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+β Cnc,β,17,,69267,40526.0,08h 16m 30.95s,+09° 11′ 08.4″,3.53,−1.22,290.0,K4III,"Tarf, Al Tarf; variable star, ΔV = 0.005m, P = 6.01 d, has a planet (b)",K4III Ba1,4094.0 K,1.7 M☉,51.7 R☉,677.0 L☉,1.28 cgs,3.7 km/s,1.85 Gyr,False
+δ Cnc,δ,47,,74442,42911.0,08h 44m 41.11s,+18° 09′ 17.5″,3.94,0.84,136.0,K0III,Asellus Australis,K0 III,4684.0 K,1.71 M☉,11.7 R☉,59.5 L☉,2.59 cgs,2.8 km/s,2.45 Gyr,False
+ι Cnc A,ι,48,,74739,43103.0,08h 46m 41.83s,+28° 45′ 36.0″,4.03,−0.77,298.0,G8IIIa,component of the ι Cnc system,G8IIIa Ba0.2,4954.0 K,2.376 M☉,21.0 R☉,204.0 L☉,2.5 cgs,170.0 km/s,263.0 Myr,False
+α Cnc,α,65,,76756,44066.0,08h 58m 29.20s,+11° 51′ 28.0″,4.26,0.63,173.0,A5m,"Acubens, Sertan; suspected variable, Vmax = 4.20m, Vmin = 4.27m",kA7VmF0/2III/IVSr,7943.0 K,2.1 M☉,3.655 R☉,49.0 L☉,3.73 cgs,75.0 km/s,,False
+γ Cnc,γ,43,,74198,42806.0,08h 43m 17.21s,+21° 28′ 06.9″,4.66,1.23,181.0,A1IV,Asellus Borealis,A1IV,9311.0 K,2.35 M☉,2.53 R☉,43.3 L☉,4.0 cgs,86.0 km/s,171.0 Myr,False
+ζ Cnc,ζ,16,,68255 68256 68257,40167.0,08h 12m 12.71s,+17° 38′ 53.3″,4.67,2.63,83.0,F7V+F9V +G0V+?,"Tegmine, quaternary star",F8V+ G0V+ G0IV-V,6230.0 K,1.28 M☉,1.27 R☉,,4.27 cgs,1.5 km/s,,False
+8 Cnc,,8,,66664,39567.0,08h 05m 04.51s,+13° 07′ 06.1″,5.14,1.09,210.0,A1V,,A1 V,10352.0 K,2.37 M☉,,36.6 L☉,4.29 cgs,173.0 km/s,144.0 Myr,False
+χ Cnc,χ,18,,69897,40843.0,08h 20m 03.87s,+27° 13′ 07.0″,5.14,3.84,59.0,F6V,suspected variable,F6V,6130.0 K,1.07 M☉,1.387 R☉,2.4378 L☉,4.35 cgs,4.2 km/s,5.8 Gyr,False
+ξ Cnc,ξ,77,,78515,44946.0,09h 09m 21.53s,+22° 02′ 43.6″,5.16,−0.18,380.0,K0III,Nahn,G9 III Fe-1 CH-0.5,5025.0 K,3.4 M☉,16.13 R☉,149.0 L☉,2.62 cgs,2.1 km/s,271.0 Myr,False
+ο1 Cnc,ο1,62,,76543,43970.0,08h 57m 14.91s,+15° 19′ 21.8″,5.22,1.77,160.0,A5III,α2 CVn variable,A5 III,8145.0 K,2.02 M☉,1.86 R☉,13.4 L☉,3.982 cgs,90.0 km/s,598.0 Myr,False
+ρ2 Cnc,ρ2,58,,76219,43834.0,08h 55m 39.69s,+27° 55′ 39.2″,5.23,−1.00,574.0,G8II-III,,G8 IIIor G8 II-III,4994.0 K,3.59 M☉,24.2 R☉,310.0 L☉,2.46 cgs,8.1 km/s,234.0 Myr,False
+σ3 Cnc,σ3,64,,76813,44154.0,08h 59m 32.68s,+32° 25′ 07.1″,5.23,0.27,320.0,G9III,suspected variable,G9 III,5170.0 K,2.81 M☉,10.32 R☉,72.0 L☉,3.18 cgs,2.3 km/s,420.0 Myr,False
+κ Cnc,κ,76,,78316,44798.0,09h 07m 44.82s,+10° 40′ 05.6″,5.23,−0.63,484.0,B8IIImnp,"α2 CVn variable, Vmax = 5.22m, Vmin = 5.27m, P = 5.0035 d",B8 IIIp,12800.0 K,4.5 M☉,5.0 R☉,322.0 L☉,3.7 cgs,6.0 km/s,,False
+μ2 Cnc,μ2,10,,67228,39780.0,08h 07m 45.84s,+21° 34′ 55.1″,5.3,3.46,76.0,G2IV,,G2 IV,5809.0 K,1.192 M☉,1.83 R☉,3.645 L☉,3.97 cgs,3.7 km/s,5.64 Gyr,False
+θ Cnc,θ,31,,72094,41822.0,08h 31m 35.77s,+18° 05′ 40.4″,5.33,−0.57,494.0,K5III,suspected variable,K5 III,4600.0 K,,40.02 R☉,353.1 L☉,4.41 cgs,,,False
+η Cnc,η,33,,72292,41909.0,08h 32m 42.52s,+20° 26′ 28.6″,5.33,0.43,312.0,K3III,,K3 III,4415.0 K,1.51 M☉,17.0 R☉,87.0 L☉,2.1 cgs,2.7 km/s,3.92 Gyr,False
+82 Cnc,π2,82,,79554,45410.0,09h 15m 13.88s,+14° 56′ 29.5″,5.36,−1.30,701.0,K1III,,K1 III,4703.0 K,2.56 M☉,31.32 R☉,435.0 L☉,2.04 cgs,1.3 km/s,,False
+57 Cnc,,57,,75959,43721.0,08h 54m 14.70s,+30° 34′ 45.0″,5.4,0.15,365.0,G7III,,G7 III + K0 III,4810.0 K,6.49 M☉,,173.13 L☉,2.74 cgs,,645.0 Myr,False
+τ Cnc,τ,72,,78235,44818.0,09h 08m 00.07s,+29° 39′ 15.2″,5.42,0.91,260.0,G8III,,G8 III,5153.0 K,2.42 M☉,7.76 R☉,40.0 L☉,3.21 cgs,1.95 km/s,620.0 Myr,False
+60 Cnc,,60,,76351,43851.0,08h 55m 55.56s,+11° 37′ 33.8″,5.44,−0.82,582.0,K5III,,K5 III,4150.0 K,1.42 M☉,54.0 R☉,669.87 L☉,1.28 cgs,,1.15 Gyr,False
+σ2 Cnc,σ2,59,,76398,43932.0,08h 56m 56.63s,+32° 54′ 38.1″,5.44,1.56,195.0,A7IV,,A7 IV,8309.0 K,1.79 M☉,2.28 R☉,21.5 L☉,4.17 cgs,133.0 km/s,441.0 Myr,False
+ν Cnc,ν,69,,77350,44405.0,09h 02m 44.27s,+24° 27′ 10.6″,5.45,−0.28,457.0,A0pSi,"α2 CVn variable, Vmax = 5.33m, Vmin = 5.49m, P = 4.20 d",A0 III,10250.0 K,2.82 M☉,,93.0 L☉,3.5 cgs,18.9 km/s,,False
+27 Cnc,,27,BP,71250,41400.0,08h 26m 43.95s,+12° 39′ 17.5″,5.56,−1.98,1052.0,M3III,"semiregular variable, Vmax = 5.41m, Vmin = 5.75m, P = 40 d",M3 IIIa,3574.0 K,,119.0 R☉,2455.0 L☉,1.0 cgs,,,False
+φ1 Cnc,φ1,22,,71093,41377.0,08h 26m 27.73s,+27° 53′ 37.9″,5.58,0.15,398.0,K5III,,K5 III,4100.0 K,1.27 M☉,27.0 R☉,195.0 L☉,,1.3 km/s,,False
+3 Cnc,,3,,65759,39177.0,08h 00m 47.31s,+17° 18′ 31.4″,5.6,−1.12,721.0,K3III,,K3 III,4300.0 K,2.9 M☉,40.0 R☉,568.61 L☉,2.05 cgs,5.73 km/s,,False
+15 Cnc,,15,BM,68351,40240.0,08h 13m 08.87s,+29° 39′ 23.7″,5.62,−1.52,872.0,B9p SiCr,"α2 CVn variable, Vmax = 5.53m, Vmin = 5.65m, P = 3.31 d",A0:V:spSiSr,10080.0 K,,,327.24 L☉,3.22 cgs,25.0 km/s,,False
+45 Cnc,A1,45,,74228,42795.0,08h 43m 12.34s,+12° 40′ 51.1″,5.62,−1.87,1028.0,A3V+...,suspected variable,G8 III and A3 III,5058.0 K,3.11 M☉,13.86 R☉,210.3 L☉,2.72 cgs,5.3 km/s,,False
+49 Cnc,b,49,BI,74521,42917.0,08h 44m 45.04s,+10° 04′ 54.2″,5.63,0.15,408.0,A1p...,"α2 CVn variable, Vmax = 5.58m, Vmin = 5.71m, P = 6.91 d",A1VpHgMnSiEu,10615.0 K,3.011 M☉,2.909 R☉,102.0 L☉,3.964 cgs,6.907 d,263.0 Myr,False
+σ1 Cnc,σ1,51,,75698,43584.0,08h 52m 34.62s,+32° 28′ 26.8″,5.67,1.69,204.0,A8Vms,suspected variable,A8 Vas,8116.0 K,1.7 M☉,,18.0 L☉,4.44 cgs,84.0 km/s,301.0 Myr,False
+ο2 Cnc,ο2,63,,76582,44001.0,08h 57m 35.16s,+15° 34′ 52.4″,5.68,2.22,161.0,F0IV,,F0 IV,7868.0 K,1.72 M☉,1.62 R☉,10.3 L☉,4.25 cgs,90.5 km/s,300.0 Myr,False
+υ1 Cnc,υ1,30,,72041,41816.0,08h 31m 30.57s,+24° 04′ 52.4″,5.71,1.40,237.0,F0IIIn,suspected variable,F0 IIIn,7240.0 K,1.47 M☉,3.2 R☉,25.0 L☉,3.51 cgs,109.2 km/s,570.0 Myr,False
+ψ2 Cnc,ψ2,14,,67767,40023.0,08h 10m 27.23s,+25° 30′ 29.4″,5.73,2.61,137.0,G8IV,suspected variable,G7 V,5311.0 K,1.49 M☉,3.2 R☉,8.0 L☉,3.87 cgs,0.98 km/s,2.39 Gyr,False
+1 Cnc,,1,,64960,38848.0,07h 56m 59.47s,+15° 47′ 25.4″,5.8,0.04,462.0,K3III,,K3− III,4231.0 K,1.1 M☉,18.7 R☉,199.0 L☉,2.03 cgs,,,False
+ω1 Cnc,ω1,2,,65714,39191.0,08h 00m 55.87s,+25° 23′ 34.2″,5.87,−1.82,660.0,G8III:,,G8 III,4941.0 K,3.7 M☉,17.09 R☉,165.1 L☉,2.461 cgs,,217.0 Myr,False
+50 Cnc,A2,50,,74873,43121.0,08h 46m 56.06s,+12° 06′ 36.3″,5.89,1.96,199.0,A1V,,A1 Vp,8340.0 K,2.1 M☉,,10.8 L☉,4.4 cgs,18.0 km/s,264.0 Myr,False
+66 Cnc,,66,,77104,44307.0,09h 01m 24.13s,+32° 15′ 08.3″,5.89,−0.08,509.0,A2V,,A2 V,8974.0 K,2.73 M☉,,95.7 L☉,4.0 cgs,183.0 km/s,162.0 Myr,False
+λ Cnc,λ,19,,70011,40881.0,08h 20m 32.15s,+24° 01′ 20.5″,5.92,0.37,419.0,B9.5V,Piautos,B9.5 V,10162.0 K,2.61 M☉,3.69 R☉,131.0 L☉,3.72 cgs,188.0 km/s,105.0 Myr,False
+36 Cnc,c,36,,73143,42265.0,08h 37m 05.79s,+09° 39′ 20.1″,5.92,0.17,461.0,A3V,suspected eclipsing binary,A3 V,8472.0 K,2.66 M☉,2.0 R☉,93.1 L☉,,44.0 km/s,,False
+20 Cnc,d1,20,,70569,41117.0,08h 23m 21.87s,+18° 19′ 56.2″,5.94,0.52,395.0,A9V,,A9 V,7907.0 K,2.41 M☉,3.7 R☉,59.9 L☉,3.62 cgs,50.0 km/s,700.0 Myr,False
+29 Cnc,,29,,71555,41578.0,08h 28m 37.35s,+14° 12′ 39.1″,5.94,1.07,308.0,A5V,,A5 V,7727.0 K,2.3 M☉,1.9 R☉,44.8 L☉,,117.0 km/s,,False
+75 Cnc,,75,,78418,44892.0,09h 08m 47.42s,+26° 37′ 48.0″,5.95,3.47,102.0,G5IV,,G5 IV-V,6000.0 K,24.0 )M☉,,,,,,False
+1 LMi,,(1),,73192,42365.0,08h 38m 19.00s,+32° 48′ 07.3″,5.96,0.70,367.0,K2III:,,,,,,,,,,False
+55 Cnc,ρ1,55,,75732,43587.0,08h 52m 36.13s,+28° 19′ 53.0″,5.96,5.47,41.0,G8V,"Copernicus, binary star; has five planets (b, c, d, e, f)",K0IV–V,5172.0 K,0.905 M☉,0.98 R☉,0.617 L☉,4.41 cgs,38.8 days,8.6 Gyr,False
+μ1 Cnc,μ1,9,BL,66875,39659.0,08h 06m 18.40s,+22° 38′ 07.8″,5.97,−0.45,626.0,M3III,"semiregular variable, Vmax = 5.97m, Vmin = 6.04m",M3 III,3744.0 K,,56.5 R☉,565.0 L☉,0.441 cgs,,,False
+5 Cnc,,5,,65873,39236.0,08h 01m 30.29s,+16° 27′ 19.2″,5.99,0.19,472.0,B9.5Vn,,B9.5 Vn,9727.0 K,2.93 M☉,3.1 R☉,121.1 L☉,4.5 cgs,188.0 km/s,36.0 Myr,False
+79 Cnc,,79,,78715,45033.0,09h 10m 20.86s,+21° 59′ 47.1″,6.04,0.49,420.0,G8III,,G5 III,5076.0 K,2.3 M☉,9.41 R☉,57.6 L☉,2.88 cgs,,770.0 Myr,False
+RS Cnc,,,RS,78712,45058.0,09h 10m 38.81s,+30° 57′ 47.6″,6.04,0.61,397.0,M6S,"Technetium star; semiregular variable, Vmax = 5.33m, Vmin = 6.94m, P = 242.2 d",M6S,3200.0 K,,225.0 R☉,4950.0 L☉,,,,False
+28 Cnc,,28,CX,71496,41574.0,08h 28m 36.80s,+24° 08′ 42.2″,6.05,1.45,271.0,F0Vn,"δ Sct variable, ΔV = 0.025m, P = 0.096 d",F0 Vn,7516.0 K,2.36 M☉,3.7 R☉,44.0 L☉,3.61 cgs,133.0 km/s,737.0 Myr,False
+67 Cnc,,67,,77190,44342.0,09h 01m 48.88s,+27° 54′ 10.0″,6.07,2.23,191.0,A8Vn,suspected variable,A8 Vn,7982.0 K,1.89 M☉,1.9 R☉,10.465 L☉,4.35 cgs,105.0 km/s,867.0 Myr,False
+21 Cnc,,21,,70734,41163.0,08h 23m 55.21s,+10° 37′ 55.6″,6.11,−1.56,1113.0,M2III,suspected variable,M2III,3885.0 K,,53.0 R☉,587.0 L☉,,,,False
+25 Cnc,d2,25,,71030,41319.0,08h 25m 49.99s,+17° 02′ 47.9″,6.11,2.85,147.0,F6V,,F6 V,6487.0 K,1.51 M☉,2.0 R☉,6.6 L☉,4.01 cgs,37.74 km/s,2.5 Gyr,False
+46 Cnc,,46,,74485,42954.0,08h 45m 21.42s,+30° 41′ 51.9″,6.12,0.30,477.0,G5III,,G5 III,4966.0 K,2.65 M☉,11.0 R☉,125.9 L☉,2.8 cgs,6.6 km/s,740.0 Myr,False
+φ2 Cnc A,φ2,23,,71150,41404.0,08h 26m 47.08s,+26° 56′ 07.7″,6.14,1.50,276.0,A3V,component of the φ2 Cnc system; suspected variable,A6Vor A5IV,7758.0 K,2.146 M☉,3.176 R☉,32.84 L☉,3.689 cgs,149.0 km/s,807.0 Myr,False
+φ2 Cnc B,φ2,23,,71151,,08h 26m 47.00s,+26° 56′ 07.0″,6.19,1.55,276.0,A6V,component of the φ2 Cnc system,A6Vor A5IV,7758.0 K,2.146 M☉,3.176 R☉,32.84 L☉,3.689 cgs,149.0 km/s,807.0 Myr,False
+4 LMi,,(4),,73596,42538.0,08h 40m 18.31s,+31° 56′ 31.1″,6.21,1.05,350.0,F5III,suspected variable,,,,,,,,,False
+12 Cnc,,12,,67483,39874.0,08h 08m 42.44s,+13° 38′ 27.4″,6.25,1.59,278.0,F3V,,F3 V,6357.0 K,1.16 M☉,,17.94 L☉,3.6 cgs,52.3 km/s,2.466 Gyr,False
+53 Cnc,,53,BO,75716,43575.0,08h 52m 28.60s,+28° 15′ 33.0″,6.25,−0.92,886.0,M3III,"slow irregular variable, Vmax = 5.9m, Vmin = 6.37m",M3 III,3622.0 K,,87.0 R☉,1175.0 L☉,,,,False
+61 Cnc,,61,,76572,44031.0,08h 57m 58.63s,+30° 14′ 01.5″,6.25,2.75,164.0,F6V,,F4V,6396.0 K,1.4 M☉,,,3.87 cgs,5.0 km/s,2.5 Gyr,False
+ε Cnc,ε,41,,73731,42556.0,08h 40m 27.03s,+19° 32′ 41.4″,6.29,0.16,548.0,Am,"Meleph, in Beehive Cluster",A5 III(kA3hA5mF0),8060.0 K,2.42 M☉,3.8 R☉,59.8 L☉,3.6 cgs,56.3 km/s,637.0 Myr,False
+FZ Cnc,,,FZ,76830,44126.0,08h 59m 10.76s,+18° 08′ 06.1″,6.3,−0.35,697.0,M4IIIvar,semiregular variable,,,,,,,,,False
+4 Cnc,ω2,4,,65856,39263.0,08h 01m 43.77s,+25° 05′ 22.0″,6.32,0.00,598.0,A1V,,A1 V,9354.0 K,2.59 M☉,2.55 R☉,68.0 L☉,3.886 cgs,159.0 km/s,506.0 Myr,False
+υ2 Cnc,υ2,32,,72324,41940.0,08h 33m 00.14s,+24° 05′ 05.7″,6.35,0.80,421.0,G9III,,G9 III,4881.0 K,3.5 M☉,15.18 R☉,110.0 L☉,2.43 cgs,2.7 km/s,250.0 Myr,False
+54 Cnc,,54,,75528,43454.0,08h 51m 01.53s,+15° 21′ 01.7″,6.36,3.35,130.0,G2IV,,G5 V-IVor G1V,5862.0 K,1.23 M☉,1.81 R☉,3.72 L☉,4.04 cgs,3.1 km/s,5.0 Gyr,False
+39 Cnc,,39,,73665,42516.0,08h 40m 06.44s,+20° 00′ 28.1″,6.39,0.11,587.0,K0III,in Beehive Cluster; suspected variable,G8+ III-IIIb,4954.0 K,2.88 M☉,12.0 R☉,105.0 L☉,2.7 cgs,,460.0 Myr,False
+X Cnc,,,X,76221,43811.0,08h 55m 22.88s,+17° 13′ 52.5″,6.4,−3.95,3622.0,"C6,4","semiregular variable, Vmax = 5.69m, Vmin = 6.94m, P = 180 d",C-N4.5 C25.5 MS3,3239.0 K,,208.0 R☉,4646.0 L☉,0.014 cgs,,,False
+ψ1 Cnc,ψ1,13,,67690,40007.0,08h 10m 13.12s,+25° 50′ 40.4″,6.44,−1.06,1032.0,K0,,K3 III,4522.0 K,4.9 M☉,34.1 R☉,486.0 L☉,1.82 cgs,,,False
+34 Cnc,,34,,72359,41904.0,08h 32m 39.87s,+10° 03′ 57.7″,6.48,0.38,541.0,A1V,suspected variable,A1 V,9661.0 K,2.67 M☉,2.7 R☉,69.84 L☉,,18.0 km/s,336.0 Myr,False
+81 Cnc,π1,81,,79096,45170.0,09h 12m 17.87s,+14° 59′ 43.6″,6.49,4.93,67.0,G9V,,G8V+ K1V/ L8+ ~L8,5430.0 K,0.89 M☉,0.82 R☉,1.03 L☉,4.55 cgs,,,False
+24 Cnc A,,24,,71152,41389.0,08h 26m 39.82s,+24° 32′ 03.7″,6.51,2.11,248.0,F0III,component of the 24 Cnc system; suspected variable,F0V / F7V,7331.0 K,1.5 M☉,1.6 R☉,6.3 L☉,4.17 cgs,,770.0 Myr,False
+37 Cnc,,37,,73316,42353.0,08h 38m 05.19s,+09° 34′ 28.7″,6.54,1.25,373.0,A1V,,A1 V,9830.0 K,2.66 M☉,1.8 R☉,30.9 L☉,4.3 cgs,35.2 km/s,,False
+35 Cnc,,35,,72779,42133.0,08h 35m 19.47s,+19° 35′ 24.3″,6.55,0.28,585.0,G0III,,G0 III,5950.0 K,1.072 M☉,0.981 R☉,77.23 L☉,,0.501 d,,False
+ι Cnc B,ι,48,,74738,43100.0,08h 46m 40.00s,+28° 45′ 54.6″,6.58,2.77,188.0,G8II...,component of the ι Cnc system,G8IIIa Ba0.2,4954.0 K,2.376 M☉,21.0 R☉,204.0 L☉,2.5 cgs,170.0 km/s,263.0 Myr,False
+40 Cnc,,40,,73666,42523.0,08h 40m 11.47s,+19° 58′ 16.2″,6.61,0.40,570.0,A1V,in Beehive Cluster; blue straggler,A1 V,9382.0 K,2.46 M☉,2.72 R☉,73.68 L☉,3.78 cgs,10.0 km/s,,False
+83 Cnc,,83,,80218,45699.0,09h 18m 58.91s,+17° 42′ 20.4″,6.61,3.64,128.0,F5,,F4V+ WD,6218.0 K,1.13 M☉,1.53 R☉,3.135 L☉,3.99 cgs,,3.1 Gyr,False
+38 Cnc,,38,BT,73575,42485.0,08h 39m 42.68s,+19° 46′ 42.5″,6.66,0.59,531.0,F0III,"in Beehive Cluster; δ Sct variable, ΔV = 0.06m, P = 0.10 d",F0 IV,7300.0 K,1.786 M☉,1.834 R☉,59.31 L☉,2.92 cgs,0.67 d,,False
+70 Cnc,,70,,77557,44512.0,09h 04m 09.87s,+27° 53′ 53.9″,6.67,0.33,605.0,A1V,,A1V,8887.0 K,,2.7 R☉,75.57 L☉,,,,False
+2 LMi,,(2),,73427,42472.0,08h 39m 31.87s,+32° 30′ 56.2″,6.69,−1.18,1220.0,K5,,,,,,,,,,False
+3 LMi,,(3),,73508,42503.0,08h 39m 56.35s,+32° 43′ 38.2″,6.71,0.66,528.0,K0,,,,,,,,,,False
+EP Cnc,,,EP,73819,42600.0,08h 40m 56.30s,+19° 34′ 49.2″,6.76,0.6,556.0,A6Vn,"in Beehive Cluster; δ Sct variable, ΔV = 0.03m",,,,,,,,,False
+42 Cnc,,42,,73785,42578.0,08h 40m 43.23s,+19° 43′ 09.6″,6.83,0.87,506.0,A9III,in Beehive Cluster,A7III,7607.0 K,2.39 M☉,4.22 R☉,51.5 L☉,,195.0 km/s,603.0 Myr,False
+7 Cnc,,7,,66347,39447.0,08h 03m 50.48s,+22° 04′ 14.9″,6.84,0.28,668.0,K0,,gK3,4711.0 K,3.2 M☉,13.0 R☉,75.0 L☉,2.5 cgs,,318.0 Myr,False
+80 Cnc,,80,,79009,45153.0,09h 11m 56.93s,+18° 02′ 39.0″,6.87,1.08,470.0,A0,,,,,,,,,,False
+11 Cnc,,11,,67402,39888.0,08h 08m 49.60s,+27° 28′ 49.5″,6.88,0.15,944.0,K0III,Double,,,,,,,,,False
+78 Cnc,,78,,78479,44918.0,09h 09m 02.31s,+17° 28′ 10.7″,7.18,0.5,706.0,K3III,,K3 III,4587.0 K,1.62 M☉,10.92 R☉,47.6 L☉,,,2.91 Gyr,False
+VZ Cnc,,,VZ,73857,42594.0,08h 40m 52.13s,+09° 49′ 27.1″,7.18,1.21,509.0,A9III,"double-mode δ Sct variable, Vmax = 7.18m, Vmin = 7.91m, P = 0.18 d",,,,,,,,,False
+ADS 7284,,,IP,79969,45617.0,09h 17m 53.46s,+28° 33′ 37.9″,7.21,6.03,56.28,K3V,"BY Dra variable, ΔV = 0.02m, P = 43.4 d",,,,,,,,,False
+52 Cnc,,52,,75558,43463.0,08h 51m 10.83s,+15° 59′ 57.8″,7.38,1.03,607.0,G5,,,,,,,,,,False
+68 Cnc,,68,,77230,44336.0,09h 01m 43.66s,+17° 04′ 51.8″,7.38,,620.0,A2Vn,,,,,,,,,,False
+V Cnc,,,V,70276,40977.0,08h 21m 42.84s,+17° 17′ 07.2″,7.5,,,S0-6/6e,"Mira variable, Vmax = 7.5m, Vmin = 13.9m, P = 270 d",,,,,,,,,False
+T Cnc,,,T,,43905.0,08h 56m 40.15s,+19° 50′ 57.0″,7.6,,,C,"semiregular variable, Vmax = 7.6m, Vmin = 10.5m, P = 482 d",,,,,,,,,False
+BU Cnc,,,BU,73576,,08h 39m 44.67s,+19° 16′ 30.8″,7.68,1.44,577.0,A7Vn,"in Beehive Cluster; δ Sct variable, ΔV = 0.03m, P = 0.071 d",,,,,,,,,False
+BN Cnc,,,BN,73763,,08h 40m 39.24s,+19° 13′ 41.8″,7.8,1.56,577.0,A9V,"in Beehive Cluster; δ Sct variable, ΔV = 0.03m, P = 0.039 d",,,,,,,,,False
+24 Cnc B,,24,,71153,,08h 26m 40.10s,+24° 32′ 07.0″,7.81,,,,component of the 24 Cnc system,F0V / F7V,7331.0 K,1.5 M☉,1.6 R☉,6.3 L☉,4.17 cgs,,770.0 Myr,False
+BY Cnc,,,BY,74050,42705.0,08h 42m 10.81s,+18° 56′ 03.7″,7.91,2.21,451.0,A7Vn,"in Beehive Cluster; δ Sct variable, ΔV = 0.01m, P = 0.058 d",,,,,,,,,False
+HD 74028,,,BX,74028,,08h 42m 06.50s,+19° 24′ 40.5″,7.96,1.72,577.0,A7V,"in Beehive Cluster; δ Sct variable, ΔV = 0.02m, P = 0.044 d",,,,,,,,,False
+44 Cnc,,44,,74200,42791.0,08h 43m 08.36s,+18° 09′ 02.0″,8.03,1.29,726.0,K0,its radius is about 12.11 R☉.,,,,,,,,,False
+71 Cnc,,71,,77892,44637.0,09h 05m 45.52s,+17° 23′ 24.5″,8.1,1.53,672.0,A2,,,,,,,,,,False
+CY Cnc,,,CY,73345,,08h 38m 37.86s,+19° 59′ 23.1″,8.14,1.88,582.0,F0V,"in Beehive Cluster; δ Sct variable, ΔV = 0.02m, P = 0.1 d",,,,,,,,,False
+BQ Cnc,,,BQ,73729,,08h 40m 26.75s,+20° 10′ 55.2″,8.19,1.95,577.0,F2Vn,"in Beehive Cluster; δ Sct variable, ΔV = 0.02m, P = 0.074 d",,,,,,,,,False
+BR Cnc,,,BR,73175,42319.0,08h 37m 40.71s,+19° 31′ 06.3″,8.26,1.91,608.0,F0Vn,"in Beehive Cluster; δ Sct variable, ΔV = 0.02m, P = 0.038 d",,,,,,,,,False
+S Cnc,,,S,74307,42853.0,08h 43m 56.14s,+19° 02′ 03.0″,8.35,1.03,950.0,B9.5V+ G8-9III-IV,"Algol variable, Vmax = 8.29m, Vmin = 10.25m, P = 9.48 d",,,,,,,,,False
+BW Cnc,,,BW,73798,,08h 40m 52.48s,+20° 15′ 59.5″,8.48,2.24,577.0,F0Vn,"in Beehive Cluster; δ Sct variable, ΔV = 0.01m, P = 0.072 d",,,,,,,,,False
+TW Cnc,,,TW,71780,,08h 29m 37.32s,+12° 27′ 20.3″,8.49,,,G8III+...,"Algol variable, Vmax = 8.5m, Vmin = 8.97m, P = 70.76 d",,,,,,,,,False
+U Cnc,,,U,72863,,08h 35m 46.29s,+18° 53′ 44.5″,8.5,,,M2e,"Mira variable, Vmax = 8.5m, Vmin = 15.5m, P = 306 d",,,,,,,,,False
+BS Cnc,,,BS,73450,,08h 39m 09.10s,+19° 35′ 32.6″,8.59,2.35,577.0,A9V,"in Beehive Cluster; δ Sct variable, ΔV = 0.02m, P = 0.051 d",,,,,,,,,False
+R Cnc,,,R,69243,40534.0,08h 16m 33.90s,+11° 43′ 35.0″,8.64,-0.36,2060.0,M6.5-9e,"Mira variable, Vmax = 6.07m, Vmin = 11.9m, P = 357 d",M6e-M9e,2604.0 K,1.43 M☉,371.0 R☉,5700.0 L☉,0.69 cgs,,,False
+BV Cnc,,,BV,73746,,08h 40m 32.97s,+19° 11′ 39.6″,8.65,2.41,577.0,F0V,"in Beehive Cluster; δ Sct variable, ΔV = 0.02m, P = 0.21 d",,,,,,,,,False
+RZ Cnc,,,RZ,73343,42432.0,08h 39m 08.54s,+31° 47′ 44.4″,8.67,0.48,1420.0,K2III,"RS CVn variable, Vmax = 8.67m, Vmin = 10.03m, P = 21.64 d",,,,,,,,,False
+UU Cnc,,,UU,,39341.0,08h 02m 30.90s,+15° 10′ 41.9″,8.85,,,K4III...,"β Lyr variable, Vmax = 8.68m, Vmin = 9.35m, P = 96.71 d",,,,,,,,,False
+RX Cnc,,,RX,68775,40388.0,08h 14m 43.54s,+24° 44′ 05.3″,9.2,1.92,931.0,M8,semiregular variable,,,,,,,,,False
+WY Cnc,,,WY,,44349.0,09h 01m 55.45s,+26° 41′ 22.7″,9.6,5.05,264.6,G5V,"RS CVn variable, Vmax = 9.51m, Vmin = 10.14m, P = 0.83 d",,,,,,,,,False
+TX Cnc,,,TX,,,08h 40m 01.70s,+18° 59′ 59.5″,9.97,3.55,626.0,G0-G1V,"in Beehive Cluster; W UMa variable, Vmax = 10m, Vmin = 10.35m, P = 0.38 d",,,,,,,,,False
+RU Cnc,,,RU,,42303.0,08h 37m 30.13s,+23° 33′ 41.6″,10.2,2.97,911.0,F9V:+...,"RS CVn variable, Vmax = 10.1m, Vmin = 11.25m, P = 10.17 d",,,,,,,,,False
+TU Cnc,,,TU,,,08h 52m 16.65s,+09° 05′ 18.8″,10.53,,,A2,Algol variable,,,,,,,,,False
+SY Cnc,,,SY,,,09h 01m 03.32s,+17° 53′ 56.2″,10.6,,,G8V,Z Cam variable,,,,,,,,,False
+EX Cnc,,,EX,,,08h 51m 34.32s,+11° 51′ 10.5″,10.95,1.34,2720.0,A7,"in Messier 67; δ Sct variable, ΔV = 0.05m, P = 0.049 d",,,,,,,,,False
+TT Cnc,,,TT,,41936.0,08h 32m 55.18s,+13° 11′ 28.5″,11.1,,,F0,"RR Lyr variable, Vmax = 10.93m, Vmin = 11.57m, P = 0.56 d",,,,,,,,,False
+ES Cnc,,,ES,,,08h 51m 20.79s,+11° 53′ 26.2″,11.16,1.55,2720.0,F4,"in Messier 67; RS CVn variable, Vmax = 11.16m, Vmin = 11.28m, P = 1.07 d",,,,,,,,,False
+CU Cnc,,,CU,,41824.0,08h 31m 37.57s,+19° 23′ 39.4″,11.8,11.58,36.07,M5Ve,"Algol variable and flare star, Vmax = 11.68m, Vmin = 11.80m, P = 2.77 d",,,,,,,,,False
+SS Cnc,,,SS,,,08h 06m 25.60s,+23° 15′ 05.7″,12.11,,,A8.5,"RR Lyr variable, Vmax = 11.49m, Vmin = 12.72m, P = 0.37 d",,,,,,,,,False
+EW Cnc,,,EW,,,08h 51m 32.58s,+11° 50′ 40.6″,12.27,2.66,2720.0,F0,"in Messier 67; δ Sct variable, ΔV = 0.02m, P = 0.053 d",,,,,,,,,False
+HV Cnc,,,HV,,,08h 51m 17.99s,+11° 45′ 54.2″,12.73,3.12,2720.0,,in Messier 67; Algol variable,,,,,,,,,False
+EV Cnc,,,EV,,,08h 51m 28.15s,+11° 49′ 27.5″,12.78,3.17,2720.0,F3,"in Messier 67; W UMa variable, ΔV = 0.13m, P = 0.44 d",,,,,,,,,False
+AD Cnc,,,AD,,,08h 46m 20.10s,+10° 20′ 07.2″,13.1,,,K0V,"W UMa variable, Vmax = 13.1m, Vmin = 13.4m, P = 0.28 d",,,,,,,,,False
+AH Cnc,,,AH,,,08h 51m 37.85s,+11° 50′ 57.1″,13.41,3.8,2720.0,F7V,"in Messier 67; W UMa variable, Vmax = 13.31m, Vmin = 13.96m, P = 0.36 d",,,,,,,,,False
+HU Cnc,,,HU,,,08h 51m 13.36s,+11° 51′ 40.1″,13.61,4,2720.0,G8IV,"in Messier 67; RS CVn variable, Vmax = 13.45m, Vmin = 13.61m, P = 18.39 d",,,,,,,,,False
+AC Cnc,,,AC,,,08h 44m 27.11s,+12° 52′ 31.9″,13.8,,,K1-3V,"Algol variable and nova-like star, Vmax = 13.8m, Vmin = 15.4m, P = 0.30 d",,,,,,,,,False
+G 9-38,,,EI,,,08h 58m 15.19s,+19° 45′ 47.1″,,,17.2,M5.5V,flare star,M8Ve,2890.0 K,0.127 M☉,0.136 R☉,0.00135 L☉,,,,False
+DX Cnc,,,DX,,,08h 29m 49.35s,+26° 46′ 33.7″,14.81,17.01,11.82,M6.5V,flare star,M6.5V,2840.0 K,0.106 M☉,0.1235 R☉,0.00073 L☉,5.0 cgs,0.46 days,200.0 Myr,False
+AT Cnc,,,AT,,,08h 28m 36.93s,+25° 20′ 03.0″,15.2,,,DAe...,"Z Cam variable, Vmax = 12.57m, Vmin = 15.2m, P = 0.20 d",,,,,,,,,False
+YZ Cnc,,,YZ,,,08h 10m 56.65s,+28° 08′ 33.5″,16.3,,,,"SU UMa variable, Vmax = 10.5m, Vmin = 16.3m, P = 0.087 d",,,,,,,,,False
+EG Cnc,,,EG,,,08h 43m 03.99s,+27° 51′ 49.7″,17.0,,,,"Huruhata's Variable; WZ Sge variable, Vmax = 11.9m, Vmin = 17.0m, P = 0.060 d",,,,,,,,,False
+DW Cnc,,,DW,,,07h 58m 53.05s,+16° 16′ 45.2″,17.5,,,O...,"dwarf nova, Vmax = 11.36m, Vmin = 17.5m, P = 0.0060 d",,,,,,,,,False
+AZ Cnc,,,AZ,,,08h 40m 29.75s,+18° 14′ 09.2″,17.59,16.86,45.7,M6.0V,flare star,M6.5eV,2825.0 K,0.1 M☉,0.13 R☉,0.015 L☉,5.24 cgs,,100.0 Myr,False
+GY Cnc,,,GY,,,09h 09m 50.55s,+18° 49′ 47.5″,17.8,,,,"dwarf nova and eclipsing binary, Vmax = 12.5m, Vmin = 17.8m, P = 0.18 d",,,,,,,,,False
+AR Cnc,,,AR,,,09h 22m 07.55s,+31° 03′ 14.5″,18.7,,,,"dwarf nova and Algol variable, Vmax = 15.3m, Vmin = 18.7m, P = 0.21 d",,,,,,,,,False
+RX J0806.3+1527,,,HM,,,08h 06m 22.95s,+15° 27′ 31.1″,,,160.0,,AM Canum Venaticorum star,,,0.5 (b)M☉,,,,,,False
+AK Cnc,,,AK,,,08h 55m 21.18s,+11° 18′ 15.3″,,,,,SU UMa variable,,,,,,,,,False
+CC Cnc,,,CC,,,08h 36m 19.15s,+21° 21′ 05.3″,,,,K0V,SU UMa variable,,,,,,,,,False
+]]
+
+return M

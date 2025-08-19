@@ -1,0 +1,19 @@
+Name,B,G.,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Aps,α,14.0,,129078.0,72370.0,14h 47m 51.73s,−79° 02′ 41.0″,3.83,−1.67,411.0,K5III,,K3IIICN0.5,4090.0 K,4.46 M☉,65.0 R☉,1072.0 L☉,,,,True
+γ Aps,γ,44.0,,147675.0,81065.0,16h 33m 27.46s,−78° 53′ 49.1″,3.86,0.41,159.0,K0IV SB,,G9 III,5151.0 K,2.32 M☉,10.293 R☉,,3.074 cgs,5.016 km/s,2.67 Gyr,True
+β Aps,β,47.0,,149324.0,81852.0,16h 43m 05.42s,−77° 30′ 59.7″,4.23,0.81,158.0,K0III,double star,K0 III,4855.0 K,1.84 M☉,11.0 R☉,50.0 L☉,2.82 cgs,1.3 km/s,,True
+δ1 Aps,δ1,40.0,,145366.0,80047.0,16h 20m 20.84s,−78° 41′ 44.4″,4.68,−2.17,765.0,M4-M5III,"visual double star with δ2 Aps; semiregular variable, Vmax = 4.66m, Vmin = 4.87m",M5 IIIb,,,,,,,,True
+ζ Aps,ζ,60.0,,156277.0,84969.0,17h 21m 59.53s,−67° 46′ 14.3″,4.76,−0.14,312.0,K1III,,K2 III,4486.0 K,1.51 M☉,18.608 R☉,126.0 L☉,,,,False
+η Aps,η,6.0,,123998.0,69896.0,14h 18m 13.97s,−81° 00′ 27.4″,4.89,1.73,140.0,A2m...,,A2MA7-F2or A2(m) CrEu,7860.0 K,1.77 M☉,2.13 R☉,15.5 L☉,,17.2 km/s,250.0 Myr,False
+ε Aps,ε,9.0,,124771.0,70248.0,14h 22m 23.20s,−80° 06′ 32.1″,5.06,−1.08,551.0,B4V,γ Cas variable,B3 V,17100.0 K,6.15 M☉,4.3 R☉,1614.0 L☉,3.5 cgs,150.0 km/s,38.3 Myr,False
+δ2 Aps,δ2,41.0,,145388.0,80057.0,16h 20m 26.86s,−78° 40′ 02.7″,5.27,−1.27,663.0,K3III,visual double star with δ1 Aps,M5 IIIb,,,,,,,,False
+R Aps,,18.0,R,131109.0,73223.0,14h 57m 53.16s,−76° 39′ 45.4″,5.37,−0.22,428.0,K4III,not variable despite designation,K4 III:,4318.0 K,1.1 M☉,33.9 R☉,293.0 L☉,1.99 cgs,2.64 km/s,5.68 Gyr,False
+ι Aps,ι,58.0,,156190.0,84979.0,17h 22m 05.88s,−70° 07′ 23.4″,5.39,−2.34,1144.0,B8/B9Vn...,binary star,B9 V + B9.5 V,,3.89 M☉,,,,,,False
+κ1 Aps,κ1,29.0,,137387.0,76013.0,15h 31m 30.82s,−73° 23′ 22.4″,5.52,-2.31,1200.0,B1npe,"double star; γ Cas variable, Vmax = 5.43m, Vmin = 5.61m",B1npe+ sdO,21500.0 K,11.8 M☉,5.45 R☉,2120.0 L☉,3.9 cgs,250.0 km/s,5.6 Myr,False
+κ2 Aps,κ2,33.0,,138800.0,76750.0,15h 40m 21.36s,−73° 26′ 47.9″,5.64,−1.12,734.0,B8IVe,triple star,B7 III-IV + K0 V,12646.0 K,4.995 M☉,5.555 R☉,316.0 L☉,3.86 cgs,,130.0 Myr,False
+θ Aps,θ,4.0,,122250.0,68815.0,14h 05m 20.10s,−76° 47′ 48.0″,5.69,0.67,328.0,M6.5III,"semiregular variable, Vmax = 4.65m, Vmin = 6.20m, P = 111.0 d",M7 III,2850.0 K,1.0 M☉,208.0 R☉,3050.0 L☉,0.0 cgs,,,False
+NO Aps,,59.0,NO,156513.0,85760.0,17h 31m 27.47s,−80° 51′ 32.5″,5.83,−1.15,811.0,M3III,"semiregular variable, Vmax = 5.71m, Vmin = 5.95m",M3 III,3521.0 K,1.63 M☉,107.0 R☉,1408.0 L☉,1.7 cgs,,,False
+HD 137509,,31.0,NN,137509.0,76011.0,15h 31m 27.12s,−71° 03′ 43.7″,6.87,0.41,638.0,B8,"α2 CVn variable, Vmax = 6.86m, Vmin = 6.92m, P = 4.4928 d",B9p (SiCrFe)B8 He wk SiCrFe,13100.0 K,3.43 M☉,2.81 R☉,123.0 L☉,4.3 cgs,4.492 d,124.0 Myr,False
+S Aps,,,S,133444.0,74179.0,15h 09m 24.53s,−72° 03′ 45.2″,9.6,-1.28,4900.0,C+,"R CrB variable, Vmax = 9.54m, Vmin = 17.0m, P = 66.03 d",R3,5115.0 K,1.0 M☉,132.0 R☉,960.0 L☉,,,,False
+Z Aps,,,Z,,,14h 06m 54.81s,−71° 22′ 16.8″,11.07,,,,"RV Tau variable, Vmax = 10.7m, Vmin = 12.7m, P = 37.89 d",,4579.0 K,3.2 M☉,27.6 R☉,405.0 L☉,2.12 cgs,,11.0 Gyr,False
+L 19-2,,,MY,,,14h 33m 07.60s,−81° 20′ 14.5″,13.75,,,DA4.1,"ZZ Cet variable, ΔV = 0.05m",DA4.1,12330.0 K,0.705 M☉,0.011 R☉,0.00347 L☉,8.17 cgs,13.0 h,,False

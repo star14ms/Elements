@@ -1,0 +1,16 @@
+Name,B,G.,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Cae,α,9.0,,29875.0,21770.0,04h 40m 33.82s,−41° 51′ 48.9″,4.44,2.92,66.0,F2IV,"binary star; suspected δ Sct variable, Vmax = 4.44m, Vmin = 4.47m",F2V,7002.0 K,1.54 M☉,1.546 R☉,5.156 L☉,4.12 cgs,1.4 days,1.5 Gyr,True
+γ1 Cae,γ1,28.0,,32831.0,23595.0,05h 04m 24.31s,−35° 28′ 58.3″,4.55,0.78,185.0,K2III,binary star,K2III-IIIb,4411.0 K,1.4 M☉,14.31 R☉,69.9 L☉,4.45 cgs,<1.0 km/s,,True
+β Cae,β,10.0,,29992.0,21861.0,04h 42m 03.45s,−37° 08′ 41.2″,5.04,2.83,90.0,F3V,,F3 Vor F3 IV,6665.7 K,1.482 M☉,1.902 R☉,6.615 L☉,3.981 cgs,0.8669 days,1.941 Gyr,True
+δ Cae,δ,7.0,,28873.0,21060.0,04h 30m 50.10s,−44° 57′ 13.5″,5.07,−1.62,710.0,B2IV-V,Suspected variable star,B2 IV-V,19616.0 K,6.78 M☉,3.95 R☉,2075.0 L☉,3.965 cgs,10.0 km/s,9.4 Myr,True
+ν Cae,ν,18.0,,30985.0,22488.0,04h 50m 16.18s,−41° 19′ 15.6″,6.06,2.47,171.0,F1III-IV,double star,F2/3 Vor F1 III-IV,6696.0 K,1.34 M☉,2.107 R☉,8.011 L☉,4.2 cgs,44.9 km/s,880.0 Myr,False
+λ Cae,λ,13.0,,30202.0,21998.0,04h 43m 44.26s,−41° 03′ 53.3″,6.24,−0.27,652.0,K3/K4III,,K3/4III,4118.0 K,4.2 M☉,33.0 R☉,408.6 L☉,4.47 cgs,,,False
+X Cae,γ2,,X,32846.0,23596.0,05h 04m 26.14s,−35° 42′ 18.7″,6.32,1.27,334.0,F2IV/V,"δ Sct variable, Vmax = 6.28m, Vmin = 6.39m, P = 0.270488 d",F2 IV/V,7227.0 K,1.52 M☉,3.43 R☉,23.65 L☉,3.8 cgs,69.0 km/s,961.0 Myr,False
+ζ Cae,ζ,16.0,,30608.0,22280.0,04h 47m 49.56s,−30° 01′ 14.2″,6.35,0.36,513.0,K0III,,K0 III,4992.0 K,2.9 M☉,12.45 R☉,86.67 L☉,2.62 cgs,,414.0 Myr,False
+RV Cae,,4.0,RV,28552.0,20856.0,04h 28m 09.48s,−41° 57′ 35.4″,6.41,−1.18,1072.0,M1III,"Semiregular variable, Vmax = 6.44m, Vmin = 6.56m",M1 III,3843.0 K,1.14 M☉,107.0 R☉,976.0 L☉,0.67 cgs,,,False
+R Cae,,,R,29844.0,21766.0,04h 40m 30.08s,−38° 14′ 06.92″,6.7,−2.25,1763.0,M6e,"Mira variable, Vmax = 8.98m, Vmin = 14.08m",,,,,,,,,False
+T Cae,,,T,30958.0,22247.0,04h 47m 18.92s,−36° 12′ 33.57″,7.73,−0.87,4659.0,C-N4IV,"Carbon star and semiregular variable, Vmax = 7.47m, Vmin = 791m, P = 158 d",,,,,,,,,False
+W Cae,,,W,272494.0,,04h 50m 21.56s,−45° 46′ 50.09″,9.79,1.97,1195.0,G7III,"Eclipsing binary Vmax = 9.63m, Vmin = 9.95m, P = 6.9787 d",,,,,,,,,False
+S Cae,,,S,,,04h 56m 56.48s,−33° 08′ 00.07″,10.71,2.65,1333.0,A6V,"Eclipsing binary Vmax = 10.54m, Vmin = 11.21m, P = 0.482538 d",,,,,,,,,False
+U Cae,,,U,,,04h 53m 14.41s,−37° 49′ 15.92″,12.44,0.8,6930.0,A9-F0III,"RR Lyrae variable, Vmax = 11.66m, Vmin = 12.77m",,,,,,,,,False
+RR Cae,,,RR,,,04h 21m 06.0s,−48° 39′ 07″,14.4,,69.1,DAZ8+dM,Algol variable; has a planet (b),DA7.8 + M4,7540.0 K,0.453 M☉,0.01568 R☉,0.0007 L☉,0.06 cgs,,,False

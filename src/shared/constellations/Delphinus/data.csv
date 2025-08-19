@@ -1,0 +1,39 @@
+Name,B,F,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+β Del,β,6.0,,196524.0,101769.0,20h 37m 32.87s,+14° 35′ 42.7″,3.64,1.26,97.0,F5IV,"Rotanev, Rotanen, Venator; spectroscopic binary",F5 III + F5 IV,6587.0 K,1.75 M☉,,24.0 L☉,3.5 cgs,49.8 km/s,1.79 Gyr,True
+α Del,α,9.0,,196867.0,101958.0,20h 39m 38.25s,+15° 54′ 43.4″,3.77,−0.57,241.0,B9V,"Sualocin, Scalovin, Svalocin, Nicolaus; binary star; suspected variable, Vmax = 3.77m, Vmin = 3.80m",B9 IV,11643.0 K,3.83 M☉,3.92 R☉,,3.93 cgs,144.0 km/s,227.0 Myr,True
+ε Del,ε,2.0,,195810.0,101421.0,20h 33m 12.76s,+11° 18′ 12.0″,4.03,−1.18,359.0,B6III,"Aldulfin, Deneb Dulfim, Deneb, Al Dhanab al Dulfim, Dzaneb al Delphin, Cauda Delphini; suspected variable, Vmax = 3.95m, Vmin = 4.05m",B6 III,13614.0 K,,4.6 R☉,676.0 L☉,3.71 cgs,52.0 km/s,220.0 Myr,True
+γ2 Del,γ2,12.0,,197964.0,102532.0,20h 46m 39.52s,+16° 07′ 29.2″,4.27,1.81,101.0,K1IV,binary star with γ1 Del,F7V,6295.0 K,1.61 M☉,2.6 R☉,10.2 L☉,3.79 cgs,7.8 km/s,1.85 Gyr,True
+δ Del,δ,11.0,,197461.0,102281.0,20h 43m 27.55s,+15° 04′ 28.9″,4.43,0.45,203.0,A7IIIp d Del,"δ Sct variable, Vmax = 4.38m, Vmin = 4.49m, P = 0.1567924 d",kA7hF1VmF1pSrEuCr:,7440.0 K,1.78 M☉,3.43 R☉,32.4 L☉,3.71 cgs,17.0 km/s,945.0 Myr,True
+ζ Del,ζ,4.0,,196180.0,101589.0,20h 35m 18.51s,+14° 40′ 27.1″,4.64,0.43,227.0,A3V,"suspected variable, Vmax = 4.64m, Vmin = 4.70m",A3Va / L5,8236.0 K,2.5 M☉,,48.63 L☉,3.6 cgs,108.0 km/s,525.0 Myr,False
+ρ Aql,ρ,67.0,,192425.0,99742.0,20h 14m 16.59s,+15° 11′ 50.9″,4.94,1.58,153.0,A2V,Tso Ke; recently moved into Delphinus due to proper motion,A2 V,8900.0 K,1.94 M☉,1.95 R☉,22.0 L☉,4.2 cgs,180.0 km/s,300.0 Myr,False
+κ Del,κ,7.0,,196755.0,101916.0,20h 39m 07.59s,+10° 05′ 10.1″,5.07,2.68,98.0,G5IV+...,,G1IV + ? + K2IV,5643.0 K,1.43 M☉,,8.3 L☉,3.69 cgs,1.77 km/s,3.1 Gyr,False
+γ1 Del,γ1,12.0,,197963.0,102531.0,20h 46m 38.87s,+16° 07′ 28.6″,5.15,2.65,103.0,A2Ia+...,binary star with γ2 Del,F7V,6295.0 K,1.61 M☉,2.6 R☉,10.2 L☉,3.79 cgs,7.8 km/s,1.85 Gyr,False
+17 Del,,17.0,,199253.0,103294.0,20h 55m 36.68s,+13° 43′ 17.6″,5.19,−0.62,474.0,K0III,"suspected variable, Vmax = 5.16m, Vmin = 5.27m",K0 III,4616.0 K,2.33 M☉,23.36 R☉,219.0 L☉,2.07 cgs,3.0 km/s,832.0 Myr,False
+η Del,η,3.0,,195943.0,101483.0,20h 33m 57.00s,+13° 01′ 37.9″,5.39,1.77,173.0,A3IVs,"suspected variable, Vmax = 5.37m, Vmin = 5.40m",A3 IVs,9355.0 K,2.12 M☉,2.2 R☉,35.0 L☉,4.38 cgs,65.0 km/s,309.0 Myr,False
+ι Del,ι,5.0,,196544.0,101800.0,20h 37m 49.10s,+11° 22′ 39.7″,5.42,1.74,177.0,A2V,spectroscopic binary,A1 IV,9130.0 K,2.47 M☉,1.9 R☉,23.0 L☉,4.29 cgs,28.0 km/s,225.0 Myr,False
+18 Del,,18.0,,199665.0,103527.0,20h 58m 25.96s,+10° 50′ 21.7″,5.51,1.19,238.0,G6III:,"Musica, optical double, has a planet (b)",G6III,5071.0 K,2.35 M☉,7.19 R☉,33.9 L☉,3.0 cgs,1.6 km/s,690.0 Myr,False
+16 Del,,16.0,,199254.0,103298.0,20h 55m 38.55s,+12° 34′ 06.6″,5.54,1.61,199.0,A4V,double star,A5 V,9093.0 K,2.0 M☉,1.9 R☉,18.7 L☉,4.1 cgs,159.0 km/s,400.0 Myr,False
+13 Del,,13.0,,198069.0,102633.0,20h 47m 48.33s,+06° 00′ 29.7″,5.57,−0.42,513.0,A0V,double star,A0 V,9840.0 K,2.51 M☉,3.7 R☉,119.0 L☉,3.69 cgs,170.0 km/s,307.0 Myr,False
+θ Del,θ,8.0,,196725.0,101882.0,20h 38m 43.98s,+13° 18′ 54.5″,5.69,−2.32,1304.0,K3Ib,,K3Ib,3986.0 K,5.69 M☉,88.0 R☉,2333.0 L☉,1.3 cgs,3.0 km/s,,False
+10 Del,,10.0,,197121.0,102080.0,20h 41m 16.21s,+14° 34′ 58.4″,6.01,0.13,488.0,K4III:,suspected variable,K4 III,4378.0 K,2.42 M☉,18.47 R☉,125.0 L☉,2.27 cgs,,794.0 Myr,False
+15 Del,,15.0,,198390.0,102805.0,20h 49m 37.74s,+12° 32′ 41.6″,6.01,3.66,96.0,F5V,double star,F5 V,6624.0 K,1.23 M☉,1.42 R☉,3.01 L☉,4.24 cgs,5.6 km/s,1.21 Gyr,False
+1 Del,,1.0,,195325.0,101160.0,20h 30m 17.95s,+10° 53′ 45.3″,6.03,−0.17,566.0,A1sh,"double star; emission-line star; suspected variable, Vmax = 5.92m, Vmin = 6.07m",A1:III shell,10651.0 K,3.1 M☉,,,3.66 cgs,217.0 km/s,246.0 Myr,False
+EU Del,,,EU,196610.0,101810.0,20h 37m 54.71s,+18° 16′ 06.4″,6.22,1.03,356.0,M6III,"semiregular variable, Vmax = 5.41m, Vmin = 6.72m, P = 58.63 d",,,,,,,,,False
+LU Del,,,LU,197249.0,102158.0,20h 41m 58.16s,+17° 31′ 17.0″,6.24,0.63,432.0,G8III,suspected variable,,,,,,,,,False
+14 Del,,14.0,,198391.0,102819.0,20h 49m 48.24s,+07° 51′ 51.0″,6.32,0.32,517.0,A1Vs,spectroscopic binary,,,,,,,,,False
+U Del,,,U,197812.0,102440.0,20h 45m 28.23s,+18° 05′ 24.2″,6.74,−1.16,1240.0,M5II-III,"semiregular variable, Vmax = 6.14m, Vmin = 7.61m, P = 120 d",,,,,,,,,False
+Gliese 795,,,OQ,196795.0,101955.0,20h 39m 37.71s,+04° 58′ 19.3″,7.84,,54.52,K5V,"triple star; BY Dra variable, ΔV = 0.04m",,,,,,,,,False
+V Del,,,V,198136.0,,20h 47m 46.04s,+19° 20′ 06.9″,8.1,,,M6e:,"Mira variable, Vmax = 8.1m, Vmin = 17.0m, P = 527 d",,,,,,,,,False
+DM Del,,,DM,,,20h 39m 37.01s,+14° 25′ 43.1″,8.65,,,A2V,"β Lyr variable, Vmax = 8.58m, Vmin = 9.11m, P = 0.8446725 d",,,,,,,,,False
+LS Del,,,LS,199497.0,,20h 57m 10.29s,+19° 38′ 55.2″,8.72,,256.5,G5,"W UMa variable, Vmax = 8.61m, Vmin = 8.76m, P = 0.363842 d",,,,,,,,,False
+MR Del,,,MR,195434.0,101236.0,20h 31m 13.46s,+05° 13′ 08.5″,8.77,,158.3,K0,"Algol and BY Dra variable, Vmax = 8.71m, Vmin = 9.01m, P = 0.521692 d",,,,,,,,,False
+TX Del,,,TX,,102853.0,20h 50m 12.69s,+03° 39′ 08.4″,8.86,,,F8,"BL Her variable, Vmax = 8.86m, Vmin = 9.51m, P = 6.165907 d",,,,,,,,,False
+DX Del,,,DX,,102593.0,20h 47m 28.36s,+12° 27′ 50.7″,9.56,,4200.0,A7IIIv,"RR Lyr variable, Vmax = 9.558m, Vmin = 10.291m, P = 0.4726191 d",,,,,,,,,False
+W Del,,,W,352682.0,101780.0,20h 37m 40.09s,+18° 17′ 03.8″,9.81,,2200.0,A0Ve,"Algol variable, Vmax = 9.69m, Vmin = 12.33m, P = 4.8061 d",,,,,,,,,False
+TY Del,,,TY,,,21h 04m 21.98s,+13° 12′ 53.5″,10.08,,,A0,"Algol variable, Vmax = 9.7m, Vmin = 10.9m, P = 1.19112689 d",,,,,,,,,False
+BX Del,,,BX,,,20h 21m 18.97s,+18° 26′ 16.2″,11.99,,,A0,"BL Her variable, Vmax = 11.79m, Vmin = 12.57m, P = 1.091787 d",,,,,,,,,False
+HR Del,,,HR,,,20h 42m 20.35s,+19° 09′ 35.3″,12.1,,,A0,"nova, Vmax = 3.6m, Vmin = 12.1m, P = 0.214165 d",,,,,,,,,False
+HU Del,,,HU,,,20h 29m 48.34s,+09° 41′ 20.3″,13.04,,29.6,M6.0V+...,flare star,M4.5V,,0.237 M☉,,,,0.3085 days,,False
+He 2-467,,,LT,,,20h 35m 57.23s,+20° 11′ 27.5″,13.05,,,G6III,"Z And and rotating ellipsoidal variable, Vmax = 12.0m, Vmin = 13.4m, P = 476 d",,,,,,,,,False
+CM Del,,,CM,,,20h 24m 56.93s,+17° 17′ 54.4″,13.4,,,A0,nova-like star,,,,,,,,,False
+V339 Del,,,V339,,,20h 29m 30.68s,+20° 46′ 03.8″,16.86,,,,"nova, Vmax = 4.3m, Vmin = 17.6m, P = 1.19112689 d",,,,,,,,,False

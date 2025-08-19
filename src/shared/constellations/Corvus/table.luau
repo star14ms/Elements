@@ -1,0 +1,24 @@
+local M = {}
+M.csv = [[
+Name,B,F,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+γ Crv,γ,4,,106625.0,59803.0,12h 15m 48.47s,−17° 32′ 31.1″,2.58,−0.94,165.0,B8III,"Gienah Corvi, Gienah, Gienah Ghurab, Djenah al Ghyrab al Eymen, Dextra ala Corvi; suspected variable, Vmax = 2.56m, Vmin = 2.60m",B8 III,12000.0 K,4.2 M☉,4.086 R☉,301.0 L☉,3.5 cgs,5.938 days,160.0 Myr,True
+β Crv,β,9,,109379.0,61359.0,12h 34m 23.23s,−23° 23′ 47.8″,2.65,−0.51,140.0,G5II,"Kraz, Tso Hea; suspected variable, Vmax = 2.60m, Vmin = 2.66m",G5 II,5325.0 K,3.32 M☉,15.84 R☉,175.0 L☉,2.86 cgs,2.58 km/s,280.0 Myr,True
+δ Crv,δ,7,,108767.0,60965.0,12h 29m 51.98s,−16° 30′ 54.3″,2.94,0.79,88.0,B9.5V,"Algorab, Algoral, Algorel, Algores; double star; suspected variable, Vmax = 2.91m, Vmin = 2.96m",A0 IV(n) kB9,10400.0 K,2.74 M☉,2.56 R☉,69.0 L☉,4.06 cgs,236.0 km/s,3.2 Myr,True
+ε Crv,ε,2,,105707.0,59316.0,12h 10m 07.53s,−22° 37′ 11.3″,3.02,−1.82,303.0,K2III,"Minkar; suspected variable, Vmax = 2.98m, Vmin = 3.06m",K2 III,4239.0 K,2.97 M☉,56.65 R☉,930.0 L☉,1.42 cgs,1.0 km/s,590.0 Myr,True
+α Crv,α,1,,105452.0,59199.0,12h 08m 24.75s,−24° 43′ 43.6″,4.02,3.17,48.0,F0IV/V,"Al Chiba, Al Minliar al Ghurab, Alchiba, Alchita, Alkhiba, Minkar al Ghyrab, Rostrum Corvi;",F1 V+ M4 V,6985.0 K,1.34 M☉,1.42 R☉,4.31 L☉,4.192 cgs,16.9 km/s,1.58 Gyr,False
+η Crv,η,8,,109085.0,61174.0,12h 32m 04.48s,−16° 11′ 45.1″,4.3,3.00,59.0,F2V,"suspected variable, Vmax = 4.29m, Vmin = 4.32m",F2 V,6823.0 K,1.41 M☉,1.61 R☉,5.05 L☉,,68.0 km/s,1.57 Gyr,False
+VV Crv,,,VV,110317.0,61910.0,12h 41m 16.02s,−13° 00′ 50.1″,5.17,0.51,278.0,F3IV,quadruple star; Algol variable,F5V + F5V,6500.0 K,1.978 M☉,3.375 R☉,18.0 L☉,,81.0 km/s,1.2 Gyr,False
+ζ Crv,ζ,5,,107348.0,60189.0,12h 20m 33.71s,−22° 12′ 57.0″,5.2,−0.16,385.0,B8V,"Chang Sha (長沙); emission-line star; double star, suspected variable",B8V,11561.0 K,3.39 M☉,4.57 R☉,200.0 L☉,2.26 cgs,259.0 km/s,,False
+31 Crt,,(31),TY,104337.0,58587.0,12h 00m 51.17s,−19° 39′ 32.4″,5.28,−3.37,1753.0,B2IV,spectroscopic binary; rotating ellipsoidal variable; once mistaken for a moon of Mercury,B1.5V + ?,23442.0 K,11.0 M☉,,13900.0 L☉,,,,False
+3 Crv,,3,,105850.0,59394.0,12h 11m 03.88s,−23° 36′ 08.5″,5.45,1.70,183.0,A1V,,A1 V,9671.0 K,2.14 M☉,1.87 R☉,9.55 L☉,4.12 cgs,130.0 km/s,907.37 Myr,False
+6 Crv,,6,,107815.0,60425.0,12h 23m 21.60s,−24° 50′ 26.2″,5.66,0.73,316.0,K1III,,K1 III,4608.0 K,,13.6 R☉,75.5 L☉,1.57 cgs,,,False
+TU Crv,,,TU,109585.0,61496.0,12h 35m 58.77s,−20° 31′ 38.5″,6.2,1.77,251.0,F0III,δ Sct variable,F0 V,7132.0 K,1.45 M☉,2.7 R☉,12.6 L☉,3.93 cgs,103.0 km/s,786.0 Myr,False
+TT Crv,,,TT,107814.0,60421.0,12h 23m 18.90s,−11° 48′ 43.5″,6.48,−0.68,881.0,M3III,"semiregular variable, Vmax = 6.47m, Vmin = 6.57m, P = 11.5 d",,,,,,,,,False
+R Crv,,,R,107199.0,60106.0,12h 19m 37.87s,−19° 15′ 21.8″,6.7,,,M4.5-9:3,"Mira variable, Vmax = 6.7m, Vmin = 14.4m, P = 317.03 d",M4.5-9:e,,,,,,,,False
+RV Crv,,,RV,109796.0,61620.0,12h 37m 40.71s,−19° 34′ 40.1″,8.76,,656.0,F0V,"β Lyr variable, Vmax = 8.6m, Vmin = 9.16m, P = 0.7472521 d",F0V(F0 + G0),,1.64 M☉,2.18 R☉,8.5 L☉,,,,False
+SX Crv,,,SX,110139.0,61825.0,12h 40m 15.04s,−18° 48′ 00.9″,9.11,,298.0,F7V,"W UMa variable, Vmax = 8.99m, Vmin = 9.25m, P = 0.3166386 d",F7V,,,,,,,7.32 Gyr,False
+W Crv,,,W,,,12h 07m 37.36s,−13° 08′ 59.0″,11.28,,,G2Iab,"β Lyr variable, Vmax = 11.16m, Vmin = 12.5m, P = 0.38808083 d",G-,,,,,,,,False
+TV Crv,,,TV,,,12h 20m 24.15s,−18° 27′ 02.0″,12.2,,,,Tombaugh's Star,CV,,,,,,,,False
+]]
+
+return M

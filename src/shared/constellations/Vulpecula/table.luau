@@ -1,0 +1,84 @@
+local M = {}
+M.csv = [[
+Name,B,F,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Vul,α,6,,183439.0,95771.0,19h 28m 42.33s,+24° 39′ 53.7″,4.4,−0.36,291.0,M1III,"Anser; suspected variable, Vmax = 4.39m, Vmin = 4.46m",M1 III,3690.0 K,0.97 M☉,43.14 R☉,415.9 L☉,1.3 cgs,4.6 km/s,11.3 Gyr,True
+23 Vul,,23,,192806.0,99874.0,20h 15m 46.14s,+27° 48′ 51.1″,4.52,−0.58,327.0,K3- III Fe-1,,K3- III Fe-1,4413.0 K,2.4 M☉,31.0 R☉,288.0 L☉,0.89 cgs,3.7 km/s,,True
+31 Vul,(r),31,,198809.0,103004.0,20h 52m 07.68s,+27° 05′ 49.0″,4.56,0.77,228.0,G7IIIa Fe-1 Ba,,G7IIIa Fe-1 Ba,5261.0 K,2.4 M☉,8.01 R☉,52.53 L☉,2.97 cgs,5.9 km/s,700.0 Myr,True
+13 Vul,,13,,188260.0,97886.0,19h 53m 27.68s,+24° 04′ 46.3″,4.57,−0.64,359.0,B9.5III,,B9.5III,8801.0 K,,1.3 R☉,180.0 L☉,,45.0 km/s,,True
+15 Vul,,15,NT,189849.0,98543.0,20h 01m 06.01s,+27° 45′ 12.8″,4.66,0.49,222.0,A4III,"α² CVn variable, Vmax = 4.62m, Vmin = 4.67m, P = 14 d",A4IIImorkA5hA7mA7 (IV–V),7685.0 K,2.41 M☉,4.43 R☉,61.6 L☉,3.53 cgs,15.0 km/s,,True
+1 Vul,,1,,180554.0,94703.0,19h 16m 13.04s,+21° 23′ 25.6″,4.76,−2.47,911.0,B4IV,"suspected variable, Vmax = 4.57m, Vmin = 4.77m",B4IV,16787.0 K,6.9 M☉,,919.0 L☉,3.74 cgs,80.0 km/s,,False
+HR 7739,,,QR,192685.0,99824.0,20h 15m 15.89s,+25° 35′ 31.1″,4.79,−3.04,1199.0,B3V,"γ Cas variable, Vmax = 4.6m, Vmin = 4.8m",B3V,18700.0 K,8.0 M☉,,3331.0 L☉,3.49 cgs,160.0 km/s,,False
+29 Vul,,29,,196724.0,101867.0,20h 38m 31.29s,+21° 12′ 04.2″,4.81,0.73,213.0,A0V,,A0V,10507.0 K,2.67 M☉,,71.0 L☉,4.2 cgs,52.0 km/s,254.0 Myr,False
+12 Vul,,12,V395,187811.0,97679.0,19h 51m 04.09s,+22° 36′ 36.3″,4.9,−1.49,619.0,B2.5V,"Be star, Vmax = 4.78m, Vmin = 4.97m",B2.5V,18859.0 K,6.8 M☉,,963.0 L☉,3.36 cgs,195.0 km/s,,False
+30 Vul,,30,,197752.0,102388.0,20h 44m 52.52s,+25° 16′ 15.8″,4.92,−0.32,365.0,K2III,,K1 III,4498.0 K,1.55 M☉,21.68 R☉,173.3 L☉,2.47 cgs,1.5 km/s,4.2 Gyr,False
+9 Vul,,9,,184606.0,96275.0,19h 34m 34.89s,+19° 46′ 24.2″,5.0,−1.35,608.0,B8IIIn,"suspected variable, Vmax = 4.99m, Vmin = 5.08m",B8 IIIn,12042.0 K,3.5 M☉,2.8 R☉,216.0 L☉,354.0 cgs,185.0 km/s,185.0 Myr,False
+32 Vul,(q),32,,199169.0,103200.0,20h 54m 33.64s,+28° 03′ 27.5″,5.03,−1.75,739.0,K4III,"suspected variable, Vmax = 4.99m, Vmin = 5.06m",K4 III,4041.0 K,,54.29 R☉,708.4 L☉,1.74 cgs,8.1 km/s,,False
+28 Vul,,28,,196740.0,101868.0,20h 38m 31.91s,+24° 06′ 57.5″,5.06,−0.84,493.0,B5IV,,B5IV,15200.0 K,5.0 M☉,,713.0 L☉,3.77 cgs,285.0 km/s,,False
+17 Vul,,17,,190993.0,99080.0,20h 06m 53.40s,+23° 36′ 51.9″,5.08,−0.80,488.0,B3V,,B3 V,15648.0 K,6.1 M☉,3.9 R☉,573.3 L☉,,115.0 km/s,10.7 Myr,False
+4 Vul,,4,,182762.0,95498.0,19h 25m 28.54s,+19° 47′ 54.7″,5.14,0.84,237.0,K0III,,K0 III,4763.0 K,1.72 M☉,11.42 R☉,67.6 L☉,3.01 cgs,2.9 km/s,2.63 Gyr,False
+22 Vul,,22,QS,192713.0,99853.0,20h 15m 30.24s,+23° 30′ 32.1″,5.15,−5.44,4347.0,G2Ib SB,"Algol variable, ΔV = 0.12m, P = 249.083 d",G9Ib-II + B8V,4699.0 K,4.649 M☉,96.0 R☉,2188.0 L☉,,165.0 days,135.1 Myr,False
+3 Vul,,3,V377,182255.0,95260.0,19h 22m 50.88s,+26° 15′ 44.7″,5.18,−0.24,402.0,B6III,"53 Persei variable, ΔV = 0.03m, P = 1.26239 d",B6 III,14343.0 K,4.16 M☉,,286.0 L☉,4.3 cgs,15.5 km/s,25.0 Myr,False
+21 Vul,,21,NU,192518.0,99738.0,20h 14m 14.52s,+28° 41′ 41.5″,5.19,0.18,327.0,A7IVn,δ Sct variable,A7 IVnor A5 Vn,7739.0 K,2.36 M☉,1.5 R☉,67.4 L☉,3.34 cgs,222.0 km/s,356.0 Myr,False
+16 Vul,,16,,190004.0,98636.0,20h 02m 01.37s,+24° 56′ 16.3″,5.23,1.17,211.0,F2III,,F2 III,6888.0 K,1.34 M☉,,31.13 L☉,3.76 cgs,136.1 km/s,742.0 Myr,False
+24 Vul,,24,,192944.0,99951.0,20h 16m 47.08s,+24° 40′ 16.1″,5.3,−0.50,472.0,G8III,,G8III,4981.0 K,3.41 M☉,16.0 R☉,191.0 L☉,2.48 cgs,5.02 km/s,251.0 Myr,False
+33 Vul,,33,,199697.0,103511.0,20h 58m 16.35s,+22° 19′ 33.3″,5.3,−0.13,397.0,K4III,,K3.5 III,4070.0 K,,35.34 R☉,333.7 L☉,1.91 cgs,,,False
+35 Vul,,35,,204414.0,105966.0,21h 27m 40.03s,+27° 36′ 30.8″,5.39,1.66,182.0,A1V,,A1VmA3,9622.0 K,2.15 M☉,1.7 R☉,21.6 L☉,4.35 cgs,81.0 km/s,212.0 Myr,False
+2 Vul,,2,ES,180968.0,94827.0,19h 17m 43.64s,+23° 01′ 32.0″,5.42,−3.39,1918.0,B0.5IV,"β Cep variable, ΔV = 0.06m, P = 0.6096 d",B1 IV,26850.0 K,12.5 M☉,,21922.0 L☉,,270.0 km/s,12.6 Myr,False
+10 Vul,,10,,186486.0,97077.0,19h 43m 42.92s,+25° 46′ 18.7″,5.5,0.31,356.0,G8III,,G8 III,5008.0 K,2.35 M☉,13.0 R☉,72.0 L☉,3.08 cgs,,1.15 Gyr,False
+25 Vul,,25,,193911.0,100435.0,20h 22m 03.43s,+24° 26′ 46.0″,5.5,−3.21,1801.0,B8IIIn,"suspected variable, Vmax = 5.51m, Vmin = 5.54m",B6 IVe,13170.0 K,7.0 M☉,11.0 R☉,1345.0 L☉,3.52 cgs,160.0 km/s,,False
+19 Vul,,19,,192004.0,99518.0,20h 11m 47.97s,+26° 48′ 32.5″,5.51,−2.96,1614.0,K3II-III,,K2 IIIa,4200.0 K,4.94 M☉,100.3 R☉,2889.0 L☉,1.4 cgs,<3.4 km/s,,False
+18 Vul,,18,,191747.0,99404.0,20h 10m 33.52s,+26° 54′ 14.9″,5.53,−0.04,420.0,A3III,"δ Sct variable, Vmax = 5.52m, Vmin = 5.53m",A3III or A3V,8300.0 K,2.4 M☉,3.5 R☉,,3.73 cgs,,,False
+27 Vul,,27,,196504.0,101716.0,20h 37m 04.66s,+26° 27′ 43.1″,5.59,0.73,305.0,B9V,,B9 V,10789.0 K,2.77 M☉,3.1 R☉,75.0 L☉,3.781 cgs,335.0 km/s,,False
+5 Vul,,5,,182919.0,95560.0,19h 26m 13.24s,+20° 05′ 52.2″,5.6,1.47,218.0,A0V,,A0 V,9840.0 K,2.33 M☉,2.7 R☉,34.0 L☉,4.0 cgs,154.0 km/s,198.0 Myr,False
+T Vul,,,T,198726.0,102949.0,20h 51m 28.24s,+28° 15′ 01.9″,5.66,−2.89,1672.0,F5Ib,"classical Cepheid, Vmax = 5.41m, Vmin = 6.09m, P = 4.435462 d",F5 Ib + A0.8 V,6220.0 K,4.9 M☉,35.6 R☉,1620.0 L☉,1.75 cgs,,120.0 Myr,False
+14 Vul,,14,,189410.0,98375.0,19h 59m 10.58s,+23° 06′ 04.6″,5.68,2.26,158.0,F0,,F1 Vn,6938.0 K,1.52 M☉,,11.09 L☉,3.81 cgs,150.0 km/s,1.743 Gyr,False
+8 Vul,,8,,183491.0,95785.0,19h 28m 57.08s,+24° 46′ 07.3″,5.82,−0.04,484.0,K0III,suspected variable,K0 III,4915.0 K,3.07 M☉,13.8 R☉,100.5 L☉,2.63 cgs,,324.0 Myr,False
+20 Vul,,20,,192044.0,99531.0,20h 12m 00.70s,+26° 28′ 43.8″,5.91,−1.81,1140.0,B7Ve...,"variable star, Vmax = 5.87m, Vmin = 5.92m",B7 Ve,12050.0 K,4.02 M☉,3.0 R☉,460.0 L☉,2.9 cgs,236.0 km/s,,False
+3 Cyg,,(3),,182807.0,95492.0,19h 25m 25.87s,+24° 54′ 51.5″,6.19,3.97,90.0,F7V,,,,,,,,,,False
+PS Vul,,,PS,186518.0,97091.0,19h 43m 55.97s,+27° 08′ 07.5″,6.28,−4.35,4347.0,B7V + G1:III,"Algol variable, Vmax = 6.28m, Vmin = 6.35m, P = 3.8173 d",,,,,,,,,False
+V387 Vul,,,V387,176541.0,93270.0,18h 59m 58.12s,+22° 48′ 52.2″,6.28,−0.55,756.0,M4III,semiregular variable,,,,,,,,,False
+HR 7556,,,V379,187640.0,97572.0,19h 49m 54.72s,+28° 26′ 22.8″,6.29,−2.13,1698.0,B5V,"rotating ellipsoidal variable, Vmax = 6.22m, Vmin = 6.29m",,,,,,,,,False
+7 Vul,,7,,183537.0,95818.0,19h 29m 20.90s,+20° 16′ 47.2″,6.34,−0.50,760.0,B5Vn,"variable star, ΔV = 0.009m, P = 0.55923 d",B4–5 III–IVe+ sdB/sdO,15600.0 K,4.25 M☉,5.2 R☉,,3.75 cgs,300.0 km/s,80.0 Myr,False
+26 Vul,,26,,196362.0,101641.0,20h 36m 08.32s,+25° 52′ 57.4″,6.4,−0.26,701.0,A5III,,A5 III,7888.0 K,,4.6 R☉,79.75 L☉,,15.0 km/s,,False
+BW Vul,,,BW,199140.0,103191.0,20h 54m 22.39s,+28° 31′ 19.2″,6.54,−2.13,1772.0,B2IIIvar,"β Cep variable, Vmax = 6.44m, Vmin = 6.68m, P = 0.20104117 d",B2 IIIv,23014.0 K,14.0 M☉,,515.14 L☉,3.71 cgs,24.0 km/s,3.4 Myr,False
+HR 7222,,,LT,177392.0,93603.0,19h 03m 42.48s,+21° 16′ 06.1″,6.62,,373.0,F2III,"δ Sct variable, Vmax = 6.52m, Vmin = 6.62m, P = 0.109 d",,,,,,,,,False
+HD 192913,,,MW,192913.0,99927.0,20h 16m 27.20s,+27° 46′ 33.9″,6.64,,1610.0,A0p,"α2 CVn variable, Vmax = 6.62m, Vmin = 6.7m, P = 16.846 d",,,,,,,,,False
+SV Vul,,,SV,187921.0,97717.0,19h 51m 03.91s,+27° 27′ 36.8″,6.74,,4100.0,G2.5:Iab,"classical Cepheid, Vmax = 6.72m, Vmin = 7.79m, P = 44.993 d",F7Iab-K0Iab,6110.0 K,10.0 M☉,238.4 R☉,15800.0 L☉,1.6 cgs,,30.0 Myr,False
+RS Vul,,,RS,180939.0,94822.0,19h 17m 39.99s,+22° 26′ 28.4″,6.85,,939.0,B5V+G0III-IV,"Algol variable, Vmax = 6.79m, Vmin = 7.83m, P = 4.4776635 d",,,,,,,,,False
+U Vul,,,U,185059.0,96458.0,19h 36m 37.73s,+20° 19′ 58.6″,7.15,,4900.0,F5:Iabv,"classical Cepheid, Vmax = 6.73m, Vmin = 7.54m, P = 7.990676 d",F6Iab-G2,5965.0 K,6.5 M☉,60.0 R☉,,1.85 cgs,,82.0 Myr,False
+Z Vul,,,Z,181987.0,95163.0,19h 21m 39.11s,+25° 34′ 29.4″,7.33,,626.0,B2V+B9V,"classical Cepheid, Vmax = 7.25m, Vmin = 8.9m, P = 2.454934 d",,,,,,,,,False
+ER Vul,,,ER,200391.0,103833.0,21h 02m 25.91s,+27° 48′ 26.4″,7.37,,169.5,G0V+G5V,"W UMa variable, Vmax = 7.27m, Vmin = 7.49m, P = 0.69809409 d",G0V + G5V,5900.0 K,1.108 M☉,1.16 R☉,1.56 L☉,,84.0 km/s,,False
+HD 189733,,,V452,189733.0,98505.0,20h 00m 43.71s,+22° 42′ 39.1″,7.67,6.26,62.9,K1-K2,"planetary transit and BY Dra variable, ΔV = 0.03m, P = 2.218573 d, has a transiting planet (b)",K1.5V/M,4875.0 K,0.846 M☉,0.805 R☉,0.328 L☉,4.56 cgs,11.953 days,4.3 Gyr,False
+HD 188037,,,NS,188037.0,,19h 52m 30.08s,+22° 27′ 14.4″,7.76,,,A2,"slow irregular variable, Vmax = 7.75m, Vmin = 8.12m",,,,,,,,,False
+V Vul,,,V,340667.0,,20h 36m 32.02s,+26° 36′ 14.5″,8.05,,,G8:Iabv,"RV Tau variable, Vmax = 8.05m, Vmin = 9.75m, P = 76.07 d",,,,,,,,,False
+HD 203030,,,V457,203030.0,105232.0,21h 18m 58.22s,+26° 13′ 50.0″,8.45,,133.3,G8V,"BY Dra variable, ΔV = 0.04m, P = 6.664 d, has a planet (b)",K0V,5603.0 K,0.965 M☉,0.86 R☉,0.593 L☉,4.64 cgs,5.62 km/s,100.0 Myr,False
+S Vul,,,S,338867.0,,19h 48m 23.81s,+27° 17′ 11.4″,8.69,,,K0,"classical Cepheid, Vmax = 8.69m, Vmin = 9.42m, P = 68.464 d",G0-K2(M1),5512.0 K,14.2 M☉,286.0 R☉,67800.0 L☉,,,12.6 Myr,False
+DR Vul,,,DR,339770.0,,20h 13m 46.85s,+26° 45′ 01.6″,8.71,,,B8,"Algol variable, Vmax = 8.65m, Vmin = 9.27m, P = 2.2508645 d",,,,,,,,,False
+X Vul,,,X,339279.0,98212.0,19h 57m 28.61s,+26° 33′ 23.3″,8.87,,23000.0,K5,"classical Cepheid, Vmax = 8.33m, Vmin = 9.22m, P = 6.319588 d",,,,,,,,,False
+BE Vul,,,BE,340201.0,,20h 25m 33.64s,+27° 22′ 09.1″,9.79,,,A0,"Algol variable, Vmax = 9.78m, Vmin = 11.31m, P = 1.552044 d",,,,,,,,,False
+BP Vul,,,BP,352179.0,100745.0,20h 25m 33.25s,+21° 02′ 18.0″,9.95,,2000.0,A7,Algol variable,,,,,,,,,False
+BS Vul,,,BS,344650.0,,19h 37m 26.51s,+21° 55′ 50.4″,10.08,,,F2,"β Lyr variable, Vmax = 10.9m, Vmin = 11.6m, P = 0.47597147 d",,,,,,,,,False
+BO Vul,,,BO,345287.0,,19h 56m 29.07s,+23° 54′ 45.0″,10.12,,,F0,Algol variable,,,,,,,,,False
+HD 186943,,,QY,186943.0,97281.0,19h 46m 15.94s,+28° 16′ 19.1″,10.23,,,WN3+O9.5V,Wolf–Rayet star and eclipsing binary,,,,,,,,,False
+WW Vul,,,WW,344361.0,,19h 25m 58.75s,+21° 12′ 31.3″,10.25,,,A3,"UX Ori variable, Vmax = 10.25m, Vmin = 12.94m",,,,,,,,,False
+AW Vul,,,AW,340420.0,,20h 29m 01.67s,+24° 48′ 27.9″,11.4,,,F0,"Algol variable, Vmax = 10.8m, Vmin = 11.9m, P = 0.80645141 d",,,,,,,,,False
+PX Vul,,,PX,,,19h 26m 40.26s,+23° 53′ 50.9″,11.83,,,F3,"Orion variable, Vmax = 11.4m, Vmin = 12.8m",,,,,,,,,False
+G 185-32,,,PY,,,19h 37m 13.17s,+27° 43′ 18.1″,12.97,,,DA,"pulsating white dwarf, ΔV = 0.02m",DA4.0,12381.0 K,0.64 M☉,0.012 R☉,,8.09 cgs,,,False
+GD 385,,,PT,,,19h 52m 27.88s,+25° 09′ 29.1″,15.11,,124.0,DA4.2,"pulsating white dwarf, ΔV = 0.05m",,,,,,,,,False
+XTE J1859+226,,,V406,,,18h 58m 41.58s,+22° 39′ 29.6″,,,,G5V-K0V,low-mass X-ray binary,,,,,,,,,False
+LV Vul,,,LV,,,19h 48m 00.52s,+27° 10′ 19.3″,16.9,,,,"nova, Vmax = 4.5m, Vmin = 16.9m",,,,,,,,,False
+PW Vul,,,PW,,,19h 26m 05.06s,+27° 21′ 58.8″,16.9,,,,"nova, Vmax = 6.4m, Vmin = 16.9m",,,,,,,,,False
+VW Vul,,,VW,,,20h 57m 45.07s,+25° 30′ 25.7″,17.0,,,,"Z Cam variable, Vmax = 13.1m, Vmin = 17.0m, P = 0.1687 d",,,,,,,,,False
+QU Vul,,,QU,,,20h 26m 45.94s,+27° 50′ 42.2″,17.9,,,,"nova, Vmax = 5.3m, Vmin = 17.9m",,,,,,,,,False
+NQ Vul,,,NQ,,,19h 29m 14.69s,+20° 27′ 59.6″,18.0,,,,"nova, Vmax = 6.01m, Vmin = 18m",,,,,,,,,False
+GS 2000+25,,,QZ,,,20h 02m 49.58s,+25° 14′ 11.3″,18.2,,,K3V-K6V,X-ray nova,Black hole+ K3-6 V,,7.8 M☉,,,,,,False
+V458 Vul,,,V458,,,19h 54m 24.61s,+20° 52′ 52.6″,18.3,,,,"nova, Vmax = 8.1m, Vmin = 18.3m, P = 0.06812255 d",,,,,,,,,False
+QV Vul,,,QV,,,19h 04m 40.32s,+21° 46′ 14.2″,19.0,,,,"nova, Vmax = 7m, Vmin = 19m",,,,,,,,,False
+CK Vul,,11,CK,,,19h 47m 38.1s,+27° 18′ 48″,20.0,,,,"Anthelm's Star; nova, Vmax = 2.7m, Vmin = 20.0m",,100000.0 K,,,0.9 L☉,,,,False
+PU Vul,,,PU,,,20h 21m 13.32s,+21° 34′ 18.7″,,,,A4II-F8Iab + M6IIIe,nova,M6,3200.0 K,0.9 M☉,97.0 R☉,16800.0 L☉,,,,False
+WR 125,,,V378,,,19h 28m 15.62s,+19° 33′ 21.4″,,,,WCe+...,Wolf–Rayet star,,,,,,,,,False
+QQ Vul,,,QQ,,,20h 05m 41.91s,+22° 39′ 58.7″,,,,M2,AM Her variable,M4V,,0.66 M☉,0.01 R☉,,,110.0 km/s,,False
+V407 Vul,,,V407,,,19h 14m 26.09s,+24° 56′ 44.6″,,,,,AM CVn variable,,,,,,,,,False
+]]
+
+return M

@@ -1,0 +1,34 @@
+local M = {}
+M.csv = [[
+Name,B,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Cha,α,,71243.0,40702.0,08h 18m 31.27s,−76° 55′ 11.9″,4.05,2.60,63.0,F5III,,F5 V Fe-0.8,6580.0 K,1.42 M☉,2.11 R☉,7.542 L☉,4.28 cgs,0.0 km/s,1.8 Gyr,True
+γ Cha,γ,,92305.0,51839.0,10h 35m 28.22s,−78° 36′ 28.1″,4.11,−1.40,413.0,M0III,suspected variable,K5 III,4035.0 K,,67.0 R☉,864.0 L☉,,,,True
+β Cha,β,,106911.0,60000.0,12h 18m 20.94s,−79° 18′ 44.2″,4.24,−0.36,271.0,B5Vn,suspected variable,B4 V,14495.0 K,5.0 M☉,2.84 R☉,212.0 L☉,4.03 cgs,255.0 km/s,22.7 Myr,True
+θ Cha,θ,,71701.0,40888.0,08h 20m 38.89s,−77° 29′ 04.5″,4.34,0.97,154.0,K0III-IV,double star,K2 IIIb CN0.5,4570.0 K,0.94 M☉,11.5 R☉,60.0 L☉,2.29 cgs,,,False
+δ2 Cha,δ2,,93845.0,52633.0,10h 45m 47.14s,−80° 32′ 24.7″,4.45,−0.79,363.0,B2.5IV,,B3 Vor B2.5 IV,15873.0 K,5.0 M☉,3.9 R☉,503.0 L☉,,,32.6 Myr,False
+ε Cha,ε,,104174.0,58484.0,11h 59m 37.69s,−78° 13′ 18.5″,4.88,−0.36,364.0,B9Vn,double star,B9 Vn:,10617.0 K,2.87 M☉,2.3 R☉,99.7 L☉,,265.0 km/s,2.8 Myr,False
+κ Cha,κ,,104902.0,58905.0,12h 04m 46.66s,−76° 31′ 09.0″,5.04,−0.61,441.0,K4III,"variable star, ΔV = 0.005m, P = 3.89651 d",K4III,3990.0 K,1.4 M☉,46.12 R☉,485.7 L☉,,<1.0 km/s,,False
+ζ Cha,ζ,,83979.0,46928.0,09h 33m 53.51s,−80° 56′ 28.7″,5.07,−1.02,539.0,B5V,"β Cep variable, Vmax = 5.06m, Vmin = 5.17m, P = 1.07964 d",B5V,15655.0 K,3.12 M☉,4.75 R☉,522.0 L☉,3.55 cgs,103.0 km/s,184.0 Myr,False
+ι Cha,ι,,82554.0,46107.0,09h 24m 09.73s,−80° 47′ 13.9″,5.34,1.58,184.0,F3/F5IV,,F3/5 III/V,6429.0 K,,3.63 R☉,20.244 L☉,,129.7 km/s,1.2 Gyr,False
+ν Cha,ν,,85396.0,47956.0,09h 46m 20.42s,−76° 46′ 33.5″,5.43,1.59,191.0,G8III,,G8III,5008.0 K,1.64 M☉,6.5 R☉,23.9 L☉,3.07 cgs,1.2 km/s,,False
+η Cha,η,,75416.0,42637.0,08h 41m 19.60s,−78° 57′ 48.3″,5.46,0.53,316.0,B9IV,,B8V,12487.0 K,3.2 M☉,3.3 R☉,99.81 L☉,,390.0 km/s,14.0 Myr,False
+δ1 Cha,δ1,,93779.0,52595.0,10h 45m 16.38s,−80° 28′ 10.3″,5.46,0.28,354.0,K0III,double star,K0 III,5052.0 K,,,76.0 L☉,,,,False
+μ¹ Cha,μ,,87971.0,49065.0,10h 00m 43.90s,−82° 12′ 53.1″,5.53,0.09,399.0,A0IV,,A0 IV,10141.0 K,2.6 M☉,3.66 R☉,90.7 L☉,3.73 cgs,150.0 km/s,,False
+π Cha,π,,101132.0,56675.0,11h 37m 15.94s,−75° 53′ 47.5″,5.64,2.52,137.0,F1III,,A9 IVor F1 III,6853.0 K,1.52 M☉,2.2 R☉,8.0 L☉,4.08 cgs,50.0 km/s,1.8 Gyr,False
+DR Cha,,DR,93237.0,52340.0,10h 41m 51.58s,−79° 46′ 59.9″,5.97,−1.46,1000.0,B5IV,"Algol variable, Vmax = 5.97m, Vmin = 6.06m, P = 19.4436 d; emission-line star",B5 IVor B5 III,12039.0 K,6.0 M☉,6.48 R☉,1587.0 L☉,3.44 cgs,70.0 km/s,50.0 Myr,False
+RS Cha,,RS,75747.0,42794.0,08h 43m 12.31s,−79° 04′ 12.5″,6.05,1.10,319.0,A7V,"Algol variable and δ Sct variable, Vmax = 6.02m, Vmin = 6.68m, P = 1.66987 d",A8 IV + A8 IV,8050.0 K,1.86 M☉,2.14 R☉,17.3 (combined)L☉,4.05 cgs,64.0 km/s,9.5 Myr,False
+DY Cha,,DY,118285.0,66607.0,13h 39m 12.04s,−75° 41′ 01.6″,6.32,−0.95,929.0,B8IV,long-period pulsating variable,B8 IV,11350.0 K,3.63 M☉,5.52 R☉,293.0 L☉,,67.0 km/s,309.0 Myr,False
+μ2 Cha,μ2,,88351.0,49326.0,10h 04m 07.37s,−81° 33′ 56.2″,6.6,0.41,564.0,G6/G8III,suspected variable,G6/8 III,4967.0 K,,11.35 R☉,70.6 L☉,,2.7 km/s,,False
+HD 104237,,DX,104237.0,58520.0,12h 00m 05.08s,−78° 11′ 34.6″,6.7,,374.0,K4Ve,"T Tau star, Vmax = 6.7m, Vmin = 10.28m, P = 2.45 d",A7.5Ve–A8Ve,8450.0 K,2.2 M☉,2.7 R☉,31.0 L☉,,4.33717 d,2.0 Myr,False
+RZ Cha,,RZ,93486.0,52381.0,10h 42m 24.10s,−82° 02′ 14.2″,8.09,,606.0,F4V,Algol variable,F5 IV-V + F5 IV-V,6596.0 K,1.488 M☉,2.1499 R☉,7.9 L☉,3.9458 cgs,38.41 km/s,2.3 Gyr,False
+HD 97048,,CU,97048.0,54413.0,11h 08m 03.32s,−77° 39′ 17.4″,8.38,,517.0,A0pshe,"Orion variable, Vmax = 8.38m, Vmin = 8.48m",A0Vep,10500.0 K,2.5 M☉,1.7 R☉,33.0 L☉,4.3 cgs,,3.0 Myr,False
+R Cha,,R,71793.0,,08h 21m 46.42s,−76° 21′ 18.5″,10.55,,,M4.5e,"Mira variable, Vmax = 7.5m, Vmin = 14.5m, P = 338 d",M4e-M8e,3042.0 K,2.5 M☉,274.0 R☉,4574.0 L☉,0.35 cgs,,,False
+Z Cha,,Z,,,08h 07m 27.75s,−76° 32′ 00.7″,11.5,,,M5.5,"SU UMa and Algol variable, Vmax = 11.5m, Vmin = 16.23m, P = 0.074499315 d; possible planetary companion",DA? + M5.5e,3100.0 K,1.0 M☉,0.48 R☉,0.017 L☉,,,,False
+T Cha,,T,,58285.0,11h 57m 13.55s,−79° 21′ 31.54″,11.56,,534.0,K0e,"Orion variable, Vmax = 10.09m, Vmin = 14.5m, P = 3.253 d; possible planetary companion",K0e,5111.0 K,0.65 M☉,0.65 R☉,0.29 L☉,4.5 cgs,39.0 km/s,12.7 Myr,False
+CS Cha,,CS,,,11h 02m 25s,−77° 33′ 36″,11.69,,575.0,K2Ve,"T Tauri star, orbited by accreting stellar companion (B)",,,,,,,,,False
+CT Cha,,CT,,,11h 04m 09s,−76° 27′ 19″,12.36,,538.0,K7,"has a planet (b); Orion variable, Vmax = 11.7m, Vmin = 12.9m",K7 Ve,4402.0 K,0.796 M☉,2.06 R☉,1.41 L☉,4.5 cgs,,2.0 Myr,False
+ChaHα8,,,,,11h 07m 46.10s,−77° 40′ 08.9″,20.1,522,,M5.75,binary brown dwarf system,M5.75–M6.5,3024.0 K,0.1 M☉,,,,15.5 km/s,3.0 Myr,False
+DK Cha,,DK,,,12h 53m 17.20s,−77° 07′ 10.73″,,,,F0,Orion variable,,,,,,,,,False
+]]
+
+return M

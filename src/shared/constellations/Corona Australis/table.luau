@@ -1,0 +1,35 @@
+local M = {}
+M.csv = [[
+Name,B,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+β CrA,β,,178345.0,94160.0,19h 10m 01.75s,−39° 20′ 26.5″,4.1,−1.86,508.0,K0II/IIICN.,suspected variable,K0 II/III CN1.5,4575.0 K,5.17 M☉,38.5 R☉,614.0 L☉,1.26 cgs,6.2 km/s,,True
+α CrA,α,,178253.0,94114.0,19h 09m 28.28s,−37° 54′ 15.3″,4.11,1.11,130.0,A0/A1V,"Meridiana (traditionally Alphekka Meridiana, Alfecca Meridiana)",A2V,9916.0 K,2.57 M☉,2.21 R☉,31.0 L☉,4.08 cgs,195.0 km/s,254.0 Myr,True
+γ CrA A,γ,,177474.0,93825.0,19h 06m 25.04s,−37° 03′ 45.9″,4.23,2.97,58.0,F7IV-V,double star,F8V + F8V,6090.0 K,1.15 M☉,1.47 R☉,,4.17 cgs,,5.0 Gyr,True
+δ CrA,δ,,177873.0,94005.0,19h 08m 20.93s,−40° 29′ 47.9″,4.57,0.93,175.0,K1III,,K1III,4645.0 K,1.5 M☉,11.25 R☉,53.0 L☉,2.59 cgs,,2.8 Gyr,True
+θ CrA,θ,,170845.0,90982.0,18h 33m 30.16s,−42° 18′ 44.9″,4.62,−2.50,867.0,G5III,,G8 III,4907.0 K,4.45 M☉,29.1 R☉,411.0 L☉,2.5 cgs,12.0 km/s,,True
+ζ CrA,ζ,,176638.0,93542.0,19h 03m 06.83s,−42° 05′ 42.0″,4.74,0.99,184.0,A0Vn,,B9.5 Vann,12039.0 K,2.92 M☉,2.11 R☉,51.0 L☉,4.21 cgs,308.0 km/s,76.0 Myr,True
+ε CrA,ε,,175813.0,93174.0,18h 58m 43.47s,−37° 06′ 25.5″,4.83,2.45,98.0,F3IV/V,"W UMa variable, Vmax = 4.74m, Vmin = 5m, P = 0.5914264 d",F4V Fe-0.8,6820.0 K,1.89 M☉,2.14 R☉,8.9 L☉,3.99 cgs,148.5 km/s,2.83 Gyr,False
+γ CrA B,γ,,177475.0,,19h 06m 25.10s,−37° 03′ 48.0″,4.99,,,,component of the γ CrA system,F8V + F8V,6090.0 K,1.15 M☉,1.47 R☉,,4.17 cgs,,5.0 Gyr,False
+λ CrA,λ,,172777.0,91875.0,18h 43m 46.94s,−38° 19′ 23.9″,5.11,1.15,202.0,A0/A1V,"suspected variable, ΔV = 0.07m",A0/1V+ K0,8609.0 K,2.17 M☉,2.24 R☉,31.25 L☉,4.08 cgs,148.6 km/s,273.0 Myr,False
+μ CrA,μ,,173540.0,92226.0,18h 47m 44.60s,−40° 24′ 22.0″,5.2,−0.20,393.0,G5/G6III,,G5/6 III,5448.0 K,3.07 M☉,11.4 R☉,104.0 L☉,3.15 cgs,7.7 km/s,361.0 Myr,False
+V686 CrA,,V686,175362.0,92989.0,18h 56m 40.49s,−37° 20′ 35.5″,5.36,−0.22,425.0,B3V,"α2 CVn variable, Vmax = 5.25m, Vmin = 5.41m, P = 7.34 d",B3V,16482.0 K,4.73 M☉,3.52 R☉,504.0 L☉,3.97 cgs,45.4 km/s,63.0 Myr,False
+V718 CrA,,V718,171967.0,91494.0,18h 39m 35.18s,−43° 11′ 08.8″,5.42,−1.58,817.0,M2III,slow irregular variable,M2 III,3698.0 K,2.0 M☉,101.0 R☉,1001.0 L☉,,,,False
+η1 CrA,η1,,173715.0,92308.0,18h 48m 50.47s,−43° 40′ 48.0″,5.46,0.33,347.0,A2Vn,,A3V,8308.0 K,2.05 M☉,3.43 R☉,51.0 L☉,3.68 cgs,122.3 km/s,491.0 Myr,False
+V692 CrA,,V692,166596.0,89290.0,18h 13m 12.70s,−41° 20′ 09.9″,5.47,−3.06,1655.0,B2.5III,"SX Ari variable, ΔV = 0.05m, P = 1.67 d",B2 IIIor B1.5 IIIp,17061.0 K,7.35 M☉,12.6 R☉,4181.0 L☉,3.52 cgs,212.0 km/s,31.6 Myr,False
+η2 CrA,η2,,173861.0,92382.0,18h 49m 35.00s,−43° 26′ 02.5″,5.6,−0.75,607.0,B9IV,,B9 IV,10940.0 K,3.23 M☉,5.82 R☉,171.0 L☉,3.47 cgs,30.0 km/s,213.0 Myr,False
+κ2 CrA,κ2,,170868.0,90968.0,18h 33m 23.13s,−38° 43′ 33.4″,5.67,−2.94,1716.0,B9.5,,B9 Vnn,12600.0 K,3.12 M☉,5.28 R☉,460.0 L☉,3.58 cgs,,,False
+V701 CrA,,V701,176723.0,93552.0,19h 03m 17.69s,−38° 15′ 11.5″,5.73,1.68,211.0,F2III/IV,"δ Sct variable, Vmax = 5.69m, Vmin = 5.73m",F2 III/IVor F0 IIIn,7046.0 K,1.83 M☉,2.85 R☉,17.5 L☉,3.75 cgs,265.0 km/s,1.25 Gyr,False
+κ1 CrA,κ1,,170867.0,90969.0,18h 33m 23.08s,−38° 43′ 12.0″,6.31,0.43,489.0,B8,,A0 IV,11079.0 K,2.82 M☉,3.79 R☉,179.0 L☉,3.73 cgs,339.0 km/s,4.1 Myr,False
+V693 CrA,,V693,,,18h 41m 57.8s,−37° 31′ 14″,6.5,,,,"nova, Vmax = 6.5m, Vmin = <19.0m",,,,,,,,,False
+V394 CrA,,V394,,,18h 00m 25.97s,−39° 00′ 35.1″,7.5,,,,"recurrent nova and eclipsing binary, Vmax = 7.2m, Vmin = 19.7m, P = 1.515682 d",,,,,,,,,False
+HD 166473,,V694,166473.0,,18h 12m 25.83s,−37° 45′ 09.2″,7.92,,,A5p,rapidly oscillating Ap star and α2 CVn variable,A5pSrCrEu,7760.0 K,2.29 M☉,2.25 R☉,9.811 L☉,4.0 cgs,3836.0 d,1.0 Gyr,False
+TY CrA,,TY,,,19h 01m 40.83s,−36° 52′ 33.9″,9.39,,,B8e,"Orion and Algol variable, Vmax = 9.39m, Vmin = 9.81m, P = 2.8877912 d",B9e,,,,,,,,False
+V CrA,,V,173539.0,92207.0,18h 47m 32.31s,−38° 09′ 32.3″,9.4,,,R...,"R Coronae Borealis variable, Vmax = 9.4m, Vmin = 17.9m",R0,6250.0 K,0.6 M☉,,6550.0 L☉,0.5 cgs,,,False
+S CrA,,S,,,19h 01m 08.60s,−36° 57′ 20.0″,10.49,,,G0Ve+K0Ve,"Orion variable in nebula, Vmax = 10.49m, Vmin = 13.2m",G0Ve + K0Ve,4300.0 K,0.8 M☉,2.3 R☉,1.7 L☉,3.6 cgs,7.3 days,,False
+R CrA,,R,,93449.0,19h 01m 53.65s,−36° 57′ 07.6″,11.5,,79.64,A5IIev,Orion variable in nebula,B5IIIpe,9550.0 K,3.5 M☉,6.2 R☉,132.0 L☉,3.45 cgs,,1.0 Myr,False
+T CrA,,T,,,19h 01m 58.78s,−36° 57′ 49.9″,11.67,,,F0e,"Orion variable in nebula, Vmax = 11.67m, Vmin = 14.3m",F0,,1.7 M☉,,28.8 L☉,,,,False
+2A 1822-371,,V691,,,18h 25m 46.81s,−37° 06′ 18.6″,15.1,,,,Low-mass X-ray binary (pulsar) and eclipsing binary,,,,,,,,,False
+Y CrA,,Y,166813.0,,18h 14m 22.95s,−42° 50′ 32.4″,,,,M6,Z Andromedae variable,,,,,,,,,False
+RU CrA,,RU,180206.0,,19h 17m 23.46s,−39° 36′ 46.40″,,,,[WC3/4],slow irregular variable; central star of planetary nebula IC 1297,,,,,,,,,False
+]]
+
+return M

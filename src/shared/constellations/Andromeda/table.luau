@@ -1,0 +1,91 @@
+local M = {}
+M.csv = [[
+Name,B,F,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+Alpheratz,"α, (δ)",21,,358.0,677.0,00h 08m 23.17s,+29° 05′ 27.0″,2.07,−0.30,97.0,B9p,"Alpheratz, Sirrah; α2 CVn variable, ΔV = 0.04m, P = 0.966222 d; spectroscopic binary, also δ Peg",B8IV-VHgMn,11950.0 K,3.63 M☉,2.94 R☉,158.0 L☉,3.75 cgs,2.38 d,200.0 Myr,True
+Mirach,β,43,,6860.0,5447.0,01h 09m 43.80s,+35° 37′ 15.0″,2.07,−1.86,199.0,M0IIIvar,"Mirach; variable, has a planet or brown dwarf (b)",M0 III,3762.0 K,2.49 M☉,86.4 R☉,1675.0 L☉,0.91 cgs,21.6 years,,True
+γ1 And,γ1,57,,12533.0,9640.0,02h 03m 53.92s,+42° 19′ 47.5″,2.10,−3.08,355.0,K3IIb,Almach; quadruple star system,K2+IIb,4248.0 K,,98.5 R☉,2987.0 L☉,1.03 cgs,<17.0 km/s,,True
+δ And,δ,31,,3627.0,3092.0,00h 39m 19.60s,+30° 51′ 40.4″,3.27,0.81,101.0,K3III...,spectroscopic binary; suspected variable,K3 III+K4 ± 2,4315.0 K,1.3 M☉,13.6 R☉,68.0 L☉,2.0 cgs,6.5 km/s,3.2 Gyr,True
+Andromeda Galaxy,(n),33,,,,00h 42m 44.31s,+41° 16′ 09.4″,3.44 (nebulous),,2540000.0,,BD+40°148; naked eye spiral galaxy in the Local group,,,1012.0 M☉,,,,,,True
+51 And,(υ),51,,9927.0,7607.0,01h 37m 59.50s,+48° 37′ 42.6″,3.59,−0.04,174.0,K3III,Nembus; multiple star,K3- III CN0.5,4316.0 K,1.75 M☉,21.3 R☉,142.1 L☉,2.01 cgs,,1.7 Gyr,True
+ο And,ο,1,,217675.0,113726.0,23h 01m 55.25s,+42° 19′ 33.5″,3.62,−3.01,692.0,B6pv SB,"quadruple star system; γ Cas variable, Vmax = 3.55m, Vmin = 3.78m",B6III(B6IIIpe + A2p),14540.0 K,6.5 M☉,11.5 R☉,5300.0 L☉,,240.0 km/s,52.0 Myr,True
+λ And,λ,16,,222107.0,116584.0,23h 37m 33.71s,+46° 27′ 33.0″,3.81,1.75,84.0,G8III-IV,"RS CVn variable, Vmax = 3.65m, Vmin = 4.05m, P = 53.95 d",G8 IV,4633.0 K,1.47 M☉,7.787 R☉,28.8 L☉,2.75 cgs,54.41 days,,True
+μ And,μ,37,,5448.0,4436.0,00h 56m 45.10s,+38° 29′ 57.3″,3.86,0.75,136.0,A5V,multiple star,A5 V,8320.0 K,2.21 M☉,3.03 R☉,40.0 L☉,3.99 cgs,75.0 km/s,724.0 Myr,True
+ζ And,ζ,34,,4502.0,3693.0,00h 47m 20.39s,+24° 16′ 02.6″,4.08,0.35,181.0,K1II,"β Lyr/RS CVn variable, Vmax = 3.92m, Vmin = 4.14m, P = 17.7696 d",K1III + KV,4665.0 K,2.6 M☉,15.9 R☉,95.5 L☉,2.8 cgs,17.77 days,,True
+υ And,,50,,9826.0,7513.0,01h 36m 47.98s,+41° 24′ 23.0″,4.10,3.45,44.0,F8V,"Titawin, has four planets (b, c, d & e)",F9V+ M4.5V,6614.0 K,1.23 M☉,1.57 R☉,3.1 L☉,4.0 cgs,7.3 d,4.02 Gyr,True
+κ And,κ,19,,222439.0,116805.0,23h 40m 24.44s,+44° 20′ 02.3″,4.15,0.57,170.0,B9IVn,"triple star, has a planet (b)",B9 IVn,12050.0 (polar)K,2.768 M☉,1.959 (polar)R☉,62.6 L☉,4.296 (polar)cgs,142.2 km/s,47.0 Myr,True
+φ And,φ,42,,6811.0,5434.0,01h 09m 30.12s,+47° 14′ 30.6″,4.26,−2.51,736.0,B7III,emission-line star,B7 Ve+ B9 V,13490.0 K,,,882.0 L☉,3.15 cgs,75.0 km/s,63.1 Myr,True
+ι And,ι,17,,222173.0,116631.0,23h 38m 08.18s,+43° 16′ 05.1″,4.29,−1.65,502.0,B8V,"Keff al Salsalat, Manus Catenata",B8 V,12620.0 K,3.98 M☉,4.6 R☉,638.0 L☉,3.35 cgs,70.0 km/s,116.0 Myr,True
+π And,π,29,,3369.0,2912.0,00h 36m 52.84s,+33° 43′ 09.7″,4.34,−2.18,656.0,B5V,spectroscopic binary; suspected variable,B5 V(B5 V + B5 V),15000.0 K,5.8 M☉,4.7 R☉,1000.0 L☉,4.1 cgs,25.0 km/s,80.0 Myr,True
+ε And,ε,30,,3546.0,3031.0,00h 38m 33.50s,+29° 18′ 44.5″,4.34,0.77,169.0,G5III...,,G6 III Fe−3 CH1,5082.0 K,1.01 M☉,9.04 R☉,51.3 L☉,2.88 cgs,1.7 km/s,5.71 Gyr,True
+η And,η,38,,5516.0,4463.0,00h 57m 12.43s,+23° 25′ 03.9″,4.40,0.04,243.0,G8III-IV,spectroscopic binary,G8III-IV + G8III-IV,4900.0 K,2.6 M☉,10.7 R☉,65.0 L☉,2.8 cgs,,800.0 [citation needed]Myr,False
+σ And,σ,25,,1404.0,1473.0,00h 18m 19.71s,+36° 47′ 07.2″,4.51,1.33,141.0,A2V,suspected variable,A2 V,8929.0 K,2.12 M☉,2.13 R☉,21.23 L☉,4.02 cgs,123.0 km/s,450.0 Myr,False
+ν And,ν,35,,4727.0,3881.0,00h 49m 48.83s,+41° 04′ 44.2″,4.53,−2.06,679.0,B5V SB,spectroscopic binary,B4/5 V+ F8 V,14851.0 K,5.9 M☉,3.4 R☉,1104.0 L☉,4.12 cgs,20.0 km/s,63.1 Myr,False
+7 And,,7,,219080.0,114570.0,23h 12m 32.92s,+49° 24′ 21.5″,4.53,2.58,80.0,F0V,,F1V,7380.0 K,1.6 M☉,1.71 R☉,7.8 L☉,4.16 cgs,61.0 km/s,1120.0 Myr,False
+θ And,θ,24,,1280.0,1366.0,00h 17m 05.54s,+38° 40′ 54.0″,4.61,0.16,253.0,A2V,suspected variable,A2 V,8960.0 K,2.83 M☉,,113.0 L☉,3.95 cgs,102.0 km/s,,False
+3 And,,3,,218031.0,113919.0,23h 04m 10.83s,+50° 03′ 06.1″,4.64,0.94,179.0,K0III,,K0 IIIb,4668.0 K,1.71 M☉,10.0 R☉,49.0 L☉,2.61 cgs,1.0 km/s,2.27 Gyr,False
+65 And,,65,,14872.0,11313.0,02h 25m 37.40s,+50° 16′ 43.2″,4.73,−0.39,345.0,K4III,triple star,K4.5 III,3927.0 K,1.63 M☉,47.0 R☉,372.0 L☉,1.65 cgs,,3.01 Gyr,False
+58 And,,58,,13041.0,9977.0,02h 08m 29.15s,+37° 51′ 33.1″,4.78,0.86,198.0,A5IV-V,,A5 IV-V,8875.0 K,2.0 M☉,1.9 R☉,35.55 L☉,3.89 cgs,135.0 km/s,425.0 Myr,False
+8 And,,8,,219734.0,115022.0,23h 17m 44.62s,+49° 00′ 55.0″,4.82,−1.69,655.0,M2III,suspected variable,M2.5 III Ba0.5,3616.0 K,,30.0 R☉,,1.0 cgs,5.0 km/s,,False
+ω And,ω,48,,8799.0,6813.0,01h 27m 39.09s,+45° 24′ 25.0″,4.83,2.57,92.0,F5IV,,F5 IVeorF3 V + F5 V,6628.0 K,0.963 M☉,2.2 R☉,7.1 L☉,,57.1 km/s,2.1 Gyr,False
+γ2 And,γ2,57,,12534.0,,02h 03m 54.70s,+42° 19′ 51.0″,4.84,-0.3,350.0,B8V,component of the γ And system; triple star system,K2+IIb,4248.0 K,,98.5 R☉,2987.0 L☉,1.03 cgs,<17.0 km/s,,False
+60 And,b,60,,13520.0,10340.0,02h 13m 13.34s,+44° 13′ 54.1″,4.84,−1.32,556.0,K4III,suspected variable,K3.5 III Ba0.4,4054.0 K,2.0 M☉,,685.0 L☉,1.7 cgs,,2.02 Gyr,False
+ξ And,ξ,46,,8207.0,6411.0,01h 22m 20.39s,+45° 31′ 43.5″,4.87,0.98,195.0,K0III-IV,Adhil,K0 IIIb,4842.0 K,2.5 M☉,10.0 R☉,45.7 L☉,2.65 cgs,0.0 km/s,2.0 Gyr,False
+τ And,τ,53,,10205.0,7818.0,01h 40m 34.80s,+40° 34′ 37.6″,4.96,−1.64,681.0,B8III,suspected variable,B5 III,12680.0 K,4.8 M☉,2.7 R☉,851.0 L☉,3.357 cgs,74.0 km/s,217.0 Myr,False
+41 H. And,υ,,,10307.0,7918.0,01h 41m 46.52s,+42° 36′ 49.7″,4.96,4.45,41.0,G2V,spectroscopic binary,G1.5 V + M V,5878.0 K,0.95 M☉,1.14 R☉,1.44 L☉,4.3 cgs,1.5 km/s,7.0 Gyr,False
+ψ And,ψ,20,,223047.0,117221.0,23h 46m 02.04s,+46° 25′ 13.0″,4.97,−3.05,1309.0,G5Ib,multiple star,G5 Ib+ B9,4276.0 K,5.4 M☉,59.0 R☉,1049.0 L☉,1.5 cgs,,79.0 Myr,False
+22 And,,22,,571.0,841.0,00h 10m 19.24s,+46° 04′ 20.2″,5.01,−2.44,1006.0,F2II,,F5 IIorF5 Ib–II metal-weak,6270.0 K,6.1 M☉,17.0 R☉,1436.0 L☉,2.1 cgs,46.0 km/s,62.0 Myr,False
+χ And,χ,52,,10072.0,7719.0,01h 39m 21.02s,+44° 23′ 10.1″,5.01,0.66,242.0,G8III...,,G8 III,5070.0 K,,9.0 R☉,47.0 L☉,2.9 cgs,0.0 km/s,,False
+41 And,(d),41,,6658.0,5317.0,01h 08m 00.72s,+43° 56′ 32.1″,5.04,1.14,196.0,A3m,,A2IIIvs(kA2hA6mA6),8511.0 K,2.27 M☉,,28.53 L☉,4.04 cgs,84.0 km/s,450.0 Myr,False
+2 And,,2,,217782.0,113788.0,23h 02m 36.34s,+42° 45′ 28.1″,5.09,−0.06,349.0,A3Vn,multiple star,A1V,8950.0 K,2.7 M☉,,130.5 L☉,3.4 cgs,212.0 km/s,100.0 Myr,False
+V428 And,,,V428,3346.0,2900.0,00h 36m 46.47s,+44° 29′ 18.6″,5.14,−1.38,656.0,K5III,"semiregular variable, ΔV = 0.06m, P = 11.5 d; has a possible planetary system",K6 IIIa(K5 - M0 III),3909.0 K,,69.98 R☉,979.2 L☉,1.19 cgs,,,False
+ρ And,ρ,27,,1671.0,1686.0,00h 21m 07.23s,+37° 58′ 07.3″,5.16,1.71,160.0,F5III,,F5IV-V,6674.0 K,1.812 M☉,3.234 R☉,18.672 L☉,3.69 cgs,44.0 km/s,1.3 Gyr,False
+64 And,,64,,14770.0,11220.0,02h 24m 24.89s,+50° 00′ 23.9″,5.19,−0.11,375.0,G8III,,G8III,4944.0 K,3.12 M☉,15.9 R☉,135.6 L☉,2.55 cgs,0.69 km/s,350.0 Myr,False
+GN And,,28,GN,2628.0,2355.0,00h 30m 07.34s,+29° 45′ 06.1″,5.20,1.43,185.0,A7III,"low-amplitude δ Sct variable, ΔV = 0.05m, P = 0.0693041 d",A7 III,7335.0 K,1.77 M☉,3.19 R☉,25.007 L☉,3.95 cgs,21.0 km/s,1.159 Gyr,False
+14 And,,14,,221345.0,116076.0,23h 31m 17.20s,+39° 14′ 11.0″,5.22,0.80,249.0,K0III,"Veritate, suspected variable; has a planet (b)",K0 III,4483.0 K,0.2 M☉,12.67 R☉,58.18 L☉,2.6 cgs,1.63 km/s,2.04 Gyr,False
+49 And,A,49,,9057.0,6999.0,01h 30m 06.10s,+47° 00′ 26.6″,5.27,0.53,290.0,K0III,,K0 III,4879.0 K,2.07 M☉,11.0 R☉,70.8 L☉,2.3 cgs,2.0 km/s,1.75 Gyr,False
+32 And,,32,,3817.0,3231.0,00h 41m 07.20s,+39° 27′ 31.2″,5.30,0.18,344.0,G8III,,G8 III,5107.0 K,2.81 M☉,12.16 R☉,90.2 L☉,2.73 cgs,1.7 km/s,420.0 Myr,False
+4 And,,4,,218452.0,114200.0,23h 07m 39.28s,+46° 23′ 14.3″,5.30,0.20,342.0,K5III,double star,K5 III,4275.0 K,1.58 M☉,23.36 R☉,170.0 L☉,1.91 cgs,,2.24 Gyr,False
+6 Per,,(6),,13530.0,10366.0,02h 13m 36.02s,+51° 03′ 58.4″,5.31,1.38,199.0,G8III:var,spectroscopic binary; suspected variable,G8.5 IIIb Fe-2,4920.0 K,1.5 M☉,7.0 R☉,26.3 L☉,3.0 cgs,0.0 km/s,,False
+62 And,c,62,,14212.0,10819.0,02h 19m 16.85s,+47° 22′ 48.0″,5.31,0.84,255.0,A1V,,A0V,9572.0 K,2.42 M☉,1.8 R☉,45.2 L☉,,86.0 km/s,,False
+18 And,,18,,222304.0,116709.0,23h 39m 08.35s,+50° 28′ 18.3″,5.35,−0.04,390.0,B9V,,B9 Ve,10351.0 K,3.09 M☉,,146.6 L☉,3.632 cgs,183.0 km/s,,False
+55 And,,55,,11428.0,8814.0,01h 53m 17.35s,+40° 43′ 47.3″,5.42,−0.67,540.0,K1III,double star,K1 III,4290.0 K,,,436.43 L☉,2.3 cgs,,,False
+11 And,,11,,219945.0,115152.0,23h 19m 29.79s,+48° 37′ 30.7″,5.44,0.43,328.0,K0III,,K0 III,4874.0 K,2.57 M☉,12.0 R☉,62.86 L☉,2.61 cgs,1.0 km/s,,False
+36 And,,36,,5286.0,4288.0,00h 54m 58.02s,+23° 37′ 42.4″,5.46,2.51,127.0,K1IV,suspected variable,G8 IV + K3 IV,5000.0 K,1.45 M☉,3.71 R☉,7.75 L☉,,,,False
+V340 And,,15,V340,221756.0,116354.0,23h 34m 37.55s,+40° 14′ 11.6″,5.55,1.28,233.0,A1III,"low-amplitude δ Sct variable, ΔV = 0.007m","A1 III,A1 Va,or kA1hA3mA0.5 Va+",9225.0 K,2.7 M☉,,27.0 L☉,3.9 cgs,105.0 km/s,130.0 Myr,False
+PZ And,,63,PZ,14392.0,10944.0,02h 20m 58.17s,+50° 09′ 05.5″,5.57,0.38,356.0,B9p Si,"α2 CVn variable, ΔV = 0.05m, P = 4.189 d",B9VpSi,11967.0 K,3.07 M☉,2.4 R☉,110.0 L☉,4.29 cgs,4.189 days,,False
+47 And,,47,,8374.0,6514.0,01h 23m 40.56s,+37° 42′ 54.0″,5.60,1.54,211.0,A1m,,A1m(kA1hF1mF2),7280.0 K,1.636 M☉,1.84 R☉,9.0 L☉,4.16 cgs,15.9 km/s,1.0 Gyr,False
+44 And,,44,,6920.0,5493.0,01h 10m 18.85s,+42° 04′ 53.7″,5.67,2.06,172.0,F8V,,F8 V,6028.0 K,1.64 M☉,3.58 R☉,12.9 L☉,3.78 cgs,15.2 d,2.59 Gyr,False
+5 And,,5,,218470.0,114210.0,23h 07m 45.25s,+49° 17′ 43.6″,5.68,3.02,111.0,F5V,,F5 V,6605.0 K,1.386 M☉,1.741 R☉,5.62 L☉,4.12 cgs,9.7 km/s,2.28 Gyr,False
+56 And,,56,,11749.0,9021.0,01h 56m 09.23s,+37° 15′ 06.5″,5.69,0.73,320.0,G8III...,multiple star,K0 III,4765.0 K,1.34 M☉,11.0 R☉,56.2 L☉,2.58 cgs,0.0 km/s,3.16 Gyr,False
+23 And,,23,,905.0,1086.0,00h 13m 30.94s,+41° 02′ 08.6″,5.71,2.99,114.0,F0IV,,F0 IV,7089.0 K,1.43 M☉,,49.9 L☉,4.25 cgs,36.0 km/s,759.0 Myr,False
+V388 And,,13,V388,220885.0,115755.0,23h 27m 07.33s,+42° 54′ 43.1″,5.75,0.97,294.0,B9III,"α2 CVn variable, Vmax = 5.73m, Vmin = 5.77m, P = 1.47931 d",B9 III or B9 Mn,,,,42.89 L☉,,75.0 km/s,345.0 Myr,False
+12 And,,12,,220117.0,115280.0,23h 20m 53.17s,+38° 10′ 56.9″,5.77,2.63,138.0,F5V,triple star,F5 V,6454.0 K,1.25 M☉,,7.38 L☉,3.92 cgs,12.0 km/s,2.548 Gyr,False
+45 And,,45,,7019.0,5550.0,01h 11m 10.29s,+37° 43′ 26.9″,5.80,−1.44,916.0,B7III-IV,double star,B7 III-IV,12874.0 K,,5.2 R☉,413.92 L☉,,60.0 km/s,,False
+10 And,,10,,219981.0,115191.0,23h 19m 52.38s,+42° 04′ 40.9″,5.81,−0.30,542.0,M0III,,M0 III,,,33.0 R☉,258.78 L☉,,,,False
+OU And,,,OU,223460.0,117503.0,23h 49m 40.96s,+36° 25′ 31.4″,5.86,0.21,440.0,G1IIIe,"FK Com variable, ΔV = 0.07m, P = 24.2 d",G1 IIIe,5360.0 K,2.85 M☉,9.46 R☉,71.2 L☉,2.8 cgs,24.3 days,346.0 Myr,False
+KK And,,,KK,9531.0,7321.0,01h 34m 16.60s,+37° 14′ 13.9″,5.90,0.50,392.0,B8Vp(Si),"α2 CVn variable, ΔV = 0.012m, P = 0.6684 d",B9 IV,11729.0 K,3.07 M☉,2.7 R☉,91.0 L☉,3.914 cgs,0.67 days,225.0 Myr,False
+6 And,,6,,218804.0,114430.0,23h 10m 27.36s,+43° 32′ 41.1″,5.91,3.65,112.0,F5V,Astrometric binary,F5 V,6425.0 K,1.3 M☉,1.5 R☉,3.09 L☉,4.09 cgs,18.0 km/s,2.91 Gyr,False
+39 And,,39,,6116.0,4903.0,01h 02m 54.28s,+41° 20′ 42.7″,5.95,0.84,344.0,A5m,double star,kA3hA7VmA9,8073.0 K,,1.2 R☉,39.95 L☉,3.93 cgs,34.0 km/s,,False
+AN And,,9,AN,219815.0,115065.0,23h 18m 23.33s,+41° 46′ 25.3″,5.98,0.17,472.0,A7m,"β Lyr variable, Vmax = 5.96m, Vmin = 6.11m, P = 3.21952 d",A7 Vor A7m,8200.0 K,2.48 M☉,3.51 R☉,49.2 L☉,,81.0 km/s,,False
+V439 And,,,V439,166.0,544.0,00h 06m 36.53s,+29° 01′ 19.0″,6.07,5.39,45.0,K0V,"BY Draconis variable, ΔV = 0.04m, P = 6.23 d",K0Ve,5509.0 K,0.889 M☉,0.9172 R☉,0.6078 L☉,4.49 cgs,6.23 days,78.0 Myr,False
+59 And A,,59,,13294.0,10176.0,02h 10m 52.83s,+39° 02′ 22.5″,6.09,1.56,263.0,B9V,binary star,B9 V,10870.0 K,2.23 M☉,2.73 R☉,83.97 L☉,,176.0 km/s,,False
+26 And,,26,,1438.0,1501.0,00h 18m 42.15s,+43° 47′ 28.1″,6.10,−0.53,692.0,B8V,double star,B8 V+ F3 V,11939.0 K,3.54 M☉,3.76 R☉,219.0 L☉,3.82 cgs,18.0 km/s,95.0 Myr,False
+GO And,,,GO,4778.0,3919.0,00h 50m 18.21s,+45° 00′ 08.1″,6.13,1.34,296.0,A0p...,"α2 CVn variable, ΔV = 0.04m, P = 2.5481 d",A3VpSiSrCrEuKsn,9135.0 K,2.24 M☉,2.36 R☉,34.9 L☉,4.12 cgs,2.5616 days,77.0 Myr,False
+66 And,,66,,15138.0,11465.0,02h 27m 51.75s,+50° 34′ 12.7″,6.16,2.54,173.0,F4V,spectroscopic binary,F4 V,6627.0 K,1.38 M☉,1.7 R☉,4.9 L☉,4.21 cgs,4.2 km/s,1.273 Gyr,False
+OP And,,,OP,9746.0,7493.0,01h 36m 27.21s,+48° 43′ 22.2″,6.20,0.65,420.0,K1III:,"BY Dra variable, ΔV = 0.09m",K1III,4490.0 K,3.0 M☉,16.1 R☉,128.825 L☉,2.14 cgs,7.2 km/s,,False
+CG And,,,CG,224801.0,63.0,00h 00m 43.62s,+45° 15′ 12.0″,6.36,−0.23,678.0,B9p SiEu,"α2 CVn variable, Vmax = 6.32m, Vmin = 6.42m, P = 3.73975 d",A0IIspSiSrHg,11900.0 K,3.4 M☉,2.8 R☉,170.0 L☉,4.12 cgs,3.74 days,239.0 Myr,False
+LN And,,,LN,217811.0,113802.0,23h 02m 45.15s,+44° 03′ 31.6″,6.37,−1.42,1177.0,B2V,double star; not variable despite designation,B2V,18090.0 K,6.5 M☉,3.1 R☉,608.0 L☉,3.94 cgs,8.0 km/s,9.5 Myr,False
+V385 And,,,V385,220524.0,115530.0,23h 24m 08.88s,+41° 36′ 46.3″,6.37,−1.55,1249.0,M0,"irregular variable, Vmax = 6.36m, Vmin = 6.47m",M0,3563.0 K,,113.0 R☉,1843.0 L☉,,,,False
+GY And,,,GY,9996.0,7651.0,01h 38m 31.84s,+45° 23′ 58.9″,6.38,0.66,455.0,B9Vp (Cr-Eu),"Promethium lines; α2 CVn variable, Vmax = 6.27m, Vmin = 6.44m, P = 8000 d",B9 pe,10723.0 K,2.47 M☉,2.6 R☉,52.0 L☉,4.01 cgs,31.0 km/s,,False
+V529 And,,,V529,8801.0,6794.0,01h 27m 26.67s,+41° 06′ 04.0″,6.42,2.69,182.0,Am...,"δ Scuti variable, ΔV = 0.03m, P = 0.40331 d",Am(kA5/hF1/mF2),7560.0 K,1.55 M☉,1.7 R☉,6.5 L☉,4.1 cgs,53.1 km/s,727.0 Myr,False
+ET And,,,ET,219749.0,115036.0,23h 17m 55.99s,+45° 29′ 20.2″,6.48,0.36,545.0,B9Vp(Si),"α2 CVn variable, ΔV = 0.03m, P = 1.61888 d",A0 Vp SiSror B9p SI,11444.0 K,3.25 M☉,2.7 R☉,91.06 L☉,3.81 cgs,1.62 d,284.0 Myr,False
+PY And,,,PY,3322.0,2865.0,00h 36m 20.00s,+27° 15′ 17″,6.50,-0.16,701.0,B8IIImnp...,"α2 CVn variable, ΔV = ~0.03m",B8.5 IIIp HgMn,12882.0 K,3.68 M☉,4.8 R☉,246.0 L☉,3.821 cgs,14.0 km/s,,False
+59 And B,,59,,13295.0,10180.0,02h 10m 53.67s,+39° 02′ 36.0″,6.82,−1.76,1698.0,A1Vn,component of the 59 And system,B9 V,10870.0 K,2.23 M☉,2.73 R☉,83.97 L☉,,176.0 km/s,,False
+R And,,,R,1967.0,1901.0,00h 24m 01.95s,+38° 34′ 37.3″,7.39,-5.19,790.0,S6.5IIIeZr6Ti2,"Mira variable, Vmax = 5.8m, Vmin = 15.2m, P = 409.2 d","S3,5e-S8,8e(M7e)",2500.0 K,3.7 M☉,493.0 R☉,6300.0 L☉,1.02 cgs,,,False
+RW And,,,RW,4489.0,,00h 47m 18.92s,+32° 41′ 08.6″,7.9,-0.52,1375.0,"M5e-M10e(S6,2e)","Mira variable, Vmax = 7.9m, Vmin = 15.7m, P = 430 d",,,,,,,,,False
+RU And,,,RU,,,01h 38m 37s,38° 40′ 12″,9.9,,,M5e-M6e,"a variable star in the constellation of Andromeda. It is classified as a semiregular variable pulsating giant star, and varies from an apparent visual magnitude of 14.5 at minimum brightness to a magnitude of 9.9 at maximum brightness, with a period of approximately 238.3 days.",,,,,,,,,False
+Z And,,,Z,221650.0,116287.0,23h 33m 39.95s,+48° 49′ 05.9″,10.53,2.38,1393.0,M2III + B1eq,"prototype of Z And variables, Vmax = 7.7m, Vmin = 11.3m",M2III + B1eq,3400.0 K,2.0 M☉,85.0 R☉,880.0 L☉,,1682.6 s,,False
+S And,,,S,,,00h 42m 43.11s,+41° 16′ 04.2″,,,2600000.0,Ia,"SN 1885A; BD+40°147a; type Ia supernova in the Andromeda Galaxy, Vmax = 5.8m, Vmin = < 16m",,,,,,,,,False
+]]
+
+return M

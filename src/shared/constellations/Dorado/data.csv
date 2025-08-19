@@ -1,0 +1,26 @@
+Name,B,G.,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Dor,α,8.0,,29305.0,21281.0,04h 33m 59.72s,−55° 02′ 42.0″,3.3,−0.36,176.0,A0IIIp(Si),"double star; α2 CVn variable, Vmax = 3.26m, Vmin = 3.30m, P = 2.95 d",A0IIIp,11588.0 K,3.33 M☉,3.5 R☉,195.0 L☉,4.02 cgs,2.94 days,,True
+β Dor,β,29.0,,37350.0,26069.0,05h 33m 37.52s,−62° 29′ 23.5″,3.76,−3.76,1038.0,F4-G4Ia-II,"Cepheid variable, Vmax = 3.41m, Vmin = 4.08m, P = 9.8426 d",F4-G4Ia-II,5445.0 K,7.7 M☉,67.8 R☉,3200.0 L☉,1.3 cgs,0.0 km/s,42.5 Myr,True
+γ Dor,γ,3.0,,27290.0,19893.0,04h 16m 01.49s,−51° 29′ 13.5″,4.26,2.72,66.0,F0V-F5V,"prototype γ Dor variable, Vmax = 4.23m, Vmin = 4.27m, P = 0.7570 d",F1V,6906.0 K,1.56 M☉,1.85 R☉,6.999 L☉,4.29 cgs,56.6 km/s,1.207 Gyr,True
+δ Dor,δ,33.0,,39014.0,27100.0,05h 44m 46.42s,−65° 44′ 07.9″,4.34,1.10,145.0,A7V,,A7 V,7828.0 K,1.85 M☉,2.1 R☉,29.0 L☉,3.89 cgs,172.0 km/s,940.0 Myr,False
+ζ Dor,ζ,20.0,,33262.0,23693.0,05h 05m 30.69s,−57° 28′ 22.8″,4.71,4.38,38.0,F7V,"variable star, ΔV = 0.005m, P = 3.49614 d",F7V,6152.0 K,1.02 M☉,1.1 R☉,1.57 L☉,4.43 cgs,15.4 km/s,580.0 Myr,False
+θ Dor,θ,22.0,,34649.0,24372.0,05h 13m 45.43s,−67° 11′ 07.3″,4.81,−1.31,546.0,K2III,,K2/3 III CNIb/II,4320.0 K,2.23 M☉,35.6 R☉,427.0 L☉,2.5 cgs,2.2 km/s,1.17 Gyr,False
+η2 Dor,η2,40.0,,43455.0,29353.0,06h 11m 15.02s,−65° 35′ 22.9″,5.01,−1.56,671.0,M2.5III,"semiregular variable, Vmax = 4.94m, Vmin = 5.09m",M2.5III,3726.0 K,1.4 M☉,81.89 R☉,1165.0 L☉,1.61 cgs,,,False
+ν Dor,ν,39.0,,43107.0,29134.0,06h 08m 44.34s,−68° 50′ 36.4″,5.06,0.42,277.0,B8V,,B8 V,11381.0 K,2.73 M☉,3.2 R☉,107.0 L☉,4.01 cgs,1.40032 d,118.0 Myr,False
+ε Dor,ε,34.0,,39844.0,27534.0,05h 49m 53.55s,−66° 54′ 04.4″,5.1,−0.88,512.0,B6V,suspected variable,B6 V,13212.0 K,4.31 M☉,3.8 R☉,556.0 L☉,3.89 cgs,17.0 km/s,210.0 Myr,False
+λ Dor,λ,23.0,,36189.0,25429.0,05h 26m 19.28s,−58° 54′ 45.4″,5.14,−0.64,467.0,G6III,,G6 IIIor G8 III,5009.0 K,3.82 M☉,21.1 R☉,252.0 L☉,2.41 cgs,5.2 km/s,258.0 Myr,False
+WZ Dor,,21.0,WZ,33684.0,23840.0,05h 07m 34.01s,−63° 23′ 58.5″,5.19,−1.23,627.0,M3III,"semiregular variable, ΔV = 0.12m, P = 40 d",M3 III,3603.0 K,1.4 M☉,88.3 R☉,1248.0 L☉,0.5 cgs,,,False
+κ Dor,κ,12.0,,30478.0,22040.0,04h 44m 21.12s,−59° 43′ 58.2″,5.28,1.11,222.0,A8/A9III/IV,"suspected δ Sct variable, ΔV = 0.03m",A8 IV,7623.0 K,1.78 M☉,2.88 R☉,26.6 L☉,3.79 cgs,230.0 km/s,,False
+G Dor,G,28.0,,37297.0,26001.0,05h 32m 59.52s,−64° 13′ 39.1″,5.34,1.08,232.0,G8/K0III,spectroscopic binary,G8/K0 III,4819.0 K,3.47 M☉,10.5 R☉,48.4 L☉,2.61 cgs,<1.0 km/s,556.0 Myr,False
+π2 Dor,π2,42.0,,46116.0,30565.0,06h 25m 28.65s,−69° 41′ 26.8″,5.37,0.81,266.0,G8III,,G8 III,4919.0 K,1.8 M☉,9.84 R☉,51.1 L☉,2.66 cgs,<2.0 km/s,1.61 Gyr,False
+π1 Dor,π1,38.0,,45669.0,30321.0,06h 22m 38.23s,−69° 59′ 02.9″,5.56,−0.75,595.0,K5III,,K5 III,4019.0 K,1.67 M☉,56.5 R☉,530.0 L☉,1.41 cgs,1.8 km/s,2.67 Gyr,False
+R Dor,,9.0,R,29712.0,21479.0,04h 36m 45.68s,−62° 04′ 37.1″,5.59,1.61,203.0,M8IIIe,"semiregular variable, Vmax = 4.78m, Vmin = 6.32m, P = 172 d",M8III:e,2710.0 K,1.0 M☉,298.0 R☉,4350.0 L☉,0.6 cgs,57.5 years,14.0 Gyr,False
+η1 Dor,η1,41.0,,42525.0,28909.0,06h 06m 09.36s,−66° 02′ 22.9″,5.72,0.68,332.0,A0V,,A0V,10325.0 K,2.46 M☉,2.5 R☉,49.0 L☉,4.09 cgs,149.0 km/s,94.0 Myr,False
+HR 1960,,31.0,AZ,37935.0,26368.0,05h 36m 54.99s,−66° 33′ 37.1″,6.28,−0.82,856.0,B9.5V,"Be star, Vmax = 6.26m, Vmin = 6.29m, P = 395.48 d",,,,,,,,,False
+XY Dor,,2.0,XY,25470.0,18691.0,04h 00m 15.53s,−51° 33′ 53.9″,6.52,,1250.0,M1III,"semiregular variable, ΔV = 0.07m",,,,,,,,,False
+XZ Dor,,,XZ,31009.0,22381.0,04h 49m 04.75s,−56° 39′ 59.7″,6.55,,1450.0,M2III,"slow irregular variable, ΔV = 0.16m",,,,,,,,,False
+AB Dor,,,AB,36705.0,25647.0,05h 28m 44.83s,−65° 26′ 54.9″,7.0,,49.0,K0V,"triple-star system; T Tau star, Vmax = 6.74m, Vmin = 7.12m, P = 0.5139 d; member of the AB Doradus moving group",K0V+ M8,5250.0 K,0.86 M☉,0.96 R☉,0.0021 L☉,,0.5148 days,50.0 Myr,False
+S Dor,,,S,35343.0,,05h 18m 14.3s,−69° 14′ 59″,9.72,,,A0-5eq,"in LMC; prototype luminous blue variable, Vmax = 8.8m, Vmin = 10.83m; one of the most luminous stars known",B8/9eq – F0/5:Iae,8500.0 K,24.0 M☉,380.0 R☉,910000.0 L☉,0.6 cgs,,,False
+AA Dor,,,AA,269696.0,,05h 31m 40.35s,−69° 53′ 02.2″,11.14,,,sdB+dM,"Algol variable, Vmax = 11.13m, Vmin = 11.6m, P = 0.2615398 d",,,,,,,,,False
+RW Dor,,,RW,269320.0,24763.0,05h 18m 32.54s,−68° 13′ 32.8″,11.16,,307.5,G4/5V,"W UMa variable, ΔV = 0.454m, P = 0.285463 d",,,,,,,,,False
+BB Dor,,,BB,,,05h 29m 28.66s,−58° 54′ 46.5″,14.3,,,,"VY Scl variable, Vmax = 14.3m, Vmin = 19.3m, P = 0.154095 d",WD + M3-4V,9365.0 K,,,,,,,False

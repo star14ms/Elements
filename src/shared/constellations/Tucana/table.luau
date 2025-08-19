@@ -1,0 +1,36 @@
+local M = {}
+M.csv = [[
+Name,B,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Tuc,α,,211416.0,110130.0,22h 18m 30.18s,−60° 15′ 34.2″,2.87,−1.05,199.0,K3III,Lang-Exster astrometric binary,K3 III,4310.0 K,3.0 M☉,37.3 R☉,424.0 L☉,,,,True
+γ Tuc,γ,,219571.0,114996.0,23h 17m 25.81s,−58° 14′ 09.3″,3.99,2.28,72.0,F1III,,F1 IIIor F3 IV/Vor F4 V,6679.0 K,1.55 M☉,2.2 R☉,11.33 L☉,3.92 cgs,94.0 km/s,1.414 Gyr,True
+ζ Tuc,ζ,,1581.0,1599.0,00h 20m 01.91s,−64° 52′ 39.4″,4.23,4.56,28.0,F9V,Sun-like star,F9.5 V,5924.0 K,0.985 M☉,1.044 R☉,1.232 L☉,4.394 cgs,31.1 days,5.3 Gyr,True
+κ Tuc,κ,,7788.0,5896.0,01h 15m 45.50s,−68° 52′ 34.5″,4.25,2.70,67.0,F6IV,"quadruple star, suspected variable",F6IV + G5V + K2V + K3V,6457.0 K,1.37 M☉,1.71 R☉,4.59 L☉,,61.1 km/s,2.28 Gyr,False
+β1 Tuc,β1,,2884.0,2484.0,00h 31m 32.56s,−62° 57′ 29.1″,4.34,,135.0,B9V,component of the β Tuc system,B9V,10726.0 K,3.84 M☉,2.73 R☉,39.0 L☉,4.37 cgs,170.0 km/s,,False
+ε Tuc,ε,,224686.0,118322.0,23h 59m 54.91s,−65° 34′ 37.5″,4.49,−0.81,374.0,B9IV,,B8 Vor B9 IV,13000.0 K,4.0 M☉,,389.0 L☉,3.9 cgs,8.0 )d,123.0 Myr,False
+δ Tuc,δ,,212581.0,110838.0,22h 27m 19.87s,−64° 57′ 59.0″,4.5,−0.06,267.0,B8V,"suspected variable, Vmax = 4.46m, Vmin = 4.50m",B9 Vn + G0 V Fe−2,11271.0 K,2.99 M☉,2.7 R☉,,4.11 cgs,2.8535 d,232.0 Myr,False
+β2 Tuc,β2,,2885.0,2487.0,00h 31m 33.36s,−62° 57′ 55.6″,4.51,,168.0,A2V,component of the β Tuc system,B9V,10726.0 K,3.84 M☉,2.73 R☉,39.0 L☉,4.37 cgs,170.0 km/s,,False
+ν Tuc,ν,,213442.0,111310.0,22h 33m 00.01s,−61° 58′ 55.5″,4.91,0.30,273.0,M4III,"semiregular variable, Vmax = 4.75m, Vmin = 4.93m",M4 III,3472.0 K,,64.37 R☉,554.0 L☉,0.778 cgs,,,False
+η Tuc,η,,224392.0,118121.0,23h 57m 34.97s,−64° 17′ 53.1″,5.0,1.56,159.0,A1V,,A1V,9057.0 K,1.94 M☉,1.8 R☉,23.0 L☉,4.31 cgs,190.0 km/s,,False
+β3 Tuc,β3,,3003.0,2578.0,00h 32m 43.79s,−63° 01′ 53.0″,5.09,,149.0,A0V,component of the β Tuc system,B9V,10726.0 K,3.84 M☉,2.73 R☉,39.0 L☉,4.37 cgs,170.0 km/s,,False
+ι Tuc,ι,,6793.0,5268.0,01h 07m 18.57s,−61° 46′ 30.9″,5.36,0.70,279.0,G5III,semiregular variable,G5 III,5039.0 K,2.2 M☉,11.0 R☉,65.0 L☉,3.15 cgs,5.8 km/s,1.69 Gyr,False
+ρ Tuc,ρ,,4089.0,3330.0,00h 42m 28.30s,−65° 28′ 05.3″,5.38,2.33,133.0,F6V,,F6 V,6034.0 K,1.66 M☉,,9.7 L☉,3.64 cgs,23.5 km/s,2.64 Gyr,False
+λ2 Tuc,λ2,,5457.0,4293.0,00h 55m 00.30s,−69° 31′ 37.1″,5.45,1.40,210.0,G7III,,K2 III,4605.0 K,1.75 M☉,9.84 R☉,39.2 L☉,2.74 cgs,3.14 km/s,,False
+π Tuc,π,,1685.0,1647.0,00h 20m 39.04s,−69° 37′ 29.7″,5.5,0.64,306.0,B9V,,B9 V,11393.0 K,2.8 M☉,0.553 R☉,59.0 L☉,4.0 cgs,236.0 km/s,206.0 Myr,False
+HD 221006,,CG,221006.0,115908.0,23h 29m 00.93s,−63° 06′ 38.2″,5.66,0.33,380.0,Ap Si,"α² CVn variable, ΔV = 0.045m, P = 2.3148 d",,,,,,,,,False
+BQ Tuc,,BQ,5276.0,4200.0,00h 53m 37.78s,−62° 52′ 16.9″,5.7,−0.64,613.0,M4III,"semiregular variable, ΔV = 0.2m",,,,,,,,,False
+DR Tuc,,DR,220263.0,115433.0,23h 22m 56.68s,−60° 03′ 21.0″,6.08,−1.00,851.0,M3III,semiregular variable,,,,,,,,,False
+θ Tuc,θ,,3112.0,2629.0,00h 33m 23.23s,−71° 15′ 58.4″,6.11,0.22,490.0,A7IV,"δ Sct variable, Vmax = 6.06m, Vmin = 6.15m, P = 0.049308 d",A7IV,7685.0 K,2.1 M☉,,25.1 L☉,3.923 cgs,,1.04 Gyr,False
+λ1 Tuc,λ1,,5190.0,4084.0,00h 52m 24.51s,−69° 30′ 12.9″,6.22,,206.0,F7IV/V,suspected variable,F7 IV-V,6325.0 K,1.55 M☉,1.86 R☉,7.0 L☉,3.9 cgs,3.6 km/s,2.6 Gyr,False
+CC Tuc,,CC,6311.0,4879.0,01h 02m 42.89s,−65° 27′ 22.0″,6.25,−0.71,803.0,M2III,"semiregular variable, Vmax = 6.22m, Vmin = 6.37m",,,,,,,,,False
+HD 215562,ξ,,215562.0,112533.0,22h 47m 35.71s,−65° 33′ 36.8″,6.49,0.05,633.0,K1III,,,,,,,,,,False
+HD 6870,,BS,6870.0,5321.0,01h 08m 03.97s,−61° 52′ 17.8″,7.45,,339.0,A2IIwp,"δ Sct variable, Vmax = 7.43m, Vmin = 7.57m, P = 0.065 d",,,,,,,,,False
+CF Tuc,,CF,5303.0,4157.0,00h 53m 07.77s,−74° 39′ 05.6″,7.9,,291.3,G5IV+K4IV-V,"RS CVn variable, Vmax = 7.50m, Vmin = 7.86m, P = 2.79750 d",,,,,,,,,False
+HD 222259 A,,DS,222259.0,116748.0,23h 39m 40.0s,−69° 11′ 45″,9.0,,143.0,G6V,has a planet (b),G6V+K3V,5428.0 K,1.01 M☉,0.964 R☉,0.725 L☉,,27.75 km/s,45.0 Myr,False
+AQ Tuc,,AQ,1372.0,1387.0,00h 17m 21.51s,−71° 54′ 56.8″,10.12,,1490.0,F4+...,"W UMa variable, Vmax = 9.91m, Vmin = 10.48m, P = 0.59484267 d",,,,,,,,,False
+W Tuc,,W,,4541.0,00h 58m 09.70s,−63° 23′ 44.4″,11.6,,979.0,A...,"RR Lyr variable, Vmax = 10.783m, Vmin = 11.950m, P = 0.6422382 d",,,,,,,,,False
+BZ Tuc,,BZ,,,00h 41m 43.43s,−73° 43′ 23.6″,11.68,,200000.0,F8Ib,"in SMC; classical Cepheid, Vmax = 11.65m, Vmin = 12.35m, P = 127.447 d",,,,,,,,,False
+AX J0051-733,,DZ,,,00h 50m 44.70s,−73° 16′ 05.4″,15.44,,200000.0,B0-B0.5V,"in SMC; X-ray pulsar with Be star companion, Vmax = 14.7m, Vmin = 15.7m, P = 0.708 d",,,,,,,,,False
+CP Tuc,,CP,,,23h 15m 19.10s,−59° 10′ 28.3″,,,,,AM Her variable,,,,,,,,,False
+]]
+
+return M

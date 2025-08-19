@@ -1,0 +1,19 @@
+local M = {}
+M.csv = [[
+Name,B,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Ret,α,,27256.0,19780.0,04h 14m 25.43s,−62° 28′ 26.3″,3.33,−0.17,163.0,G7III,double star,G8 II-III,4775.0 K,3.12 M☉,13.5 R☉,91.6 L☉,2.977 cgs,4.67 km/s,330.0 Myr,True
+β Ret,β,,23817.0,17440.0,03h 44m 11.55s,−64° 48′ 25.5″,3.84,1.41,100.0,K0IV SB,"binary star system, spectroscopic binary",K2-IIIb,4580.0 K,1.2 M☉,9.3 R☉,,,,6.0 Gyr,True
+ε Ret,ε,,27442.0,19921.0,04h 16m 29.08s,−59° 18′ 06.3″,4.44,3.14,59.0,K2IV,double star; component A has a planet (b),K2 III-IV + DA3.3,4961.0 K,1.46 M☉,3.18 R☉,6.2 L☉,3.76 cgs,2.07 km/s,2.89 Gyr,True
+γ Ret,γ,,25705.0,18744.0,04h 00m 53.81s,−62° 09′ 33.7″,4.48,−1.41,490.0,M4III,"semiregular variable, Vmax = 4.42m, Vmin = 4.64m, P = 25 d",M4 III,3599.0 K,2.0 M☉,115.0 R☉,1846.0 L☉,0.8 cgs,,,True
+δ Ret,δ,,25422.0,18597.0,03h 58m 44.74s,−61° 24′ 00.5″,4.56,−1.50,530.0,M2III,"irregular variable, Vmax = 4.54m, Vmin = 4.59m",M2 III,3891.0 K,,56.0 R☉,1100.0 L☉,,,,False
+κ Ret,κ,,22001.0,16245.0,03h 29m 22.19s,−62° 56′ 18.4″,4.71,3.05,70.0,F5IV-V,binary star,F3 Vor F3 IV/V+ M1,6700.0 K,1.34 M☉,1.65 R☉,4.95 L☉,4.1 cgs,14.3 km/s,2.29 Gyr,False
+ι Ret,ι,,25728.0,18772.0,04h 01m 18.07s,−61° 04′ 44.6″,4.97,−0.06,331.0,K4III,,K4 III,4290.0 K,,24.3 R☉,179.8 L☉,,,,False
+ζ2 Ret,ζ2,,20807.0,15371.0,03h 18m 11.14s,−62° 30′ 28.6″,5.24,4.83,39.0,G1V,component of the ζ Ret system,G3−5V + G2V,5737.0 K,0.95 M☉,0.92 R☉,0.8 L☉,4.53 cgs,2.2 km/s,3.4 Gyr,False
+η Ret,η,,28093.0,20384.0,04h 21m 53.22s,−63° 23′ 12.5″,5.24,−0.09,380.0,G7III,,G7 III,4951.0 K,2.54 M☉,12.0 R☉,120.0 L☉,2.49 cgs,,1.17 Gyr,False
+ζ1 Ret,ζ1,,20766.0,15330.0,03h 17m 44.47s,−62° 34′ 36.8″,5.53,5.11,40.0,G2V,component of the ζ Ret system; suspected variable,G3−5V + G2V,5737.0 K,0.95 M☉,0.92 R☉,0.8 L☉,4.53 cgs,2.2 km/s,3.4 Gyr,False
+θ Ret,θ,,27657.0,20020.0,04h 17m 40.27s,−63° 15′ 19.8″,5.88,0.12,462.0,B9III-IV,"double star; suspected variable, Vmax = 5.86m, Vmin = 5.90m",B9IV,11967.0 K,3.363 M☉,,179.0 L☉,,2.9686 d,166.0 Myr,False
+TT Ret,,TT,27463.0,19917.0,04h 16m 20.92s,−60° 56′ 54.8″,6.34,0.96,388.0,Ap EuCr(Sr),"double star; α2 CVn variable, , P = 2.83507 d",,,,,,,,,False
+R Ret,,"R, S",29383.0,21252.0,04h 33m 32.83s,−63° 01′ 45.0″,9.23,−1.71,5015.0,M4e-M7.5e,"Mira variable, Vmax = 6.35m, Vmin = 14.2m, P = 281 d",M4e - M7.5e,3410.0 K,0.88 M☉,249.0 R☉,7571.0 L☉,0.445 cgs,,,False
+]]
+
+return M

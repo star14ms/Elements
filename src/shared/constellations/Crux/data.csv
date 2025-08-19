@@ -1,0 +1,37 @@
+Name,B,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+β Cru,β,,111123.0,62434.0,12h 47m 43.32s,−59° 41′ 19.4″,1.25,−3.92,352,B0.5III,"Mimosa, Becrux; binary star or possibly triple star system, 20th brightest of all stars; β Cep variable, Vmax = +1.23m, Vmin = +1.31m, P = 0.2365072 d Probable high-mass member of Lower Centaurus–Crux subgroup of the Scorpius–Centaurus association.",B0.5 III/ B2V,28840.0 K,14.5 M☉,8.9 R☉,25700.0 L☉,3.6 cgs,3.6 days,11.3 Myr,True
+α1 Cru (α Cru A),α1,,108248.0,60718.0,12h 26m 35.94s,−63° 05′ 56.6″,1.4,−3.6,321,B0.5IV,"component of Acrux, 23rd brightest star, multiple star, spectroscopic binary. Possible member Lower Centaurus–Crux subgroup of the Scorpius–Centaurus association (debated).",B0.5IV + B1V,28840.0 K,6.05 M☉,7.29 R☉,31110.0 L☉,,124.0 km/s,10.8 Myr,True
+γ Cru,γ,,108903.0,61084.0,12h 31m 09.93s,−57° 06′ 45.2″,1.6,−0.56,88,M4III,"Gacrux, SRV, Vmax = +1.60m, Vmin = +1.67m",M3.5 III,3689.0 K,1.5 M☉,73.0 R☉,830.0 L☉,0.75 cgs,,,True
+α2 Cru (α Cru B),α2,,108249.0,,12h 26m 36.50s,−63° 05′ 58.0″,2.09,−2.88,321,B1V,component of Acrux. Possible member Lower Centaurus–Crux subgroup of the Scorpius–Centaurus association (debated).,B0.5IV + B1V,28840.0 K,6.05 M☉,7.29 R☉,31110.0 L☉,,124.0 km/s,10.8 Myr,True
+δ Cru,δ,,106490.0,59747.0,12h 15m 08.76s,−58° 44′ 56.0″,2.79,−2.45,364,B2IV,"Imai, β Cep variable; Vmax = +2.78m, Vmin = +2.80m, P = 0.151038 d  Member of the Lower Centaurus–Crux subgroup of the Scorpius–Centaurus association.",B2 IV,20400.0 K,8.9 M☉,7.21 R☉,8100.0 L☉,3.88 cgs,210.0 km/s,18.1 Myr,False
+ε Cru,ε,,107446.0,60260.0,12h 21m 21.81s,−60° 24′ 04.9″,3.59,−0.63,228,K3/K4III,"Ginan, suspected variable",K3 III,4210.0 K,0.2 M☉,31.0 R☉,282.0 L☉,1.91 cgs,3.14 km/s,2.17 Gyr,False
+μ1 Cru,μ1,,112092.0,63003.0,12h 54m 35.66s,−57° 10′ 40.4″,4.03,−1.29,377,B2IV-V,binary star; suspected variable; Member of the Lower Centaurus–Crux subgroup of the Scorpius–Centaurus association.,B2IV-V,21100.0 K,7.7 M☉,3.9 R☉,1123.0 L☉,3.93 cgs,210.0 km/s,9.2 Myr,False
+ζ Cru,ζ,,106983.0,60009.0,12h 18m 26.29s,−64° 00′ 11.0″,4.06,−1.16,361,B2.5V,"double star, Member of the Lower Centaurus–Crux subgroup of the Scorpius–Centaurus association.",B2.5V,3832.0 K,6.4 M☉,3.7 R☉,737.0 L☉,,115.0 km/s,20.0 Myr,False
+η Cru,η,,105211.0,59072.0,12h 06m 52.85s,−64° 36′ 49.1″,4.14,2.67,64,F2III,double star,F2 V,6830.0 K,1.51 M☉,1.854 R☉,6.901 L☉,4.01 cgs,46.1 km/s,1.63 Gyr,False
+θ1 Cru,θ1,,104671.0,58758.0,12h 03m 01.70s,−63° 18′ 46.6″,4.32,0.08,230,Am,spectroscopic binary,A3(m)A8-A8,7341.0 K,1.57 M☉,,81.0 L☉,3.76 cgs,,1.1 Gyr,False
+λ Cru,λ,,112078.0,63007.0,12h 54m 39.22s,−59° 08′ 48.0″,4.62,−0.59,360,B4Vn,"β Cep variable, ΔV = 0.02m, P = 0.3951 d, Member of the Lower Centaurus–Crux subgroup of the Scorpius–Centaurus association.",B4 Vne,16500.0 K,5.0 M☉,3.0 R☉,790.0 L☉,3.01 cgs,290.0 km/s,53.3 Myr,False
+ι Cru,ι,,110829.0,62268.0,12h 45m 37.92s,−60° 58′ 52.2″,4.69,1.78,125,K1III,optical double,K0 III,4815.0 K,1.45 M☉,6.57 R☉,20.9 L☉,2.92 cgs,,,False
+θ2 Cru,θ2,,104841.0,58867.0,12h 04m 19.24s,−63° 09′ 56.6″,4.72,−2.10,753,B2IV,"spectroscopic binary; β Cep variable, Vmax = +4.70m, Vmin = +4.74m, P = 0.0889 d",B3 V,15361.0 K,5.9 M☉,6.9 R☉,1935.0 L☉,3.55 cgs,23.0 km/s,18.5 Myr,False
+α Cru C,,,108250.0,,12h 26m 30.90s,−63° 07′ 21.0″,4.86,,,B4IV,probable optical double with the α Cru system; suspected variable,B0.5IV + B1V,28840.0 K,6.05 M☉,7.29 R☉,31110.0 L☉,,124.0 km/s,10.8 Myr,False
+CH Cru,,CH,110335.0,61966.0,12h 41m 56.60s,−59° 41′ 08.9″,4.91,−2.60,1035,B6IV,γ Cas variable,B5IIIor B6IV,10600.0 K,5.3 M☉,11.2 R☉,1073.0 L☉,2.9 cgs,240.0 km/s,120.0 [better source needed]Myr,False
+μ2 Cru,μ2,,112091.0,63005.0,12h 54m 36.92s,−57° 10′ 07.1″,5.08,−0.14,361,B5Vne,"component of μ Cru system; γ Cas variable, Vmax = +4.99m, Vmin = +5.18m",B2IV-V,21100.0 K,7.7 M☉,3.9 R☉,1123.0 L☉,3.93 cgs,210.0 km/s,9.2 Myr,False
+HD 110432,,BZ,110432.0,62027.0,12h 42m 50.28s,−63° 03′ 31.0″,5.27,−2.12,982,B2pe,"high-mass X-ray binary; γ Cas variable, Vmax = +5.24m, Vmin = +5.45m",B1IVe,25000.0 K,9.6 M☉,6.5 R☉,1153.0 L☉,3.9 cgs,400.0 km/s,,False
+BL Cru,,BL,108396.0,60781.0,12h 27m 28.88s,−58° 59′ 30.4″,5.38,−0.82,566,M4/M5III,"semiregular variable, ΔV = 0.35m",M4-5III,,,,,,,,False
+BG Cru,,BG,108968.0,61136.0,12h 31m 40.34s,−59° 25′ 26.1″,5.49,−3.07,1680,F5Ib-G0p,"Cepheid variable, Vmax = +5.34m, Vmin = +5.58m, P = 3.3428 d",F7Ib/II(F5Ib - G0p),6253.0 K,6.3 M☉,39.3 R☉,1033.93 L☉,2.15 cgs,22.0 km/s,63.7 Myr,False
+DS Cru,,DS,111613.0,62732.0,12h 51m 17.98s,−60° 19′ 47.2″,5.71,−4.10,2991,A2Iab,emission-line star; α Cyg variable,A1 Ia,9150.0 K,29.0 M☉,112.0 R☉,79400.0 L☉,1.45 cgs,17.0 km/s,7.0 Myr,False
+κ Cru,κ,,111973.0,62931.0,12h 53m 48.92s,−60° 22′ 34.5″,5.98,−2.55,1661,B5Ia,"member of the Jewel Box star cluster (note that κ Cru usually refers to the cluster itself); variable star, ΔV = 0.014m, P = 9.53562 d",B3Ia,16300.0 K,23.0 M☉,,151000.0 L☉,2.25 cgs,70.0 km/s,,False
+DL Cru,,DL,106343.0,59678.0,12h 14m 16.93s,−64° 24′ 30.7″,6.2,−7.66,~20000,B1.5Ia,α Cyg variable,B1.5Ia,20100.0 K,30.0 M☉,42.0 R☉,251000.0 L☉,2.5 cgs,43.0 km/s,,False
+γ Cru B,γ,,108925.0,,12h 31m 16.70s,−57° 04′ 52.0″,6.42,,,A3V,component of the γ Cru system,M3.5 III,3689.0 K,1.5 M☉,73.0 R☉,830.0 L☉,0.75 cgs,,,False
+T Cru,,T,107447.0,60259.0,12h 21m 21.13s,−62° 16′ 53.9″,6.58,,4000,G2Ib,"Cepheid variable, Vmax = +6.32m, Vmin = +6.83m, P = 6.73331 d",,4676.0 K,7.2 M☉,55.0 R☉,2601.0 L☉,1.52 cgs,,57.0 Myr,False
+S Cru,,S,112044.0,62986.0,12h 54m 22.00s,−58° 25′ 50.2″,6.58,,2300,F7Ib-II,"Cepheid variable, Vmax = +6.22m, Vmin = +6.92m, P = 4.68997 d",F6-G1Ib-II,6482.0 K,,37.9 R☉,,1.9 cgs,,116.0 Myr,False
+R Cru,,R,107805.0,60455.0,12h 23m 37.69s,−61° 37′ 44.9″,6.9,0.94,508,F7Ib/II,"Cepheid variable, Vmax = +6.40m, Vmin = +7.23m, P = 5.82575 d",F6-G2Ib-IIor F7Ib/II,5812.0 K,,44.6 R☉,,1.65 cgs,,,False
+AG Cru,,AG,110258.0,,12h 41m 25.98s,−59° 47′ 38.8″,7.9,,,F8Ib-II,"Cepheid variable, Vmax = +7.73m, Vmin = +8.58m, P = 3.83728 d",,,,,,,,,False
+BH Cru,,BH,,59844.0,12h 16m 16.79s,−56° 17′ 09.6″,7.96,,8200,SC4.5-7/8e,"Mira variable, Vmax = +6.6m, Vmin = +9.8m, P = 530 d","SC4.5/8-e - SC7/8-e(C8,2 in 2011)",3000.0 K,2.55 M☉,216.0 R☉,13700.0 L☉,0.02 cgs,,,False
+X Cru,,X,110945.0,,12h 46m 22.27s,−59° 07′ 29.1″,8.1,,,G1Ib,"Cepheid variable, Vmax = +8.1m, Vmin = +8.7m, P = 6.21997 d",G1Ib,6029.0 K,4.3 M☉,50.0 R☉,2884.0 L☉,1.69 cgs,,,False
+W Cru,,W,105998.0,59483.0,12h 11m 59.16s,−58° 47′ 00.7″,8.44,,,G2Iab,β Lyr variable,F8/G1Ia/abe(B + G1Iab),14000.0 K,8.2 M☉,71.0 R☉,1928.0 L☉,,,,False
+AB Cru,,AB,106871.0,59935.0,12h 17m 37.12s,−58° 09′ 52.4″,8.48,,3900,B2IVe,Algol variable,,,,,,,,,False
+AI Cru,,AI,,59026.0,12h 06m 07.69s,−61° 15′ 24.8″,9.68,,2300,F7Ib-II,Algol variable,,,,,,,,,False
+GX 301-2,,BP,,,12h 26m 37.56s,−62° 46′ 13.2″,10.66,,,B1.2Ia,"High-mass X-ray binary, Vmax = +10.4m, Vmin = +10.92m, P = 41.487 d",B1 Ia+,18100.0 K,43.0 M☉,70.0 R☉,470000.0 L☉,2.38 cgs,55.0 km/s,,False
+WR 46,,DI,104994.0,58954.0,12h 05m 18.72s,−62° 03′ 10.1″,10.8,−2.25,13000,WN3p,"Wolf–Rayet star, Vmax = +10.49m, Vmin = +11.00m",WN3p-w,112200.0 K,14.0 M☉,1.36 R☉,263000.0 L☉,,,,False
+HDE 311884,,CD,311884.0,,12h 43m 51.00s,−63° 45′ 14.8″,10.81,,911,WN6o + O5V,"Wolf–Rayet star, ΔV = 0.11m, P = 6.24 d",WN6o + O5V,,42.6 M☉,5.0 R☉,127000.0 L☉,,,,False
+BI Cru,,BI,,,12h 23m 25.99s,−62° 38′ 16.1″,11.0,,,B+....,"Symbiotic star, Vmax = +11.0m, Vmin = +14.0m",,,,,,,,,False

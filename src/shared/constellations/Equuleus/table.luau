@@ -1,0 +1,20 @@
+local M = {}
+M.csv = [[
+Name,B,F,G.,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Equ,α,8.0,20.0,,202447.0,104987.0,21h 15m 49.40s,+05° 14′ 53.1″,3.92,0.14,186.0,G0III+...,"Kitalpha, Kitel Phard, Kitalphar; spectroscopic binary",G7III + kA3hA4mA9,5100.0 K,2.3 M☉,9.2 R☉,52.5 L☉,,20.0 km/s,740.0 Myr,True
+δ Equ,δ,7.0,19.0,,202275.0,104858.0,21h 14m 28.79s,+10° 00′ 27.8″,4.47,3.14,60.0,F5V+...,spectroscopic binary,F7V + F7V,6200.0 K,1.192 M☉,1.3 R☉,2.25 L☉,,,3.0 Gyr,True
+γ Equ,γ,5.0,15.0,,201601.0,104521.0,21h 10m 20.47s,+10° 07′ 55.0″,4.7,1.97,115.0,F0p,"double star; Rapidly oscillating Ap star, Vmax = 4.70m, Vmin = 4.71m, P = 0.00811 d",A9VpSrCrEu,7550.0 K,1.78 M☉,2.11 R☉,11.0 L☉,4.47 cgs,7.0 km/s,1.0 Gyr,True
+β Equ,β,10.0,29.0,,203562.0,105570.0,21h 22m 53.58s,+06° 48′ 40.0″,5.16,−0.05,360.0,A3V,multiple star,A3 V,9000.0 K,2.74 M☉,4.02 R☉,78.3 L☉,,58.0 km/s,600.0 Myr,False
+ε Equ,ε,1.0,4.0,,199766.0,103569.0,20h 59m 04.54s,+04° 17′ 37.8″,5.3,1.40,197.0,F5III...,spectroscopic binary,F5(V) + F6(V),6223.0 K,1.74 M☉,,,3.87 cgs,,1.5 Gyr,False
+ζ Equ,ζ,3.0,8.0,,200644.0,104031.0,21h 04m 34.64s,+05° 30′ 10.3″,5.63,−0.99,688.0,K5III,double star,K5 III,4029.0 K,7.2 M☉,116.0 R☉,2581.0 L☉,1.06 cgs,4.6 km/s,,False
+9 Equ,,9.0,24.0,,203291.0,105413.0,21h 21m 04.80s,+07° 21′ 16.4″,5.81,−1.75,1058.0,M2III,"suspected variable; Vmax = 5.86m, Vmin = 5.91m",M2IIIa,3920.0 K,1.2 M☉,58.0 R☉,720.0 L☉,1.64 cgs,,,False
+4 Equ,,4.0,9.0,,200790.0,104101.0,21h 05m 26.79s,+05° 57′ 30.6″,5.94,3.10,120.0,F8V,double star,F8 V+ ?,6213.0 K,1.39 M☉,1.2 R☉,4.98 L☉,43.8 cgs,6.2 km/s,3.07 Gyr,False
+6 Equ,,6.0,15.0,,201616.0,104538.0,21h 10m 31.31s,+10° 02′ 56.0″,6.07,0.24,479.0,A2Vs,optical double with γ Equ,A2 Vs(A1 Si Sr Cr),9339.0 K,2.412 M☉,2.68 R☉,48.7 L☉,3.738 cgs,65.0 km/s,462.0 Myr,False
+λ Equ,λ,2.0,,,200256.0,103813.0,21h 02m 12.51s,+07° 10′ 47.3″,6.72,1.68,332.0,F8,double star,F6V,6127.0 K,1.73 M☉,2.6 R☉,12.9 L☉,3.84 cgs,,1.9 Gyr,False
+S Equ,,,,S,199454.0,103419.0,20h 57m 12.84s,+05° 04′ 49.4″,8.37,-0.57,2000.0,B9V + F9III-IV,"Algol variable, Vmax = 8.35m, Vmin = 10.40m, P = 3.4360969 d",,,,,,,,,False
+SY Equ,,,,SY,203664.0,105614.0,21h 23m 28.81s,+09° 55′ 54.9″,8.53,-2.02,4200.0,B0.5IIIn,"Beta Cephei variable, Vmax = 8.520m, Vmin = 8.585m, P = 0.1658677 d",B0.5 IIIn,28184.0 K,14.0 M☉,10.44 R☉,2490.0 L☉,3.8 cgs,180.0 km/s,7.5 Myr,False
+R Equ,,,,R,202051.0,,21h 13m 11.77s,+12° 48′ 08.77″,8.7,4,,M3e,"Mira variable, Vmax = 8.4m, Vmin = 15.0m, P = 262.28 d",M3e - M4e,3395.0 K,3.42 M☉,,33791.0 L☉,0.007 cgs,,,False
+U Equ,,,,U,,,20h 57m 16.2s,+02° 58′ 45″,14.5,3.57,5000.0,M,"slow irregular variable, Vmax = 13.4m, Vmin = 14.5m",G - K III,5005.0 K,,,6000.0 L☉,,,,False
+]]
+
+return M

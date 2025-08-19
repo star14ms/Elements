@@ -1,0 +1,25 @@
+local M = {}
+M.csv = [[
+Name,B,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Ant,α,,90610,51172.0,10h 27m 09.16s,−31° 04′ 04.1″,4.28,−0.97,366.0,K4III,"suspected variable, Vmax = 4.22m, Vmin = 4.29m",K4 III,4070.0 K,2.2 M☉,41.0 R☉,412.0 L☉,1.77 cgs,,,True
+ε Ant,ε,,82150,46515.0,09h 29m 14.74s,−35° 57′ 04.9″,4.51,−2.15,700.0,K3III,"variable star, ΔV = 0.003m, P = 0.09026 d",K3 IIIa,4.348 K,2.3 M☉,53.0 R☉,901.0 L☉,1.86 cgs,3.3 km/s,,True
+ι Ant,ι,,94890,53502.0,10h 56m 43.00s,−37° 08′ 14.9″,4.6,0.67,199.0,K0III,,K1 III,4867.0 K,1.74 M☉,10.71 R☉,58.01 L☉,2.6 cgs,,3.32 Gyr,True
+θ Ant,θ,,84367,47758.0,09h 44m 12.13s,−27° 46′ 10.4″,4.78,−0.58,384.0,A7V+...,binary star,A8 Vm + G7 III,,1.8 M☉,,,,,,False
+η Ant,η,,86629,48926.0,09h 58m 52.34s,−35° 53′ 27.4″,5.23,2.66,106.0,A8IV,double star,F1 V,7132.0 K,1.55 M☉,1.72 R☉,6.6 L☉,3.94 cgs,,0.9 Gyr,False
+U Ant,,U,91793,51821.0,10h 35m 12.88s,−39° 33′ 45.3″,5.5,−1.54,836.0,"C6,3(N0)","slow irregular variable, Vmax = 5.27m, Vmin = 6.04m","C-N3(C5,3)",3394.0 K,3.1 M☉,169.0 R☉,4500.0 L☉,1.96 cgs,,,False
+HR 4049,,AG,89353,50456.0,10h 18m 07.60s,−28° 59′ 31.3″,5.52,−3.60,2173.0,B9.5Ib/II,"protoplanetary nebula, Vmax = 5.29m, Vmin = 5.83m, P = 429 d",B9.5Ib-II,7500.0 K,0.56 M☉,47.0 R☉,6300.0 L☉,1.0 cgs,,,False
+δ Ant A,δ,,90972,51376.0,10h 29m 35.40s,−30° 36′ 25.5″,5.56,−0.27,481.0,B9/B9.5V,"component of the δ Ant system; suspected variable, Vmax = 5.55m, Vmin = 5.60m",B9.5 V + F9 Ve,11117.0 K,3.35 M☉,,200.0 L☉,,27.0 km/s,214.0 Myr,False
+ζ1 Ant B,ζ1,,82383,46657.0,09h 30m 46.08s,−31° 53′ 21.0″,5.75,0.46,372.0,A0,binary star,A0 V + A2 V,9641.0 K,2.46 M☉,2.26 R☉,39.8 L☉,4.1 cgs,204.0 km/s,,False
+ζ2 Ant,ζ2,,82513,46734.0,09h 31m 32.19s,−31° 52′ 18.6″,5.91,0.61,374.0,A9IV,,A9 IV,7455.0 K,1.71 M☉,4.22 R☉,49.5 L☉,3.42 cgs,,,False
+ζ1 Ant A,ζ1,,82384,,09h 30m 46.10s,−31° 53′ 22.0″,6.18,,,,component of the ζ1 Ant system,A0 V + A2 V,9641.0 K,2.46 M☉,2.26 R☉,39.8 L☉,4.1 cgs,204.0 km/s,,False
+BF Ant,,BF,86301,48776.0,09h 56m 54.14s,−27° 28′ 30.8″,6.32,0.38,502.0,A4V,"δ Scuti variable, ΔV = 0.01m",A4 V,7745.0 K,2.41 M☉,,66.8 L☉,,218.9 km/s,,False
+S Ant,,S,82610,46810.0,09h 32m 18.45s,−28° 37′ 40.4″,6.43,2.05,245.0,A9V,"W Uma variable, Vmax = 6.27m, Vmin = 6.83m, P = 0.6483489 d",A9V,7100.0 K,1.66 M☉,2.09 R☉,10.0 L☉,4.02 cgs,,1.9 Gyr,False
+T Ant,,T,,46924.0,09h 33m 50.86s,−36° 36′ 56.7″,9.26,-0.7,3200.0,G5,"Classical Cepheid, Vmax = 8.88m, Vmin = 9.82m, P = 5.898053 d",F6Iab-G5,5286.0 K,,52.0 R☉,1889.0 L☉,2.1 cgs,,100.0 Myr,False
+δ Ant B,δ,BZ,90972B,,10h 29m 34.77s,−30° 36′ 33.1″,9.65,3.81,481.0,F9Ve,"component of the δ Ant system; T Tauri star, ΔV = 0.04m, P = 3.3 d",B9.5 V + F9 Ve,11117.0 K,3.35 M☉,,200.0 L☉,,27.0 km/s,214.0 Myr,False
+TWA 6,,BX,,,10h 18m 28.70s,−31° 50′ 02.9″,10.65,,,M0Ve,"T Tauri star, ΔV = 0.149m, P = 0.5409 d",,,,,,,,,False
+TWA 7,,CE,,,10h 42m 30.06s,−33° 40′ 16.6″,11.73,,,M2Ve,"T Tauri star, ΔV = 0.11m, P = 5.00 d",M1,3509.0 K,0.46 M☉,0.92 R☉,0.115 L☉,4.18 cgs,4.92 days,6.4 Myr,False
+UX Ant,,UX,,,10h 57m 09.0s,−37° 23′ 56″,12.37,,,,"R CrB variable, Vmax = 11.5m, Vmin = <18.0m",C(F),7000.0 K,0.722 M☉,,,0.5 cgs,,,False
+XTE J0929-314,,BW,,,09h 29m 20.19s,−31° 29′ 03.2″,18.63,,,,"X-ray pulsar, Vmax = 18.63m, Vmin = 22.89m, P = 0.030263 d",,,,,,,,,False
+]]
+
+return M

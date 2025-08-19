@@ -1,0 +1,44 @@
+local M = {}
+M.csv = [[
+Name,B,F,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+γ Sge,γ,12.0,,189319.0,98337.0,19h 58m 45.39s,+19° 29′ 31.5″,3.51,−1.11,274.0,K5III,"variable star, ΔV = 0.004m, P = 6.37836 d",M0 III,3904.0 K,1.77 M☉,57.71 R☉,697.0 L☉,1.06 cgs,,2.35 Gyr,True
+δ Sge,δ,7.0,,187076.0,97365.0,19h 47m 23.27s,+18° 32′ 03.3″,3.82,−1.87,448.0,M2II + B6,"semiregular variable, Vmax = 3.75m, Vmin = 3.83m",M2II + B9.5V,3660.0 K,3.8 M☉,180.0 R☉,3162.0 L☉,0.74 cgs,,,True
+α Sge,α,5.0,,185758.0,96757.0,19h 40m 05.78s,+18° 00′ 50.2″,4.38,−1.42,473.0,G0II,"Sham, Alsahm",G1 II,5333.0 K,4.11 M☉,21.0 R☉,340.0 L☉,3.11 cgs,10.0 km/s,151.0 Myr,True
+β Sge,β,6.0,,185958.0,96837.0,19h 41m 02.93s,+17° 28′ 34.0″,4.38,−1.39,466.0,G8II,,G8 IIIa CN 0.5,4990.0 K,3.755 M☉,25.7 R☉,369.0 L☉,2.2 cgs,9.1 km/s,129.0 Myr,True
+ζ Sge,ζ,8.0,,187362.0,97496.0,19h 48m 58.65s,+19° 08′ 31.1″,5.01,0.01,326.0,A3V,,A3 Vnn(A1 V + A3 V),8422.0 K,1.8 M☉,1.7 R☉,46.0 L☉,3.89 cgs,240.0 km/s,347.0 Myr,False
+η Sge,η,16.0,,190608.0,98920.0,20h 05m 09.47s,+19° 59′ 27.2″,5.09,1.61,162.0,K2III,suspected variable,K2 III,4784.0 K,1.73 M☉,7.08 R☉,26.0 L☉,3.03 cgs,1.3 km/s,1.69 Gyr,False
+13 Sge,,13.0,VZ,189577.0,98438.0,20h 00m 03.31s,+17° 30′ 59.5″,5.33,−1.47,746.0,M4IIIa,"semiregular variable, Vmax = 5.27m, Vmin = 5.57m",M4 III,3844.0 K,2.8 M☉,185.7 R☉,2173.57 L☉,3.0 cgs,,,False
+11 Sge,,11.0,,189090.0,98234.0,19h 57m 45.44s,+16° 47′ 20.8″,5.54,0.07,404.0,B9III,,B9III,9661.0 K,2.47 M☉,4.02 R☉,127.0 L☉,3.62 cgs,34.0 km/s,242.0 Myr,False
+1 Sge,,1.0,,180317.0,94620.0,19h 15m 17.34s,+21° 13′ 55.6″,5.65,0.71,318.0,A4V,,,,,,,,,,False
+ε Sge,ε,4.0,,185194.0,96516.0,19h 37m 17.38s,+16° 27′ 46.0″,5.67,−0.14,473.0,G8IIIvar,"suspected variable, Vmax = 5.64m, Vmin = 5.67m",G8 IIIvar,4966.0 K,2.9 M☉,18.37 R☉,184.9 L☉,2.52 cgs,3.2 km/s,520.0 Myr,False
+S Sge,,10.0,S,188727.0,98085.0,19h 56m 01.26s,+16° 38′ 05.3″,5.71,−4.89,4289.0,G5Ibv SB,"Cepheid variable, Vmax = 5.24m, Vmin = 6.04m, P = 8.382086 d",F6Ib-G5Ib,5400.0 K,7.0 M☉,58.5 R☉,5200.0 L☉,1.93 cgs,,81.0 Myr,False
+15 Sge,,15.0,,190406.0,98819.0,20h 04m 06.47s,+17° 04′ 16.2″,5.80,4.56,58.0,G1V,"binary star; suspected variable, Vmax = 5.77m, Vmin = 5.80m",G0V + L4,5883.0 K,1.08 M☉,1.115 R☉,1.338 L☉,4.42 cgs,17.5±2.3,2.5 Gyr,False
+18 Sge,,18.0,,192836.0,99913.0,20h 16m 19.78s,+21° 35′ 55.5″,6.11,1.31,298.0,K1III,,,,,,,,,,False
+9 Sge,,9.0,QZ,188001.0,97796.0,19h 52m 21.77s,+18° 40′ 18.8″,6.23,−6.96,14174.0,O8e,"spectroscopic eclipsing binary, Vmax = 6.16m, Vmin = 6.23m",,,,,,,,,False
+2 Sge,,2.0,,182490.0,95398.0,19h 24m 22.08s,+16° 56′ 15.9″,6.27,1.08,355.0,A2III-IV,,,,,,,,,,False
+V340 Sge,,,V340,185622.0,96688.0,19h 39m 25.34s,+16° 34′ 16.1″,6.37,−2.87,2296.0,M0Iab-Ib SB,slow irregular variable,,,,,,,,,False
+V344 Sge,,,V344,191178.0,99176.0,20h 08m 06.50s,+16° 39′ 51.7″,6.39,−4.18,4234.0,M3III,irregular variable,,,,,,,,,False
+U Sge,,,U,181182.0,94910.0,19h 18m 48.41s,+19° 36′ 37.7″,6.50,−0.96,1012.0,B8III + K,"Algol variable, Vmax = 6.45m, Vmin = 9.28m, P = 3.38061933 d",B7.5 IV/V + G2 III/IVB7.5 V + G4 III–IV,13300.0 K,4.629 M☉,3.9193 R☉,2.655 L☉,3.9 cgs,100.0 km/s,,False
+θ Sge A,θ,17.0,,191570.0,99352.0,20h 09m 56.61s,+20° 54′ 53.2″,6.51,3.24,147.0,F5IV,,F3V,6750.0 K,1.52 M☉,1.5 R☉,4.1 L☉,4.32 cgs,33.6 km/s,2.089 Gyr,False
+V338 Sge,,,V338,179588.0,94377.0,19h 12m 34.45s,+16° 50′ 47.1″,6.69,,791.0,B9IV,Eclipsing binary,,,,,,,,,False
+3 Sge,,3.0,,182571.0,95435.0,19h 24m 45.39s,+16° 57′ 25.4″,6.84,1.36,407.0,A0,,,,,,,,,,False
+HD 183143,,,HT,183143.0,95657.0,19h 27m 26.56s,+18° 17′ 45.2″,6.86,,7100.0,B7Iae,"Alpha Cygni variable, Vmax = 6.71m, Vmin = 6.95m, P = 40.44 d",B6-8 Ia-0,12800.0 K,24.2 M☉,109.0 R☉,288000.0 L☉,1.76 cgs,37.0 km/s,7.59 Myr,False
+θ Sge B,θ,17.0,,191571.0,,20h 09m 52.30s,+20° 53′ 47.0″,8.90,,,,component of the θ Sge system,F3V,6750.0 K,1.52 M☉,1.5 R☉,4.1 L☉,4.32 cgs,33.6 km/s,2.089 Gyr,False
+R Sge,,,R,192388.0,,20h 14m 03.75s,+16° 43′ 35.1″,9.20,,,G0Ib,"RV Tauri variable, Vmax = 8.0m, Vmin = 10.5m, P = 70.77 d",G0Ib-G8Ib,5750.0 )K,0.81 M☉,61.2 R☉,2329.0 L☉,0.0 cgs,,,False
+FG Sge,,,FG,,99527.0,20h 11m 56.06s,+20° 20′ 04.4″,9.45,,606.0,B4Ieq-K2Ib,"Vmax = 8.7m, Vmin = 18.1m",(O3-) B4Ieq - K2Ib,45000.0 K,0.8 M☉,184.0 R☉,12000.0 L☉,2.2 cgs,,,False
+V Sge,,,V,,,20h 20m 14.69s,+21° 06′ 10.44″,9.6-13,,7800.0,,"prototype V Sagittae variable, Vmax = 8.16m, Vmin = 13.9m, P = 0.514195 d",B1,70000.0 K,0.9 M☉,1.2 R☉,30000.0 L☉,,,,False
+GY Sge,,,GY,,,19h 35m 13.63s,+19° 12′ 08.6″,9.84,,,,"Cepheid variable, Vmax = 9.84m, Vmin = 10.60m, P = 51.0625 d",,,,,,,,,False
+SV Sge,,,SV,,93987.0,19h 08m 11.77s,+16° 43′ 35.1″,10.3,,,Rv...,"R Coronae Borealis variable, Vmax = 10.3m, Vmin = 16.5m, P = 56.64 d",,,,,,,,,False
+HD 187282,,,QT,187282.0,97456.0,19h 48m 32.20s,+18° 12′ 03.7″,10.51,,,WN4,"Wolf–Rayet star, ΔV = 0.04m",WN4(h)-w,70800.0 K,11.0 M☉,2.69 R☉,166000.0 L☉,,,,False
+QW Sge,,,QW,,,19h 45m 49.54s,+18° 36′ 47.8″,11.0,,,M6,"Z Andromedae variable, Vmax = 11.0m, Vmin = 12.8m, P = 517 d",,,,,,,,,False
+HM Sge,,,HM,,,19h 41m 57.09s,+16° 44′ 39.9″,11.10,,,M7,Nova and Mira variable,M7,3000.0 K,,540.0 R☉,5000.0 L☉,,,,False
+WR 124,,,QR,,94289.0,19h 11m 30.88s,+16° 51′ 38.2″,11.12,,,WN8,"Merrill's Star; Wolf–Rayet star, Vmax = 11.04m, Vmin = 11.12m",WN8h,44700.0 K,20.0 M☉,11.93 R☉,562000.0 L☉,,,8.6 Myr,False
+RZ Sge,,,RZ,,,20h 03m 18.47s,+17° 02′ 51.9″,12.3,,,,"SU Ursae Majoris variable, Vmax = 12.3m, Vmin = 17.7m, P = 0.0682803 d",,,,,,,,,False
+QY Sge,,,QY,,,20h 07m 54.62s,+18° 42′ 54.5″,12.37,,,G0e...,"semiregular variable, Vmax = 12.37m, Vmin = 12.57m",,,,,,,,,False
+UU Sge,,,UU,,,19h 42m 10.30s,+17° 05′ 14.4″,14.67,,,sdO+G,"Algol variable in planetary nebula, Vmax = 14.18m, Vmin = 15.59m, P = 0.46506918 d",,,,,,,,,False
+WZ Sge,,,WZ,,,20h 07m 36.50s,+17° 42′ 14.8″,15.20,,,DAepv,prototype WZ Sagittae variable,DApe,17800.0 K,0.85 M☉,,,9.0 cgs,,,False
+Black Widow Pulsar,,,QX,,,19h 59m 36.77s,+20° 48′ 15.1″,20.4,,,,"eclipsing binary/millisecond pulsar, Vmax = 20.4m, Vmin = 23.0m, P = 0.381967 d",,,2.4 M☉,,,,1.607 ms,,False
+WY Sge,,,WY,,,19h 32m 43.82s,+17° 44′ 55.9″,,,,,nova; dwarf nova; Algol variable,,,,,,,,,False
+]]
+
+return M

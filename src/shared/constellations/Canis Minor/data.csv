@@ -1,0 +1,27 @@
+Name,B,F,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+Procyon,α,10,,61421.0,37279.0,07h 39m 18.54s,+05° 13′ 39.0″,0.34,2.65,11.0,F5IV-V,"Antecanis, Al Shira, Elgomaisa; 7th brightest star, 13th nearest star system; binary; suspected variable, Vmax = 0.34m, Vmin = 0.41m",F5 IV–V+ DQZ,6582.0 K,1.478 M☉,2.043 R☉,7.049 L☉,3.98 cgs,23.0 days,1.87 Gyr,True
+β CMi,β,3,,58715.0,36188.0,07h 27m 09.07s,+08° 17′ 21.9″,2.89,−0.70,170.0,B8Vvar,"Gomeisa; γ Cas variable, Vmax = 2.84m, Vmin = 2.92m",B8 Ve,11772.0 K,3.64 M☉,3.22 (polar)R☉,240.0 L☉,3.51 cgs,210.0 km/s,160.0 Myr,True
+γ CMi,γ,4,,58972.0,36284.0,07h 28m 09.83s,+08° 55′ 31.8″,4.33,−1.10,318.0,K3III SB,"semiregular variable, Vmax = 4.30m, Vmin = 4.34m, P = 55 d",K3 III Fe-0.5(K4 III + K1: III),4036.0 K,1.88 M☉,36.8 R☉,321.0 L☉,,5.0 km/s,1.3 Gyr,False
+HD 66141,(λ),(13),,66141.0,39311.0,08h 02m 15.95s,+02° 20′ 03.5″,4.39,−0.13,261.0,K2III,suspected variable; has a planet (b),K2IIIbFe-0.5:,4521.0 K,0.98 M☉,23.57 R☉,209.0 L☉,2.09 cgs,1.91 km/s,9.18 Gyr,False
+6 CMi,,6,,59294.0,36425.0,07h 29m 47.78s,+12° 00′ 23.8″,4.55,−1.63,560.0,K2III,"suspected variable, Vmax = 4.48m, Vmin = 4.55m",K1 III,4370.0 K,4.0 M☉,44.0 R☉,761.44 L☉,,1.7 km/s,,False
+ε CMi,ε,2,,58367.0,36041.0,07h 25m 38.90s,+09° 16′ 34.0″,4.99,−2.42,988.0,G8III,,G6.5 IIb,4916.0 K,4.63 M☉,45.51 R☉,1086.5 L☉,1.81 cgs,8.0 km/s,140.0 Myr,False
+ζ CMi,ζ,13,,63975.0,38373.0,07h 51m 42.00s,+01° 46′ 00.8″,5.12,−0.43,420.0,B8II,,B8 II,12311.0 K,4.7 M☉,6.7 R☉,931.0 L☉,3.36 cgs,28.0 km/s,,False
+η CMi,η,5,,58923.0,36265.0,07h 28m 02.08s,+06° 56′ 31.5″,5.22,0.06,351.0,F0III,,F0 III,7505.0 K,2.16 M☉,,57.5 L☉,3.66 cgs,54.0 km/s,818.0 Myr,False
+δ1 CMi,δ1,7,,59881.0,36641.0,07h 32m 05.95s,+01° 54′ 52.1″,5.24,−1.67,787.0,F0III,,F0 IIIor F0 V,7210.0 K,4.34 M☉,11.6 R☉,542.0 L☉,3.4 cgs,50.0 km/s,,False
+11 CMi,,11,,62832.0,37921.0,07h 46m 16.22s,+10° 46′ 05.9″,5.25,0.34,312.0,A1Vnn,,A1Vnn,9972.0 K,2.23 M☉,2.5 R☉,65.26 L☉,3.6 cgs,,149.0 Myr,False
+14 CMi,,14,,65345.0,38962.0,07h 58m 20.75s,+02° 13′ 28.3″,5.3,0.75,264.0,K0III,,G8 IIIb,5070.0 K,2.54 M☉,8.66 R☉,48.0 L☉,3.1 cgs,,550.0 Myr,False
+1 CMi,,1,,58187.0,35987.0,07h 24m 58.19s,+11° 40′ 10.4″,5.37,0.43,317.0,A5IV,,A5 IVor A4 V,8374.0 K,2.15 M☉,4.6 R☉,66.3 L☉,3.87 cgs,159.0 km/s,716.0 Myr,False
+δ2 CMi,δ2,8,,60111.0,36723.0,07h 33m 11.68s,+03° 17′ 25.0″,5.59,2.44,139.0,F2V,,F2 V,7378.0 K,1.63 M☉,1.855 R☉,10.0 L☉,4.15 cgs,113.0 km/s,874.0 Myr,False
+δ3 CMi,δ3,9,,60357.0,36812.0,07h 34m 15.89s,+03° 22′ 18.3″,5.83,−0.75,676.0,A0Vnn,,B9 V,9908.0 K,3.16 M☉,2.1 R☉,175.0 L☉,,259.0 km/s,310.0 Myr,False
+BC CMi,,,BC,64052.0,38406.0,07h 52m 07.16s,+03° 16′ 39.1″,6.3,0.75,420.0,M5,"semiregular variable, Vmax = 6.14m, Vmin = 6.42m, P = 35 d",M4/5III,3980.0 K,2.2 M☉,53.0 R☉,559.0 L☉,1.82 cgs,,2.5 Gyr,False
+BU CMi,,,BU,65241.0,38945.0,07h 58m 05.90s,+07° 12′ 48.8″,6.42,−0.64,842.0,A0V,Algol variable,A0V,10130.0 K,3.4 M☉,2.51 R☉,,4.088 cgs,,,False
+AZ CMi,,,AZ,62437.0,37705.0,07h 44m 07.64s,+02° 24′ 19.6″,6.46,0.84,433.0,A5IV,"δ Sct variable, Vmax = 6.44m, Vmin = 6.51m, P = 0.09526 d",A5 IV,7783.0 K,1.91 M☉,3.83 R☉,48.4 L☉,3.6 cgs,44.0 km/s,990.0 Myr,False
+S CMi,,,S,59950.0,36675.0,07h 32m 43.07s,+08° 19′ 05.2″,6.6,,2450.0,M7-8e,"Mira variable, Vmax = 6.6m, Vmin = 13.2m, P = 332.94 d",M7-8e,2872.0 K,,402.0 R☉,6174.0 L☉,0.51 cgs,,,False
+AI CMi,,,AI,,,07h 35m 41.15s,+00° 14′ 58.0″,8.31,,,G5Iab,"slow irregular variable, Vmax = 7.77m, Vmin = 9.53m",,,,,,,,,False
+HD 56126,,,CY,56126.0,,07h 16m 10.6s,+09° 59′ 48.0″,8.32,,,F5Iab,"post-AGB star, ΔV = 0.18m, P = 39 d",,,,,,,,,False
+YY CMi,,,YY,67110.0,,08h 06m 38.56s,+01° 55′ 46.5″,8.7,,,F7V,"β Lyr variable, Vmax = 8.33m, Vmin = 9.13m, P = 1.0940197 d",F1V-IV + F5V-IV,7000.0 K,1.56 M☉,2.52 R☉,13.5 L☉,3.83 cgs,,,False
+AD CMi,,,AD,64191.0,38473.0,07h 52m 47.18s,+01° 35′ 50.5″,9.38,,528.0,F2:III,"δ Sct variable, Vmax = 9.21m, Vmin = 9.51m, P = 0.12297443 d",,,,,,,,,False
+XZ CMi,,,XZ,,,07h 54m 07.06s,+03° 39′ 20.4″,10.25,,,F0,"Algol variable, Vmax = 9.7m, Vmin = 10.42m, P = 0.5780095 d",,,,,,,,,False
+AK CMi,,,AK,,,07h 40m 15.60s,+03° 57′ 09.5″,10.73,,,A-F,Algol variable,,,,,,,,,False
+YZ CMi,,,YZ,,,07h 44m 40.17s,+03° 33′ 08.8″,11.23,,19.419,M4.5V,BY Dra and UV Cet variable,M5 V,3125.0 K,0.36 M☉,0.37 R☉,2.0 L☉,5.0 cgs,2.8 days,49.0 Myr,False
+BG CMi,,,BG,,,07h 31m 29.01s,+09° 56′ 23.1″,14.5,,,,"DQ Her variable, Vmax = 13.9m, Vmin = 15.6m, P = 0.13475 d",,,0.78 M☉,,,,,,False

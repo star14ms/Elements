@@ -1,0 +1,42 @@
+Name,B,Var,HD,HIP,RA,Dec,vis. mag.,abs. mag.,Dist. (ly),Sp. class,Notes,Spectral type,Temperature,Mass,Radius,Luminosity,Surface gravity,Rotation,Age,Main Star
+α Sct,α,,171443.0,91117.0,18h 35m 12.44s,−08° 14′ 35.9″,3.85,0.21,174.0,K2III,"suspected variable, Vmax = 3.81m, Vmin = 3.87m",K3III,4315.0 K,1.33 M☉,20.0 R☉,186.0 L☉,1.96 cgs,1.7 km/s,,True
+β Sct,β,,173764.0,92175.0,18h 47m 10.48s,−04° 44′ 52.2″,4.22,−2.41,689.0,G5II...,,G4IIa,4951.0 K,,49.26 R☉,1315.0 L☉,0.94 cgs,7.8 km/s,,True
+ζ Sct,ζ,,169156.0,90135.0,18h 23m 39.55s,−08° 56′ 04.2″,4.66,0.82,191.0,K0III,,G9 IIIb Fe-0.5,4750.0 K,1.29 M☉,9.3 R☉,62.04 L☉,2.61 cgs,1.5 km/s,,False
+γ Sct,γ,,170296.0,90595.0,18h 29m 11.85s,−14° 33′ 56.9″,4.67,−0.09,291.0,A1IV/V,,A2:V,9016.0 K,2.91 M☉,4.1 R☉,150.0 L☉,2.09 cgs,222.0 km/s,237.0 Myr,False
+δ Sct,δ,,172748.0,91726.0,18h 42m 16.42s,−09° 03′ 09.2″,4.70 (4.60–4.79),0.91,187.0,F2IIIp d Del,"triple star; prototype Delta Scuti variable, Vmax = 4.6m, Vmin = 4.79m, P = 0.1937697 d",F2 IIIp,7000.0 K,2.27 M☉,4.25 R☉,38.7 L☉,3.5 cgs,25.5 km/s,1.09 Gyr,False
+η Sct,η,,175751.0,93026.0,18h 57m 03.63s,−05° 50′ 46.4″,4.83,0.82,207.0,K1III,,K1-III,4693.0 K,1.5 M☉,11.97 R☉,62.7 L☉,2.54 cgs,<1.0 km/s,2.8 Gyr,False
+ε Sct,ε,,173009.0,91845.0,18h 43m 31.24s,−08° 16′ 30.9″,4.88,−1.14,522.0,G8II,,G8IIb,4500.0 K,,,403.0 L☉,1.0 cgs,5.1 km/s,,False
+R Sct,,R,173819.0,92202.0,18h 47m 28.98s,−05° 42′ 18.3″,5.38 (4.5–8.2),−2.79,1405.0,K0Ibpvar,"RV Tauri variable, Vmax = 4.2m, Vmin = 8.6m, P = 146.5 d",G0Iae-K2p(M3)Ibe,4500.0 K,0.68 M☉,160.0 R☉,9400.0 L☉,0.0 cgs,,,False
+V450 Sct,,V450,170975.0,90913.0,18h 32m 43.32s,−14° 51′ 56.4″,5.47,−2.48,1268.0,K3Iab,semiregular variable,,,,,,,,,False
+V432 Sct,,V432,170397.0,90651.0,18h 29m 46.75s,−14° 34′ 55.3″,6.02,1.32,284.0,Ap,"α² CVn variable, ΔV = 0.012m, P = 2.1912 d",,,,,,,,,False
+HD 169454,,V430,169454.0,90281.0,18h 25m 15.19s,−13° 58′ 42.3″,6.64,,,B1Ia,"α Cyg variable, Vmax = 6.5m, Vmin = 6.64m",,,,,,,,,False
+S Sct,,S,174325.0,92442.0,18h 50m 20.04s,−07° 54′ 27.4″,6.80,,1260.0,C,"semiregular variable, Vmax = 6.6m, Vmin = 7.3m, P = 149.7 d",C64,2755.0 K,,288.0 R☉,4300.0 L☉,,,,False
+V496 Sct,,V496,,,18h 43m 45.57s,−07° 36′ 42.0″,7.10,,,,"nova, Vmax = 7.10m, Vmin = <19m",,,,,,,,,False
+RZ Sct,,RZ,169753.0,90382.0,18h 26m 33.52s,−09° 12′ 06.0″,7.53,,2260.0,B3Ib,"Algol variable, Vmax = 7.34m, Vmin = 8.84m, P = 15.1902079 d",,,,,,,,,False
+HD 173219,,V447,173219.0,91946.0,18h 44m 33.34s,−07° 06′ 38.2″,7.88,,,B1:V:npe,"Be star, ΔV = 0.12m",,,,,,,,,False
+SS Sct,,SS,173058.0,91867.0,18h 43m 43.51s,−07° 43′ 51.9″,7.90,,,F8,"Cepheid variable, Vmax = 7.9m, Vmin = 8.43m, P = 3.671253 d",,,,,,,,,False
+EW Sct,,EW,171955.0,91342.0,18h 37m 51.11s,−06° 47′ 48.5″,7.96,,1450.0,G5,"double-mode Cepheid variable, Vmax = 7.6m, Vmin = 8.2m, P = 5.82363 d",,,,,,,,,False
+V475 Sct,,V475,,,18h 49m 37.60s,−09° 33′ 15.9″,,,,,"nova, Vmax = 8.4m, Vmin = <16m",,,,,,,,,False
+RU Sct,,RU,172730.0,91697.0,18h 41m 56.38s,−04° 06′ 38.4″,8.84,,801.0,G5,"Cepheid variable, Vmax = 8.84m, Vmin = 9.96m, P = 19.7035 d",,,,,,,,,False
+RY Sct,,RY,169515.0,90303.0,18h 25m 31.48s,−12° 41′ 24.2″,9.12,,,B1IIIpe,"Beta Lyrae variable, Vmax = 9.12m, Vmin = 9.72m, P = 11.12471 d",,,,,,,,,False
+HD 173637,,V455,173637.0,92128.0,18h 46m 38.08s,−07° 55′ 55.1″,9.29,,,B1IV,γ Cas variable,,,,,,,,,False
+EV Sct,,EV,,91239.0,18h 36m 39.60s,−08° 11′ 05.4″,9.90,,,G0II,"Cepheid variable, Vmax = 9.9m, Vmin = 10.32m, P = 3.09099 d",,,,,,,,,False
+RS Sct,,RS,,92340.0,18h 49m 11.25s,−10° 14′ 27.8″,9.95,,860.0,G0,"Beta Lyrae variable, Vmax = 9.78m, Vmin = 10.91m, P = 0.6642384 d",,,,,,,,,False
+AS 314,,V452,,91477.0,18h 39m 26.11s,−13° 50′ 47.2″,10.01,,32600.0,A3:Ia,α Cyg variable; candidate luminous blue variable,Protoplanetary nebula,10200.0 K,,,3200.0 L☉,,,,False
+X Sct,,X,,90791.0,18h 31m 19.75s,−13° 06′ 29.5″,10.07,,1330.0,F5...,"Cepheid variable, Vmax = 9.5m, Vmin = 10.42m, P = 4.19807 d",,,,,,,,,False
+V443 Sct,,V443,,,18h 49m 38.95s,−06° 11′ 15.9″,10.48,,,,"nova, Vmax = 8.5m, Vmin = <13.2m",,,,,,,,,False
+UY Sct,,UY,,,18h 27m 36.53s,−12° 27′ 58.9″,10.56,,,M2-4Ia-Iab,One of the largest known stars; semiregular variable,M2-M4Ia-Iab,3550.0 K,,909.0 R☉,124000.0 L☉,,,,False
+UZ Sct,,UZ,,,18h 31m 22.37s,−22° 55′ 43.34″,,10.91,176.35275,G0 D,Yellow giant.,,,,,,,,,False
+CM Sct,,CM,,91738.0,18h 42m 26.82s,−05° 20′ 27.0″,10.93,,,,"Cepheid variable, Vmax = 10.79m, Vmin = 11.49m, P = 3.916997 d",,,,,,,,,False
+TY Sct,,TY,,91706.0,18h 42m 07.92s,−04° 17′ 36.5″,11.00,,733.0,F8,"Cepheid variable, Vmax = 10.31m, Vmin = 11.25m, P = 11.05302 d",,,,,,,,,False
+V476 Sct,,V476,,,18h 32m 04.75s,−06° 43′ 34.3″,11.10,,,,"nova, Vmax = 11.1m, Vmin = <17m",,,,,,,,,False
+LS 5039,,V479,,,18h 26m 15.06s,−14° 50′ 54.3″,11.23,,,O(f)N6.5V,"High-mass X-ray binary; microquasar; gamma-ray emitter; Vmax = 11.22m, Vmin = 11.35m, P = 3.906 d",O(f)N6.5V +Black hole,39000.0 K,22.9 M☉,9.3 R☉,182000.0 L☉,3.85 cgs,113.0 km/s,,False
+V367 Sct,,V367,,,18h 33m 35.24s,−10° 25′ 38.0″,11.58,,,F5II,"double-mode Cepheid variable, Vmax = 11.21m, Vmin = 11.91m, P = 6.29307 d",,,,,,,,,False
+FR Sct,,FR,,90115.0,18h 23m 22.79s,−12° 40′ 51.8″,11.60,,,M1:II,slow irregular variable; Algol variable,,,,,,,,,False
+MWC 300,,V431,,90617.0,18h 29m 25.69s,−06° 04′ 37.3″,11.60,,,Bpe,"α2 CVn variable, Vmax = 11.6m, Vmin = 12.1m, P = 2.1510141 d",,,,,,,,,False
+BX Sct,,BX,,,18h 50m 09.24s,−04° 22′ 05.2″,11.70,,,F6,"Cepheid variable, Vmax = 11.7m, Vmin = 12.62m, P = 6.41133 d",,,,,,,,,False
+OH 17.7-2.0,,V445,,,18h 30m 30.62s,−14° 28′ 55.8″,,,,K2/K3:II/III:,semiregular variable,,,,,,,,,False
+OH 26.5+0.6,,V437,,,18h 37m 32.51s,−05° 23′ 59.2″,,,,M,Mira variable,,,,,,,,,False
+EU Sct,,EU,,,18h 56m 13.12s,−04° 12′ 32.3″,,,,,nova,,,,,,,,,False
+V368 Sct,,V368,,,18h 45m 43.53s,−08° 33′ 00.9″,,,,,nova,,,,,,,,,False
+V373 Sct,,V373,,,18h 55m 26.71s,−07° 43′ 05.5″,,,,,nova,,,1.02 M☉,,,,258.3 s,,False
