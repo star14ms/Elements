@@ -62,6 +62,8 @@ local spectralGuiColors = {
     M = Color3.fromRGB(168, 80, 58),
 }
 
+local periodicSizingConn: RBXScriptConnection? = nil
+
 local function getElementFamily(symbol: string): string
 	-- Best-effort: detect lanthanide/actinide from PeriodicTablePaths lists; otherwise unknown
 	if table.find(PeriodicTablePaths.Lanthanides, symbol) then return "Lanthanide" end
@@ -236,6 +238,21 @@ local function connectFade(scroller: ScrollingFrame)
 		updateFade(scroller)
 	end)
 	updateFade(scroller)
+end
+
+-- Responsive sizing for periodic table grids (keeps 18 columns by shrinking cells)
+local function recalcPeriodicGridCellSize(scroller: ScrollingFrame)
+	local width = scroller.AbsoluteWindowSize.X
+	local padding = 4
+	local usable = math.max(1, width - 8)
+	local cell = math.floor((usable - (17 * padding)) / 18)
+	cell = math.max(12, math.min(cell, 64))
+	for _, layout in ipairs(scroller:GetDescendants()) do
+		if layout:IsA("UIGridLayout") and (layout:GetAttribute("IsPeriodicGrid") == true) then
+			layout.CellSize = UDim2.fromOffset(cell, cell)
+			layout.CellPadding = UDim2.fromOffset(padding, padding)
+		end
+	end
 end
 
 -- Owned check
@@ -656,6 +673,7 @@ local function renderPeriodic(scroller: Instance)
 	grid.FillDirectionMaxCells = 18
 	grid.SortOrder = Enum.SortOrder.LayoutOrder
 	grid.Parent = container
+	grid:SetAttribute("IsPeriodicGrid", true)
 
 	-- build ordered symbols by OrderRank (serves as atomic number)
 	local symbols = {}
@@ -796,6 +814,8 @@ local function renderPeriodic(scroller: Instance)
 	lanGrid.FillDirectionMaxCells = 18
 	lanGrid.SortOrder = Enum.SortOrder.LayoutOrder
 	lanGrid.Parent = lanRow
+	lanGrid:SetAttribute("IsPeriodicGrid", true)
+
 	for _ = 1, 3 do
 		local spacer = Instance.new("Frame")
 		spacer.BackgroundTransparency = 1
@@ -819,6 +839,8 @@ local function renderPeriodic(scroller: Instance)
 	actGrid.FillDirectionMaxCells = 18
 	actGrid.SortOrder = Enum.SortOrder.LayoutOrder
 	actGrid.Parent = actRow
+	actGrid:SetAttribute("IsPeriodicGrid", true)
+
 	for _ = 1, 3 do
 		local spacer = Instance.new("Frame")
 		spacer.BackgroundTransparency = 1
@@ -847,6 +869,11 @@ updateMain = function()
 	styleTabs()
 	if scroller and scroller:IsA("ScrollingFrame") then
 		connectFade(scroller)
+		-- disconnect any previous periodic sizing connection; will be reattached for PeriodicTable tab
+		if periodicSizingConn then
+			periodicSizingConn:Disconnect()
+			periodicSizingConn = nil
+		end
 	end
 
 	-- PeriodicTable tab: grid view of elements, colored if owned
@@ -864,6 +891,17 @@ updateMain = function()
 		list.SortOrder = Enum.SortOrder.LayoutOrder
 		list.Parent = scroller
 		renderPeriodic(scroller)
+		-- responsive: recalc now and when window size changes
+		recalcPeriodicGridCellSize(scroller)
+		task.defer(function()
+			recalcPeriodicGridCellSize(scroller)
+		end)
+		periodicSizingConn = scroller:GetPropertyChangedSignal("AbsoluteWindowSize"):Connect(function()
+			recalcPeriodicGridCellSize(scroller)
+		end)
+		scroller:GetPropertyChangedSignal("AbsoluteCanvasSize"):Connect(function()
+			recalcPeriodicGridCellSize(scroller)
+		end)
 
 	-- Constellations tab: Either show list of constellations or stars of a selected constellation
 	elseif currentTab == "Constellations" then
@@ -975,66 +1013,74 @@ updateMain = function()
 
     for achievement, achievementInfo in pairs(allAchievements) do
         local name = achievement
-		if string.sub(name, 1, 9) ~= "Elements/" then
-			continue
-		end
-		local image = type(achievementInfo.ImageId) == "number" and "rbxassetid://" .. achievementInfo.ImageId or achievementInfo.ImageId
-		local desc = achievementInfo.Description
+        if string.sub(name, 1, 9) ~= "Elements/" then
+            continue
+        end
         local owned = isOwned(achievement)
-
-		local newFrame = script:WaitForChild("AchievementTemplate"):Clone()
-		newFrame.Name, newFrame.AchievementName.Text = name, achievementInfo.Title
-		newFrame.AchievementImage.Image = image
-		newFrame.Description.Text = desc
-		newFrame.Acquired.Visible = owned
-		newFrame.LayoutOrder = achievementInfo.OrderRank
         local leaf = string.match(name, "/([^/]+)$") or name
         local model = PeriodicTablePaths.ElementPath[leaf]
 
-		if not owned then
-			newFrame.ImageColor3 = Color3.fromRGB(newFrame.ImageColor3.R - 50, newFrame.ImageColor3.G - 50, newFrame.ImageColor3.B - 50)
-			for _, uiElement in pairs(newFrame:GetDescendants()) do
-				if uiElement:IsA("Frame") then 
-					uiElement.BackgroundColor3 = Color3.fromRGB(uiElement.BackgroundColor3.R - 50, uiElement.BackgroundColor3.G - 50, uiElement.BackgroundColor3.B - 50)
-				elseif uiElement:IsA("TextLabel") or uiElement:IsA("TextButton") then
-					uiElement.BackgroundColor3 = Color3.fromRGB(uiElement.BackgroundColor3.R - 50, uiElement.BackgroundColor3.G - 50, uiElement.BackgroundColor3.B - 50)
-					uiElement.TextColor3 = Color3.fromRGB(uiElement.TextColor3.R - 50, uiElement.TextColor3.G - 50, uiElement.TextColor3.B - 50)
-				elseif uiElement:IsA("ImageLabel") or uiElement:IsA("ImageButton") then
-					uiElement.ImageColor3 = Color3.fromRGB(uiElement.ImageColor3.R - 50, uiElement.ImageColor3.G - 50, uiElement.ImageColor3.B - 50)
-				end
-			end
-			if model:GetAttribute("colorOrigin") == nil then
-				model:SetAttribute("colorOrigin", model.Color)
-			end
-			model.Color = Color3.fromRGB(0, 0, 0)
+        if not owned then
+            if model:GetAttribute("colorOrigin") == nil then
+                model:SetAttribute("colorOrigin", model.Color)
+            end
+            model.Color = Color3.fromRGB(0, 0, 0)
 
             if table.find(PeriodicTablePaths.Lanthanides, leaf) and not AllLanthanideAchievedCheck then
-				PeriodicTable.Lanthanide.Blank:SetAttribute("colorOrigin", PeriodicTable.Lanthanide.Blank.Color)
-				PeriodicTable.Lanthanide.Blank.Color = Color3.fromRGB(0, 0, 0)
-				AllLanthanideAchievedCheck = true
+                PeriodicTable.Lanthanide.Blank:SetAttribute("colorOrigin", PeriodicTable.Lanthanide.Blank.Color)
+                PeriodicTable.Lanthanide.Blank.Color = Color3.fromRGB(0, 0, 0)
+                AllLanthanideAchievedCheck = true
             elseif table.find(PeriodicTablePaths.Actinides, leaf) and not AllActinideAchievedCheck then
-				PeriodicTable.Actinide.Blank:SetAttribute("colorOrigin", PeriodicTable.Actinide.Blank.Color)
-				PeriodicTable.Actinide.Blank.Color = Color3.fromRGB(0, 0, 0)
-				AllActinideAchievedCheck = true
-			end
-		else
-			if model:GetAttribute("colorOrigin") then
-				model.Color = model:GetAttribute("colorOrigin")
-			end
-			model.SurfaceLight.Brightness = 1
-		end
+                PeriodicTable.Actinide.Blank:SetAttribute("colorOrigin", PeriodicTable.Actinide.Blank.Color)
+                PeriodicTable.Actinide.Blank.Color = Color3.fromRGB(0, 0, 0)
+                AllActinideAchievedCheck = true
+            end
+        else
+            if model:GetAttribute("colorOrigin") then
+                model.Color = model:GetAttribute("colorOrigin")
+            end
+            model.SurfaceLight.Brightness = 1
+        end
 
-        table.insert(newFrames, newFrame)
-	end
+        if currentTab == "Elements" then
+            local image = type(achievementInfo.ImageId) == "number" and "rbxassetid://" .. achievementInfo.ImageId or achievementInfo.ImageId
+            local desc = achievementInfo.Description
 
-	local scroller2 = mainFrame:WaitForChild("AchievementsScroller")
-    for _, newFrame in pairs(newFrames) do
-        newFrame.Parent = scroller2
+            local newFrame = script:WaitForChild("AchievementTemplate"):Clone()
+            newFrame.Name, newFrame.AchievementName.Text = name, achievementInfo.Title
+            newFrame.AchievementImage.Image = image
+            newFrame.Description.Text = desc
+            newFrame.Acquired.Visible = owned
+            newFrame.LayoutOrder = achievementInfo.OrderRank
+
+            if not owned then
+                newFrame.ImageColor3 = Color3.fromRGB(newFrame.ImageColor3.R - 50, newFrame.ImageColor3.G - 50, newFrame.ImageColor3.B - 50)
+                for _, uiElement in pairs(newFrame:GetDescendants()) do
+                    if uiElement:IsA("Frame") then 
+                        uiElement.BackgroundColor3 = Color3.fromRGB(uiElement.BackgroundColor3.R - 50, uiElement.BackgroundColor3.G - 50, uiElement.BackgroundColor3.B - 50)
+                    elseif uiElement:IsA("TextLabel") or uiElement:IsA("TextButton") then
+                        uiElement.BackgroundColor3 = Color3.fromRGB(uiElement.BackgroundColor3.R - 50, uiElement.BackgroundColor3.G - 50, uiElement.BackgroundColor3.B - 50)
+                        uiElement.TextColor3 = Color3.fromRGB(uiElement.TextColor3.R - 50, uiElement.TextColor3.G - 50, uiElement.TextColor3.B - 50)
+                    elseif uiElement:IsA("ImageLabel") or uiElement:IsA("ImageButton") then
+                        uiElement.ImageColor3 = Color3.fromRGB(uiElement.ImageColor3.R - 50, uiElement.ImageColor3.G - 50, uiElement.ImageColor3.B - 50)
+                    end
+                end
+            end
+
+            table.insert(newFrames, newFrame)
+        end
     end
 
-	if scroller2 and scroller2:IsA("ScrollingFrame") then
-		updateFade(scroller2)
+    if currentTab == "Elements" then
+        for _, newFrame in pairs(newFrames) do
+            newFrame.Parent = scroller
+        end
+
+        if scroller and scroller:IsA("ScrollingFrame") then
+            updateFade(scroller)
+        end
     end
+
 end
 
 

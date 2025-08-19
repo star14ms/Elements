@@ -21,7 +21,7 @@ end
 
 RunService.RenderStepped:Connect(function()
 	local pitch = getDownwardPitch()
-    if pitch > 20 then
+    if pitch > 20 or pitch < -20 then
         baseplate.Transparency = 1
     else
 		baseplate.Transparency = originalTransparency
